@@ -23,7 +23,7 @@ namespace Infrastructure.States
             Debug.Log($"{GetType()} entered. Scene name: {sceneName}");
             
             _loadingCurtain.Show();
-            _sceneLoader.Load(sceneName, OnLoaded);
+            _sceneLoader.Load(sceneName, OnLoaded, _loadingCurtain.UpdateProgress);
         }
 
         public void Exit()

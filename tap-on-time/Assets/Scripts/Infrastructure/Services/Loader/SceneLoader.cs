@@ -14,12 +14,12 @@ namespace Infrastructure.Services.Loader
             _coroutineRunner = coroutineRunner;
         }
 
-        public void Load(string name, Action onLoaded = null)
+        public void Load(string name, Action onLoaded = null, Action<float> onProgressUpdated = null)
         {
-            _coroutineRunner.StartCoroutine(LoadScene(name, onLoaded));
+            _coroutineRunner.StartCoroutine(LoadScene(name, onLoaded, onProgressUpdated));
         }
 
-        public IEnumerator LoadScene(string nextScene, Action onLoaded = null)
+        public IEnumerator LoadScene(string nextScene, Action onLoaded = null, Action<float> onProgressUpdated = null)
         {
             if (SceneManager.GetActiveScene().name == nextScene)
             {
@@ -29,10 +29,12 @@ namespace Infrastructure.Services.Loader
             
             AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(nextScene);
             while (!waitNextScene.isDone)
-            {
+            {               
+                onProgressUpdated?.Invoke(waitNextScene.progress);
                 yield return null;   
             }
 
+            onProgressUpdated?.Invoke(waitNextScene.progress);
             onLoaded?.Invoke();
         }
     }

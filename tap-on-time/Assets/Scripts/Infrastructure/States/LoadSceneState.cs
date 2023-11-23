@@ -21,7 +21,7 @@ namespace Infrastructure.States
             Debug.Log($"{GetType()} entered.");
             
             _loadingCurtain.Show();
-            _sceneLoader.Load(payload, OnSceneLoaded);
+            _sceneLoader.Load(payload, OnSceneLoaded,  _loadingCurtain.UpdateProgress);
         }
 
         public void Exit()

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using UI.Element;
 using UnityEngine;
 
 namespace Ui.Curtain
@@ -6,6 +7,7 @@ namespace Ui.Curtain
     public class LoadingCurtain : MonoBehaviour
     {
         [SerializeField] private CanvasGroup curtain;
+        [SerializeField] private ProgressBar progressBar;
         
         private Tween _fadeTwin;
 
@@ -38,6 +40,11 @@ namespace Ui.Curtain
                 _fadeTwin.Kill();
                 _fadeTwin = null;
             }
+        }
+
+        public void UpdateProgress(float progress)
+        {
+            progressBar.UpdateProgress(Mathf.Clamp01(progress / .9f));   
         }
     }
 }
