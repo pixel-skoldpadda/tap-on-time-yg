@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Items
 {
-    [CreateAssetMenu(fileName = "LevelItem", menuName = "Items/Level", order = 0)]
+    [CreateAssetMenu(fileName = "LEVEL_ITEM", menuName = "Items/Level", order = 0)]
     public class LevelItem : ScriptableObject
     {
         [SerializeField] private List<GameObject> sectors;

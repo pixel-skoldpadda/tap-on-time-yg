@@ -2,11 +2,12 @@
 
 namespace Items
 {
-    [CreateAssetMenu(fileName = "LevelVariant", menuName = "Items/LevelVariant", order = 0)]
+    [CreateAssetMenu(fileName = "_LEVEL_VARIANT_ITEM", menuName = "Items/LevelVariant")]
     public class LevelVariantItem : ScriptableObject
     {
         [SerializeField] private int points;
         [SerializeField] private int startSpeed;
+        
         [SerializeField] [Range(0,10)] private int moveSectorsProbability;
         [SerializeField] [Range(0,10)] private int changeDirectionProbability;
 

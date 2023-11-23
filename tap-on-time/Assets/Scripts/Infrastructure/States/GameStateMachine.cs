@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Infrastructure.Services.Factory;
 using Infrastructure.Services.Items;
 using Infrastructure.Services.Loader;
 using Infrastructure.Services.SaveLoad;
@@ -15,12 +16,13 @@ namespace Infrastructure.States
         private IExitableState _activeState;
 
         [Inject]
-        public GameStateMachine(ISceneLoader sceneLoader, LoadingCurtain loadingCurtain, ISaveLoadService saveLoadService, IItemsService items)
+        public GameStateMachine(ISceneLoader sceneLoader, LoadingCurtain loadingCurtain, ISaveLoadService saveLoadService, IItemsService items, 
+            IGameFactory gameFactory)
         {
             _states = new Dictionary<Type, IExitableState>
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, items),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain),
+                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain, gameFactory),
                 [typeof(LoadSceneState)] = new LoadSceneState(sceneLoader, loadingCurtain),
                 [typeof(LoadProgressState)] = new LoadProgressState(this),
                 [typeof(GameLoopState)] = new GameLoopState(this)

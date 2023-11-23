@@ -9,12 +9,28 @@ namespace Infrastructure.Services.Items
     public class ItemsService : IItemsService
     {
         private Dictionary<WindowType, WindowItem> _windows;
+        private Dictionary<SkinType, SkinItem> _skins;
+        
         private List<LevelVariantItem> _variantItems;
-
+        private PlayerItem _playerItem;
+        
         public void LoadAllItems()
         {
             LoadWindowItems();
             LoadLevelVariantItems();
+            LoadPlayerItem();
+            LoadSkinsItems();
+        }
+
+        private void LoadSkinsItems()
+        {
+            _skins = Resources.LoadAll<SkinItem>(ItemsPath.SkinsItemsPath).ToDictionary(
+                k => k.Type, v => v);
+        }
+
+        private void LoadPlayerItem()
+        {
+            _playerItem = Resources.Load<PlayerItem>(ItemsPath.PlayerItemPath);
         }
 
         private void LoadLevelVariantItems()
@@ -33,6 +49,13 @@ namespace Infrastructure.Services.Items
             return _windows.TryGetValue(type, out var item) ? item : null;
         }
 
+        public SkinItem GetSkinItem(SkinType type)
+        {
+            return _skins.TryGetValue(type, out SkinItem item) ? item : null;
+        }
+
         public List<LevelVariantItem> VariantItems => _variantItems;
+
+        public PlayerItem PlayerItem => _playerItem;
     }
 }

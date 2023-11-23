@@ -9,5 +9,7 @@ namespace Infrastructure.Services.Items
         void LoadAllItems();
         WindowItem GetWindowItem(WindowType type);
         List<LevelVariantItem> VariantItems { get; }
+        PlayerItem PlayerItem { get; }
+        SkinItem GetSkinItem(SkinType type);
     }
 }

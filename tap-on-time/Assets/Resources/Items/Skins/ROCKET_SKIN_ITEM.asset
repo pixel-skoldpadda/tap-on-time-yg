@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc66d4f6d3624d0796b25473e4d0af12, type: 3}
-  m_Name: PLAYER_ITEM
+  m_Script: {fileID: 11500000, guid: 317621dfb39b44719c9c66d47517717a, type: 3}
+  m_Name: ROCKET_SKIN_ITEM
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5263675957880856934, guid: 6661bdcb76ec73a429687e3abd11aa6c, type: 3}
-  speed: 100
-  startPoint: {x: 0, y: 2.9, z: 0}
+  type: 0
+  sprite: {fileID: 21300000, guid: f3b3c1e1135f6ef48a36ee30ddc9b2a6, type: 3}

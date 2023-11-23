@@ -1,4 +1,5 @@
-﻿using Infrastructure.Services.Loader;
+﻿using Infrastructure.Services.Factory;
+using Infrastructure.Services.Loader;
 using Infrastructure.States.Interfaces;
 using Ui.Curtain;
 using UnityEngine;
@@ -9,13 +10,15 @@ namespace Infrastructure.States
     {
         private readonly GameStateMachine _stateMachine;
         private readonly ISceneLoader _sceneLoader;
+        private readonly IGameFactory _gameFactory;
         private readonly LoadingCurtain _loadingCurtain;
 
-        public LoadLevelState(GameStateMachine stateMachine, ISceneLoader sceneLoader, LoadingCurtain loadingCurtain)
+        public LoadLevelState(GameStateMachine stateMachine, ISceneLoader sceneLoader, LoadingCurtain loadingCurtain, IGameFactory gameFactory)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _loadingCurtain = loadingCurtain;
+            _gameFactory = gameFactory;
         }
 
         public void Enter(string sceneName)
@@ -42,7 +45,7 @@ namespace Infrastructure.States
 
         private void InitGameWorld()
         {
-    
+            _gameFactory.CreatePlayer();
         }
     }
 }
