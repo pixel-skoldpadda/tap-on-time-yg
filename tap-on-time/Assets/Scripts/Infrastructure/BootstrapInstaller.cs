@@ -1,11 +1,9 @@
 ﻿using Infrastructure.Services.Assets;
-using Infrastructure.Services.Audio;
 using Infrastructure.Services.Factory;
 using Infrastructure.Services.Input;
 using Infrastructure.Services.Items;
 using Infrastructure.Services.Loader;
 using Infrastructure.Services.SaveLoad;
-using Infrastructure.Services.State;
 using Infrastructure.Services.WindowsManager;
 using Infrastructure.States;
 using Ui.Curtain;
@@ -24,8 +22,6 @@ namespace Infrastructure
             Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
             Container.Bind<IInputService>().To<InputService>().AsSingle();
             Container.Bind<IAssetsService>().To<AssetsService>().AsSingle();
-            Container.Bind<IGameStateService>().To<GameStateService>().AsSingle();
-            Container.Bind<IAudioService>().To<AudioService>().AsSingle();
             Container.Bind<ISaveLoadService>().To<SaveLoadService>().AsSingle();
             Container.Bind<IItemsService>().To<ItemsService>().AsSingle();
             Container.Bind<IUiFactory>().To<UiFactory>().AsSingle();
@@ -33,6 +29,8 @@ namespace Infrastructure
             Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
 
             BindLoadingCurtain();
+            
+            Debug.Log("INSTALLED");
         }
 
         private void BindLoadingCurtain()

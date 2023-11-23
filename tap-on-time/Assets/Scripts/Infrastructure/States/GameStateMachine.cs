@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Infrastructure.Services.Audio;
 using Infrastructure.Services.Items;
 using Infrastructure.Services.Loader;
 using Infrastructure.Services.SaveLoad;
-using Infrastructure.Services.State;
 using Infrastructure.States.Interfaces;
 using Ui.Curtain;
 using Zenject;
@@ -17,15 +15,14 @@ namespace Infrastructure.States
         private IExitableState _activeState;
 
         [Inject]
-        public GameStateMachine(ISceneLoader sceneLoader, LoadingCurtain loadingCurtain, IGameStateService gameStateService, ISaveLoadService saveLoadService,
-            IAudioService audio, IItemsService items)
+        public GameStateMachine(ISceneLoader sceneLoader, LoadingCurtain loadingCurtain, ISaveLoadService saveLoadService, IItemsService items)
         {
             _states = new Dictionary<Type, IExitableState>
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, items),
                 [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain),
                 [typeof(LoadSceneState)] = new LoadSceneState(sceneLoader, loadingCurtain),
-                [typeof(LoadProgressState)] = new LoadProgressState(this, gameStateService, saveLoadService, audio),
+                [typeof(LoadProgressState)] = new LoadProgressState(this),
                 [typeof(GameLoopState)] = new GameLoopState(this)
             };
         }

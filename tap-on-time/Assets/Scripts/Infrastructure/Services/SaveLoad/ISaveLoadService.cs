@@ -1,12 +1,10 @@
-﻿using Data;
+﻿using YG;
 
 namespace Infrastructure.Services.SaveLoad
 {
     public interface ISaveLoadService
     {
         void SaveGameState();
-        GameState LoadGameState();
-        void SaveAudioSettings();
-        AudioSettings LoadAudioSettings();
+        SavesYG LoadGameState();
     }
 }

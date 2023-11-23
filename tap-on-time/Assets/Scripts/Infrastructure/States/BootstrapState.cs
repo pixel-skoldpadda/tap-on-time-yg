@@ -13,8 +13,6 @@ namespace Infrastructure.States
         {
             _stateMachine = stateMachine;
             _items = items;
-
-            RegisterServices();
         }
 
         public void Enter()
@@ -28,11 +26,6 @@ namespace Infrastructure.States
         public void Exit()
         {
             Debug.Log($"{GetType()} exited.");
-        }
-        
-        private void RegisterServices()
-        {
-
         }
     }
 }
