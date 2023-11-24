@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Components.Player;
 using Infrastructure.Services.Items;
 using Items;
@@ -12,6 +13,8 @@ namespace Infrastructure.Services.Factory
         private readonly DiContainer _diContainer;
         private readonly IItemsService _items;
 
+        private readonly List<Sector> _sectors = new();
+
         [Inject]
         public GameFactory(DiContainer diContainer, IItemsService items)
         {
@@ -25,6 +28,19 @@ namespace Infrastructure.Services.Factory
 
             PlayerComponent player = Object.Instantiate(playerItem.Prefab, playerItem.StartPoint, Quaternion.identity).GetComponent<PlayerComponent>();
             player.Construct(playerItem, _items.GetSkinItem(YandexGame.savesData.SkinType));
+        }
+
+        public void CreateSectors()
+        {
+            SectorsItem sectorsItem = _items.SectorsItem;
+            Vector3 spawnPoint = sectorsItem.SpawnPoint;
+            
+            foreach (GameObject prefab in sectorsItem.SectorPrefabs)
+            {
+                Sector sector = Object.Instantiate(prefab, spawnPoint, Quaternion.identity).GetComponent<Sector>();
+                sector.gameObject.SetActive(false);
+                _sectors.Add(sector);
+            }
         }
     }
 }

@@ -6,5 +6,6 @@
         public const string LevelVariantsPath = "Items/Variants";
         public const string PlayerItemPath = "Items/Player/PLAYER_ITEM";
         public const string SkinsItemsPath = "Items/Skins";
+        public const string SectorsItemPath = "Items/Sectors/SECTORS_ITEM";
     }
 }

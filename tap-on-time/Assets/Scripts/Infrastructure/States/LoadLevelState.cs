@@ -46,6 +46,7 @@ namespace Infrastructure.States
         private void InitGameWorld()
         {
             _gameFactory.CreatePlayer();
+            _gameFactory.CreateSectors();
         }
     }
 }

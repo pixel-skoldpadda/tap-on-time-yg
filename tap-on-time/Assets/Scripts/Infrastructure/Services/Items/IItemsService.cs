@@ -10,6 +10,7 @@ namespace Infrastructure.Services.Items
         WindowItem GetWindowItem(WindowType type);
         List<LevelVariantItem> VariantItems { get; }
         PlayerItem PlayerItem { get; }
+        SectorsItem SectorsItem { get; }
         SkinItem GetSkinItem(SkinType type);
     }
 }

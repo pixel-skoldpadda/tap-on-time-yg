@@ -13,6 +13,7 @@ namespace Infrastructure.Services.Items
         
         private List<LevelVariantItem> _variantItems;
         private PlayerItem _playerItem;
+        private SectorsItem _sectorsItem;
         
         public void LoadAllItems()
         {
@@ -20,6 +21,12 @@ namespace Infrastructure.Services.Items
             LoadLevelVariantItems();
             LoadPlayerItem();
             LoadSkinsItems();
+            LoadSectorsItem();
+        }
+
+        private void LoadSectorsItem()
+        {
+            _sectorsItem = Resources.Load<SectorsItem>(ItemsPath.SectorsItemPath);
         }
 
         private void LoadSkinsItems()
@@ -55,7 +62,7 @@ namespace Infrastructure.Services.Items
         }
 
         public List<LevelVariantItem> VariantItems => _variantItems;
-
         public PlayerItem PlayerItem => _playerItem;
+        public SectorsItem SectorsItem => _sectorsItem;
     }
 }
