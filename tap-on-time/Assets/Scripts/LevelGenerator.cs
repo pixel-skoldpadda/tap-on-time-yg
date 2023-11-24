@@ -10,19 +10,19 @@ public class LevelGenerator : MonoBehaviour
     /**
      * Список всех вариантов секторов.
      */
-    private List<GameObject> _sectors;
-    private GameObject _finishSector;
+    private List<Sector> _sectors;
+    private Sector _finishSector;
 
     /**
      * Текущий видимый сектор.
      */
-    private GameObject _currentSector;
+    private Sector _currentSector;
 
     /**
      * Список, который будет спользоватся для выборки следующего сектора.
      */
-    private readonly List<GameObject> _generatedSectors = new List<GameObject>();
-
+    private readonly List<Sector> _generatedSectors = new();
+    
     /**
      * Коорднатные четверти в которых будем генерровать сектора.
      */
@@ -33,7 +33,7 @@ public class LevelGenerator : MonoBehaviour
     
     private IItemsService _itemsService;
 
-    public void Construct(List<GameObject> sectors, IItemsService itemsService)
+    public void Construct(List<Sector> sectors, IItemsService itemsService)
     {
         _sectors = sectors;
         _itemsService = itemsService;
@@ -64,7 +64,7 @@ public class LevelGenerator : MonoBehaviour
     {
         if (_currentSector != null)
         {
-            _currentSector.SetActive(false);
+            _currentSector.gameObject.SetActive(false);
             _currentSector.GetComponent<Sector>().Move = false;
             _generatedSectors.Remove(_currentSector);
         }
@@ -74,44 +74,44 @@ public class LevelGenerator : MonoBehaviour
             _generatedSectors.AddRange(_sectors);
         }
 
-        var random = new Random();
+        Random random = new Random();
         if (YandexGame.savesData.Score == _currentVariant.Points - 1)
         {
             _currentSector = _finishSector;
         }
         else
         {
-            var nextIndex = random.Next(_generatedSectors.Count);
+            int nextIndex = random.Next(_generatedSectors.Count);
             _currentSector = _generatedSectors[nextIndex];
         }
 
-        var rowIndex = random.Next(_angleRanges.GetUpperBound(0) + 1);
-        var minAngle = _angleRanges[rowIndex, 0];
-        var maxAngle = _angleRanges[rowIndex, 1];
+        int rowIndex = random.Next(_angleRanges.GetUpperBound(0) + 1);
+        int minAngle = _angleRanges[rowIndex, 0];
+        int maxAngle = _angleRanges[rowIndex, 1];
 
-        var changeDirectionProbability = random.Next(1, 10);
+        int changeDirectionProbability = random.Next(1, 10);
         if (_currentVariant.ChangeDirectionProbability > changeDirectionProbability)
         {
             // mediator.ChangeRocketDirection();
         }
 
-        var movingSectorProbability = random.Next(1, 10);
+        int movingSectorProbability = random.Next(1, 10);
         if (_currentVariant.MoveSectorsProbability > movingSectorProbability)
         {
             _currentSector.GetComponent<Sector>().Move = true;
         }
         
-        var angle = random.Next(minAngle, maxAngle);
+        int angle = random.Next(minAngle, maxAngle);
         _currentSector.transform.RotateAround(Vector3.zero, Vector3.back, angle);
         
-        _currentSector.SetActive(true);
+        _currentSector.gameObject.SetActive(true);
     }
 
     public void Reset()
     {
         if (_currentSector != null)
         {
-            _currentSector.SetActive(false);
+            _currentSector.gameObject.SetActive(false);
             _currentSector = null;
         }
         _generatedSectors.AddRange(_sectors);

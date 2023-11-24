@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Components.Player;
+using Infrastructure.Services.Assets;
 using Infrastructure.Services.Items;
 using Items;
 using UnityEngine;
@@ -12,14 +13,16 @@ namespace Infrastructure.Services.Factory
     {
         private readonly DiContainer _diContainer;
         private readonly IItemsService _items;
+        private readonly IAssetsService _assets;
 
         private readonly List<Sector> _sectors = new();
 
         [Inject]
-        public GameFactory(DiContainer diContainer, IItemsService items)
+        public GameFactory(DiContainer diContainer, IItemsService items, IAssetsService assets)
         {
             _diContainer = diContainer;
             _items = items;
+            _assets = assets;
         }
 
         public void CreatePlayer()
@@ -41,6 +44,12 @@ namespace Infrastructure.Services.Factory
                 sector.gameObject.SetActive(false);
                 _sectors.Add(sector);
             }
+        }
+        
+        public void CreateLevelGenerator()
+        {
+            LevelGenerator levelGenerator = _assets.Instantiate(AssetsPath.LevelGeneratorPrefabPath).GetComponent<LevelGenerator>();
+            levelGenerator.Construct(_sectors, _items);
         }
     }
 }

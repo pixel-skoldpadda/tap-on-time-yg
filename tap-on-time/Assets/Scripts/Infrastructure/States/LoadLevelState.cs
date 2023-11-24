@@ -47,6 +47,7 @@ namespace Infrastructure.States
         {
             _gameFactory.CreatePlayer();
             _gameFactory.CreateSectors();
+            _gameFactory.CreateLevelGenerator();
         }
     }
 }
