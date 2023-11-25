@@ -1,5 +1,4 @@
 using Items;
-using Player;
 using UnityEngine;
 
 namespace Components.Player
@@ -9,12 +8,12 @@ namespace Components.Player
         [SerializeField] private MoveAroundComponent _moveAroundComponent;
         [SerializeField] private SpriteRenderer spriteRenderer;
         
-        private PlayerItem _playerItem;
+        private bool _collision;
 
         private Vector3 _startPosition;
         private Quaternion _startQuaternion;
-
-        private bool _collision;
+        
+        private PlayerItem _playerItem;
 
         public void Construct(PlayerItem playerItem, SkinItem skinItem)
         {

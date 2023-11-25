@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using Components.Player;
 using Infrastructure.Services.Items;
 using Items;
 using UnityEngine;
 using YG;
 using Random = System.Random;
 
-public class LevelGenerator : MonoBehaviour
+public class LevelGenerator
 {
     /**
      * Список всех вариантов секторов.
@@ -31,20 +32,18 @@ public class LevelGenerator : MonoBehaviour
     private int _currentVariantIndex;
     private LevelVariantItem _currentVariant;
     
-    private IItemsService _itemsService;
+    private readonly IItemsService _itemsService;
+    private readonly PlayerComponent _player;
 
-    public void Construct(List<Sector> sectors, IItemsService itemsService)
+    public LevelGenerator(List<Sector> sectors, IItemsService itemsService, PlayerComponent player)
     {
         _sectors = sectors;
         _itemsService = itemsService;
+        _player = player;
         _finishSector = sectors[^1];
-    }
-    
-    private void Start()
-    {    
         _generatedSectors.AddRange(_sectors);
     }
-
+    
     public void GenerateLevel()
     {
         List<LevelVariantItem> variants = _itemsService.VariantItems;
@@ -92,18 +91,17 @@ public class LevelGenerator : MonoBehaviour
         int changeDirectionProbability = random.Next(1, 10);
         if (_currentVariant.ChangeDirectionProbability > changeDirectionProbability)
         {
-            // mediator.ChangeRocketDirection();
+            _player.ChangeDirection();
         }
 
         int movingSectorProbability = random.Next(1, 10);
         if (_currentVariant.MoveSectorsProbability > movingSectorProbability)
         {
-            _currentSector.GetComponent<Sector>().Move = true;
+            _currentSector.Move = true;
         }
         
         int angle = random.Next(minAngle, maxAngle);
         _currentSector.transform.RotateAround(Vector3.zero, Vector3.back, angle);
-        
         _currentSector.gameObject.SetActive(true);
     }
 

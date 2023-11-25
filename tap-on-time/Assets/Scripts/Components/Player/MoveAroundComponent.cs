@@ -1,19 +1,24 @@
-﻿using UnityEngine;
+﻿using Items;
+using UnityEngine;
 
-namespace Player
+namespace Components.Player
 {
     public class MoveAroundComponent : MonoBehaviour
     {
-        [SerializeField] private float angularSpeed = 100f;
         [SerializeField] private Transform spriteTransform;
+
+        private float angularSpeed;
         
         private Vector3 _moveVector;
         private bool _isMoving;
 
-        private void Start()
+        private PlayerItem _playerItem;
+
+        public void Construct(PlayerItem playerItem)
         {
+            _playerItem = playerItem;
+            angularSpeed = playerItem.Speed;
             _moveVector = Vector3.back;
-            StartMove();
         }
 
         private void Update()
@@ -37,6 +42,7 @@ namespace Player
         public void ResetComponent()
         {
             _moveVector = Vector3.back;
+            angularSpeed = _playerItem.Speed;
             spriteTransform.Rotate(0, 0, 180);
         }
 

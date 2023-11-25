@@ -1,3 +1,5 @@
+using UnityEngine.InputSystem;
+
 namespace Infrastructure.Services.Input
 {
     public class InputService : IInputService
@@ -10,6 +12,9 @@ namespace Infrastructure.Services.Input
             _inputControls.Enable();
         }
 
-        public InputControls InputControls => _inputControls;
+        public InputAction Tap()
+        {
+            return _inputControls.Player.Tap;
+        }
     }
 }

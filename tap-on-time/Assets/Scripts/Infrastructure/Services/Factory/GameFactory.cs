@@ -16,21 +16,25 @@ namespace Infrastructure.Services.Factory
         private readonly IAssetsService _assets;
 
         private readonly List<Sector> _sectors = new();
+        private PlayerComponent _player;
+        private LevelGenerator _levelGenerator;
 
         [Inject]
-        public GameFactory(DiContainer diContainer, IItemsService items, IAssetsService assets)
+        public GameFactory(DiContainer diContainer, IItemsService items)
         {
             _diContainer = diContainer;
             _items = items;
-            _assets = assets;
         }
 
         public void CreatePlayer()
         {
             PlayerItem playerItem = _items.PlayerItem;
 
-            PlayerComponent player = Object.Instantiate(playerItem.Prefab, playerItem.StartPoint, Quaternion.identity).GetComponent<PlayerComponent>();
-            player.Construct(playerItem, _items.GetSkinItem(YandexGame.savesData.SkinType));
+            GameObject playerGameObject = Object.Instantiate(playerItem.Prefab, playerItem.StartPoint, Quaternion.identity);
+            
+            playerGameObject.GetComponent<MoveAroundComponent>().Construct(playerItem);
+            _player = playerGameObject.GetComponent<PlayerComponent>();
+            _player.Construct(playerItem, _items.GetSkinItem(YandexGame.savesData.SkinType));
         }
 
         public void CreateSectors()
@@ -48,8 +52,7 @@ namespace Infrastructure.Services.Factory
         
         public void CreateLevelGenerator()
         {
-            LevelGenerator levelGenerator = _assets.Instantiate(AssetsPath.LevelGeneratorPrefabPath).GetComponent<LevelGenerator>();
-            levelGenerator.Construct(_sectors, _items);
+            _levelGenerator = new LevelGenerator(_sectors, _items, _player);
         }
     }
 }

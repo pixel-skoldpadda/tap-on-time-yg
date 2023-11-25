@@ -1,7 +1,9 @@
+using UnityEngine.InputSystem;
+
 namespace Infrastructure.Services.Input
 {
     public interface IInputService
     {
-        InputControls InputControls { get; }
+        InputAction Tap();
     }
 }
