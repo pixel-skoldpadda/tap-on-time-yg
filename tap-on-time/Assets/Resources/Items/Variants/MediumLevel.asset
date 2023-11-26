@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d798988dcde2405a956905d11fcb8be7, type: 3}
   m_Name: MediumLevel
   m_EditorClassIdentifier: 
+  backgroundColor: {r: 0.4862745, g: 0.7137255, b: 0.23137255, a: 1}
+  fieldColor: {r: 0.2901961, g: 0.56078434, b: 0.14509805, a: 1}
   points: 10
   startSpeed: 200
   moveSectorsProbability: 0

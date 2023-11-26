@@ -17,5 +17,5 @@ MonoBehaviour:
   - {fileID: 7812649036732936895, guid: 69cb9678460e5e641bbb4cdf70da6b1f, type: 3}
   - {fileID: 6455882262213379436, guid: 326949d123a1c7d49aca51d6b11acf30, type: 3}
   - {fileID: 4522471485742688255, guid: a6200f2ca393bc94d991f3540e3c3a7d, type: 3}
-  - {fileID: 426682925000604154, guid: 4b4af3efae4799a4988b712a8a8c41b0, type: 3}
+  finishSector: {fileID: 426682925000604154, guid: 4b4af3efae4799a4988b712a8a8c41b0, type: 3}
   spawnPoint: {x: 0, y: 3.64, z: 0}
