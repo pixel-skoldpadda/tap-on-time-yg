@@ -1,5 +1,6 @@
 ﻿using Components.Player;
 using Infrastructure.States.Interfaces;
+using UI.Hud;
 using UnityEngine;
 using YG;
 using Zenject;
@@ -25,11 +26,15 @@ namespace Infrastructure.States
             Debug.Log($"{GetType()} entered.");
             
             _container.Resolve<PlayerComponent>().ResetComponent();
-            _container.Resolve<LevelGenerator>().GenerateLevel();            
+            _container.Resolve<LevelGenerator>().GenerateLevel();
             
-            SavesYG data = YandexGame.savesData;
+            Hud hud = _container.Resolve<Hud>();
+            hud.PlayModeContainer.Show();
+            hud.ProgressContainer.Show();
 
+            SavesYG data = YandexGame.savesData;
             data.Level++;
+            data.Score = 0;
             data.LevelStarted = true;
             
             _stateMachine.Enter<WaitInputState>();

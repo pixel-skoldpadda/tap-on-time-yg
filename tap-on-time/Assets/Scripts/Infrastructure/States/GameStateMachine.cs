@@ -19,12 +19,12 @@ namespace Infrastructure.States
 
         [Inject]
         public GameStateMachine(DiContainer diContainer, ISceneLoader sceneLoader, LoadingCurtain loadingCurtain, ISaveLoadService saveLoadService, IItemsService items, 
-            IGameFactory gameFactory, IInputService input)
+            IGameFactory gameFactory, IInputService input, IUiFactory uiFactory)
         {
             _states = new Dictionary<Type, IExitableState>
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, items),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain, gameFactory),
+                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain, gameFactory, uiFactory),
                 [typeof(LoadSceneState)] = new LoadSceneState(sceneLoader, loadingCurtain),
                 [typeof(LoadProgressState)] = new LoadProgressState(this),
                 [typeof(WaitInputState)] = new WaitInputState(this, input),

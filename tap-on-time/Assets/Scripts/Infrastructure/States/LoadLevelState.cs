@@ -11,14 +11,17 @@ namespace Infrastructure.States
         private readonly GameStateMachine _stateMachine;
         private readonly ISceneLoader _sceneLoader;
         private readonly IGameFactory _gameFactory;
+        private readonly IUiFactory _uiFactory;
         private readonly LoadingCurtain _loadingCurtain;
 
-        public LoadLevelState(GameStateMachine stateMachine, ISceneLoader sceneLoader, LoadingCurtain loadingCurtain, IGameFactory gameFactory)
+        public LoadLevelState(GameStateMachine stateMachine, ISceneLoader sceneLoader, LoadingCurtain loadingCurtain, IGameFactory gameFactory, 
+            IUiFactory uiFactory)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _loadingCurtain = loadingCurtain;
             _gameFactory = gameFactory;
+            _uiFactory = uiFactory;
         }
 
         public void Enter(string sceneName)
@@ -48,6 +51,7 @@ namespace Infrastructure.States
             _gameFactory.CreatePlayer();
             _gameFactory.CreateSectors();
             _gameFactory.CreateLevelGenerator();
+            _uiFactory.CreateHud();
         }
     }
 }

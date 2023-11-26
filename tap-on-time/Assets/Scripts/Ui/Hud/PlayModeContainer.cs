@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using YG;
 
 namespace UI.Hud
 {
@@ -20,47 +21,42 @@ namespace UI.Hud
          * Ui-контейнер прогресса уровня.
          */
         [SerializeField] private GameObject scoreContainer;
-        //
-        // private IGameStateService _gameStateService;
-        //
-        // public void Construct(IGameStateService gameStateService)
-        // {
-        //     _gameStateService = gameStateService;
-        //     GameState gameState = _gameStateService.State;
-        //     gameState.ScoreChaged += UpdateScore;
-        //     gameState.TargetScoreChaged += UpdateTargerScore;
-        // }
-        //
-        // private void Start()
-        // {
-        //     UpdateScore();
-        // }
-        //
-        // private void OnDestroy()
-        // {
-        //     _gameStateService.State.ScoreChaged -= UpdateScore;
-        // }
-        //
-        // public void Show()
-        // {
-        //     playIcon.SetActive(false);
-        //     scoreContainer.SetActive(true);
-        // }
-        //
-        // public void Hide()
-        // {
-        //     playIcon.SetActive(true);
-        //     scoreContainer.SetActive(false);
-        // }
-        //
-        // private void UpdateScore()
-        // {
-        //     scoreCounter.text =_gameStateService.State.Score.ToString();
-        // }
-        //
-        // private void UpdateTargerScore()
-        // {
-        //     targetScoreCounter.text = _gameStateService.State.TargetScore.ToString();
-        // }
+        
+        private void Awake()
+        {
+            SavesYG state = YandexGame.savesData;
+            state.ScoreChanged += UpdateScore;
+            state.TargetScoreChanged += UpdateTargetScore;
+            UpdateScore();
+        }
+
+        public void Show()
+        {
+            playIcon.SetActive(false);
+            scoreContainer.SetActive(true);
+        }
+        
+        public void Hide()
+        {
+            playIcon.SetActive(true);
+            scoreContainer.SetActive(false);
+        }
+
+        private void OnDestroy()
+        {
+            SavesYG state = YandexGame.savesData;
+            state.ScoreChanged -= UpdateScore;
+            state.TargetScoreChanged -= UpdateTargetScore;
+        }
+
+        private void UpdateScore()
+        {
+            scoreCounter.text = YandexGame.savesData.Score.ToString();
+        }
+        
+        private void UpdateTargetScore()
+        {
+            targetScoreCounter.text = YandexGame.savesData.TargetScore.ToString();
+        }
     }
 }

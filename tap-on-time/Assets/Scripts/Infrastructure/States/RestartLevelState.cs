@@ -1,5 +1,6 @@
 ﻿using Components.Player;
 using Infrastructure.States.Interfaces;
+using UI.Hud;
 using UnityEngine;
 using YG;
 using Zenject;
@@ -29,7 +30,10 @@ namespace Infrastructure.States
             _container.Resolve<PlayerComponent>().ResetComponent();
             _container.Resolve<LevelGenerator>().Reset();
 
-            data.Score = 0;
+            Hud hud = _container.Resolve<Hud>();
+            hud.PlayModeContainer.Hide();
+            hud.ProgressContainer.Hide();
+            
             data.Level--;
             
             _stateMachine.Enter<WaitInputState>();

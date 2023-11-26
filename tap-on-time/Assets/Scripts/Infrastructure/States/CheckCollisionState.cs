@@ -25,11 +25,20 @@ namespace Infrastructure.States
             PlayerComponent player = _container.Resolve<PlayerComponent>();
             LevelGenerator levelGenerator = _container.Resolve<LevelGenerator>();
 
+            SavesYG state = YandexGame.savesData;
+
             if (player.Collision)
             {
-                levelGenerator.GenerateNextSector();
-                YandexGame.savesData.Score++;
-                _stateMachine.Enter<WaitInputState>();
+                if (state.Score >= state.TargetScore)
+                {
+                    _stateMachine.Enter<StartLevelState>();
+                }
+                else
+                {
+                    levelGenerator.GenerateNextSector();
+                    state.Score++;
+                    _stateMachine.Enter<WaitInputState>();   
+                }
             }
             else
             {
