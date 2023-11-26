@@ -5,11 +5,14 @@ namespace Components.Player
 {
     public class MoveAroundComponent : MonoBehaviour
     {
+        private Vector3 _defaultScale = new(.5f, 0.5f, 0);
+        private Vector3 _reverseScale = new(-.5f, 0.5f, 0);
+        
         [SerializeField] private Transform spriteTransform;
 
         private float angularSpeed;
         
-        private Vector3 _moveVector;
+        [SerializeField] private Vector3 _moveVector;
         private bool _isMoving;
 
         private PlayerItem _playerItem;
@@ -19,6 +22,12 @@ namespace Components.Player
             _playerItem = playerItem;
             angularSpeed = playerItem.Speed;
             _moveVector = Vector3.back;
+        }
+
+        private void Awake()
+        {
+            _defaultScale = spriteTransform.localScale;
+            _reverseScale = new Vector3(-_defaultScale.x, _defaultScale.y, _defaultScale.z);
         }
 
         private void Update()
@@ -43,7 +52,7 @@ namespace Components.Player
         {
             _moveVector = Vector3.back;
             angularSpeed = _playerItem.Speed;
-            spriteTransform.Rotate(0, 0, 180);
+            spriteTransform.localScale = _defaultScale;
         }
 
         public void ChangeDirection()
@@ -51,13 +60,18 @@ namespace Components.Player
             if (_moveVector.Equals(Vector3.back))
             {
                 _moveVector = Vector3.forward;
-                spriteTransform.Rotate(0, 0, -180);
+                spriteTransform.localScale = _reverseScale;
             }
             else if (_moveVector.Equals(Vector3.forward))
             {
                 _moveVector = Vector3.back;
-                spriteTransform.Rotate(0, 0, 180);
+                spriteTransform.localScale = _defaultScale;
             }
+        }
+
+        public void ChangeSpeed(float speed)
+        {
+            angularSpeed = speed;
         }
     }
 }

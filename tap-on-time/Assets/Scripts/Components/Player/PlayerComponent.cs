@@ -51,11 +51,12 @@ namespace Components.Player
         {
             transform.position = _startPosition;
             transform.rotation = _startQuaternion;
+            _moveAroundComponent.ResetComponent();
         }
 
-        public void UpdateSpeed(float speed)
+        public void ChangeSpeed(float speed)
         {
-            // angularSpeed = speed;
+            _moveAroundComponent.ChangeSpeed(speed);
         }
 
         public void ChangeDirection()

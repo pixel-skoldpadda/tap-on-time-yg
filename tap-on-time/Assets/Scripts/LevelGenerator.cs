@@ -66,6 +66,7 @@ public class LevelGenerator
 
         _currentVariantIndex++;
         _currentVariant = variants[_currentVariantIndex - 1];
+        _player.ChangeSpeed(_currentVariant.StartSpeed);
         YandexGame.savesData.TargetScore = _currentVariant.Points;
         
         GenerateNextSector();
