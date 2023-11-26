@@ -31,10 +31,15 @@ namespace Infrastructure.Services.Factory
             PlayerItem playerItem = _items.PlayerItem;
 
             GameObject playerGameObject = Object.Instantiate(playerItem.Prefab, playerItem.StartPoint, Quaternion.identity);
+
+            MoveAroundComponent moveAroundComponent = playerGameObject.GetComponent<MoveAroundComponent>();
+            moveAroundComponent.Construct(playerItem);
+            moveAroundComponent.StartMove();
             
-            playerGameObject.GetComponent<MoveAroundComponent>().Construct(playerItem);
             _player = playerGameObject.GetComponent<PlayerComponent>();
             _player.Construct(playerItem, _items.GetSkinItem(YandexGame.savesData.SkinType));
+
+            _diContainer.Bind<PlayerComponent>().FromInstance(_player).AsSingle();
         }
 
         public void CreateSectors()
@@ -53,6 +58,8 @@ namespace Infrastructure.Services.Factory
         public void CreateLevelGenerator()
         {
             _levelGenerator = new LevelGenerator(_sectors, _items, _player);
+
+            _diContainer.Bind<LevelGenerator>().FromInstance(_levelGenerator).AsSingle();
         }
     }
 }

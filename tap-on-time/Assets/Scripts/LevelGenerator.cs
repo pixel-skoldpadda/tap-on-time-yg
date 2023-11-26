@@ -11,8 +11,8 @@ public class LevelGenerator
     /**
      * Список всех вариантов секторов.
      */
-    private List<Sector> _sectors;
-    private Sector _finishSector;
+    private readonly List<Sector> _sectors = new();
+    private readonly Sector _finishSector;
 
     /**
      * Текущий видимый сектор.
@@ -37,11 +37,23 @@ public class LevelGenerator
 
     public LevelGenerator(List<Sector> sectors, IItemsService itemsService, PlayerComponent player)
     {
-        _sectors = sectors;
         _itemsService = itemsService;
         _player = player;
-        _finishSector = sectors[^1];
-        _generatedSectors.AddRange(_sectors);
+        
+        int count = sectors.Count;
+        for (var i = 0; i < count; i++)
+        {
+            Sector sector = sectors[i];
+            if (i != count - 1)
+            {
+                _sectors.Add(sector);
+                _generatedSectors.Add(sector);
+            }
+            else
+            {
+                _finishSector = sector;
+            }
+        }   
     }
     
     public void GenerateLevel()

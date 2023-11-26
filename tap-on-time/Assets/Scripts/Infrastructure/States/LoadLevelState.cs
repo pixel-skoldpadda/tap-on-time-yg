@@ -40,7 +40,7 @@ namespace Infrastructure.States
         {
             InitGameWorld();
             
-            _stateMachine.Enter<GameLoopState>();
+            _stateMachine.Enter<WaitInputState>();
         }
 
         private void InitGameWorld()

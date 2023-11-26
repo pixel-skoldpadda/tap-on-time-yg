@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Components.Player;
 using Infrastructure.Services.Factory;
+using Infrastructure.Services.Input;
 using Infrastructure.Services.Items;
 using Infrastructure.Services.Loader;
 using Infrastructure.Services.SaveLoad;
@@ -16,8 +18,8 @@ namespace Infrastructure.States
         private IExitableState _activeState;
 
         [Inject]
-        public GameStateMachine(ISceneLoader sceneLoader, LoadingCurtain loadingCurtain, ISaveLoadService saveLoadService, IItemsService items, 
-            IGameFactory gameFactory)
+        public GameStateMachine(DiContainer diContainer, ISceneLoader sceneLoader, LoadingCurtain loadingCurtain, ISaveLoadService saveLoadService, IItemsService items, 
+            IGameFactory gameFactory, IInputService input)
         {
             _states = new Dictionary<Type, IExitableState>
             {
@@ -25,6 +27,10 @@ namespace Infrastructure.States
                 [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain, gameFactory),
                 [typeof(LoadSceneState)] = new LoadSceneState(sceneLoader, loadingCurtain),
                 [typeof(LoadProgressState)] = new LoadProgressState(this),
+                [typeof(WaitInputState)] = new WaitInputState(this, input),
+                [typeof(StartLevelState)] = new StartLevelState(this, diContainer),
+                [typeof(CheckCollisionState)] = new CheckCollisionState(this, diContainer),
+                [typeof(RestartLevelState)] = new RestartLevelState(this, diContainer),
                 [typeof(GameLoopState)] = new GameLoopState(this)
             };
         }

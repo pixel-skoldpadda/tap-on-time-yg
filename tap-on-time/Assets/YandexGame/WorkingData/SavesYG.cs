@@ -28,6 +28,8 @@ namespace YG
         [SerializeField] private int score;
         [SerializeField] private int targetScore;
         [SerializeField] private SkinType skinType;
+
+        private bool levelStarted;
         
         private Action gemsChanged;
         private Action scoreChanged; 
@@ -105,6 +107,12 @@ namespace YG
         {
             get => targetScoreChanged;
             set => targetScoreChanged = value;
+        }
+
+        public bool LevelStarted
+        {
+            get => levelStarted;
+            set => levelStarted = value;
         }
     }
 }
