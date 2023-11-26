@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using YG;
 
@@ -21,6 +22,8 @@ namespace UI.Hud
          * Ui-контейнер прогресса уровня.
          */
         [SerializeField] private GameObject scoreContainer;
+
+        private Sequence scaleSequence;
         
         private void Awake()
         {
@@ -47,13 +50,32 @@ namespace UI.Hud
             SavesYG state = YandexGame.savesData;
             state.ScoreChanged -= UpdateScore;
             state.TargetScoreChanged -= UpdateTargetScore;
+            scaleSequence?.Kill();
         }
 
         private void UpdateScore()
         {
+            if (YandexGame.savesData.Score == 0)
+            {
+                // TODO Возможно стоит разрулить иначе
+                UpdateScoreCallback();
+            }
+            else
+            {
+                scaleSequence?.Kill();
+                Transform scoreTransform = scoreCounter.transform;
+                scaleSequence = DOTween.Sequence()
+                    .Append(scoreTransform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), .07f))
+                    .AppendCallback(UpdateScoreCallback)
+                    .Append(scoreTransform.DOScale(Vector3.one, .07f));   
+            }
+        }
+
+        private void UpdateScoreCallback()
+        {
             scoreCounter.text = YandexGame.savesData.Score.ToString();
         }
-        
+
         private void UpdateTargetScore()
         {
             targetScoreCounter.text = YandexGame.savesData.TargetScore.ToString();

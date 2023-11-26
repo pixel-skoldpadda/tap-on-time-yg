@@ -1,4 +1,4 @@
-﻿using ModestTree;
+﻿using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,15 +8,27 @@ namespace UI.Element
     {
         [SerializeField] private Image progress;
 
+        private Tweener fillTween;
+        
         public void UpdateProgress(float fillAmount)
         {
-            progress.fillAmount = fillAmount;
-            Log.Debug($"{fillAmount}");
+            if (fillAmount == 0)
+            {
+                // TODO Возможно стоит разрулить иначе
+                progress.fillAmount = fillAmount;
+            }
+            else
+            {
+                fillTween?.Kill();
+                fillTween = progress.DOFillAmount(fillAmount, 0.5f)
+                    .SetEase(Ease.OutBack)
+                    .OnKill(()=> progress.fillAmount = fillAmount);   
+            }
         }
 
-        public float GetProgress()
+        private void OnDestroy()
         {
-            return progress.fillAmount;
+            fillTween?.Kill();
         }
     }
 }

@@ -22,7 +22,10 @@ namespace Infrastructure.States
         {
             Debug.Log($"{GetType()} entered.");
             
-            // TODO Show splash
+            Hud hud = _container.Resolve<Hud>();
+            SplashScreen splashScreen = hud.SplashScreen;
+            splashScreen.OnSplashHide += _stateMachine.Enter<WaitInputState>;
+            splashScreen.Show();
             
             SavesYG data = YandexGame.savesData;
 
@@ -30,13 +33,10 @@ namespace Infrastructure.States
             _container.Resolve<PlayerComponent>().ResetComponent();
             _container.Resolve<LevelGenerator>().Reset();
 
-            Hud hud = _container.Resolve<Hud>();
             hud.PlayModeContainer.Hide();
             hud.ProgressContainer.Hide();
             
             data.Level--;
-            
-            _stateMachine.Enter<WaitInputState>();
         }
 
         public void Exit()

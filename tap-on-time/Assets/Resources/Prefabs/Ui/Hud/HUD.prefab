@@ -260,6 +260,7 @@ MonoBehaviour:
   gemsContainer: {fileID: 8263366169772008679}
   playModeContainer: {fileID: 8309086854088917981}
   progressContainer: {fileID: 3589453189133295845}
+  splashScreen: {fileID: 8214156410346650238}
 --- !u!1 &7508067042494607455
 GameObject:
   m_ObjectHideFlags: 0
