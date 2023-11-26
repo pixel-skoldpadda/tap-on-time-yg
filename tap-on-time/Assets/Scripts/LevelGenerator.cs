@@ -1,18 +1,22 @@
 ﻿using System.Collections.Generic;
 using Components;
 using Components.Player;
+using DG.Tweening;
 using Infrastructure.Services.Items;
 using Items;
+using ModestTree;
 using UnityEngine;
 using YG;
 using Random = System.Random;
 
 public class LevelGenerator
 {
+    private readonly List<Sector> _allSectors;
+    private readonly List<LevelVariantItem> _levelsPool = new();
+
     /**
-     * Список всех вариантов секторов.
+     * финишный сектор.
      */
-    private readonly List<Sector> _sectors = new();
     private readonly Sector _finishSector;
 
     /**
@@ -23,82 +27,95 @@ public class LevelGenerator
     /**
      * Список, который будет спользоватся для выборки следующего сектора.
      */
-    private readonly List<Sector> _generatedSectors = new();
+    private readonly List<Sector> _sectorsPool = new();
 
     /**
      * Коорднатные четверти в которых будем генерровать сектора.
      */
     private readonly int[,] _angleRanges = { {0, 90}, {90, 180}, {180, 270}, {270, 360} };
 
-
     private int _currentVariantIndex;
-    private LevelVariantItem _currentVariant;
+    private LevelVariantItem _currentLevel;
 
-    private readonly IItemsService _itemsService;
+    private readonly IItemsService _items;
     private readonly PlayerComponent _player;
     private readonly List<Gem> _gems;
 
-    public LevelGenerator(List<Sector> sectors, List<Gem> gems, IItemsService itemsService, PlayerComponent player)
+    private readonly SpriteRenderer _gameField;
+    private readonly Camera _camera;
+
+
+    public LevelGenerator(List<Sector> sectors, Sector finishSector, List<Gem> gems, IItemsService items, PlayerComponent player, SpriteRenderer gameField)
     {
-        _itemsService = itemsService;
+        _items = items;
+        _finishSector = finishSector;
+        _gameField = gameField;
+        _camera = Camera.main;
+        _allSectors = sectors;
         _player = player;
         _gems = gems;
 
-        int count = sectors.Count;
-        for (var i = 0; i < count; i++)
-        {
-            Sector sector = sectors[i];
-            if (i != count - 1)
-            {
-                _sectors.Add(sector);
-                _generatedSectors.Add(sector);
-            }
-            else
-            {
-                _finishSector = sector;
-            }
-        }   
+        Init();
     }
-    
-    public void GenerateLevel()
-    {
-        List<LevelVariantItem> variants = _itemsService.VariantItems;
-        if (_currentVariantIndex >= variants.Count)
-        {
-            _currentVariantIndex = 0;
-        }
 
-        _currentVariantIndex++;
-        _currentVariant = variants[_currentVariantIndex - 1];
-        _player.ChangeSpeed(_currentVariant.StartSpeed);
-        YandexGame.savesData.TargetScore = _currentVariant.Points;
+    private void Init()
+    {
+        _levelsPool.AddRange(_items.VariantItems);
+        _currentLevel = GetLevelFromPool(YandexGame.savesData.LevelIndex);
+
+        ChangeLevelColor();
+    }
+
+    public void ChooseNextLevel()
+    {
+        if (_levelsPool.IsEmpty())
+        {
+            _levelsPool.AddRange(_items.VariantItems);
+        }
+        
+        Random random = new Random();
+        int levelIndex = random.Next(0, _levelsPool.Count);
+        _currentLevel = GetLevelFromPool(levelIndex);
+        
+        ChangeLevelColor();
+        _player.ChangeSpeed(_currentLevel.StartSpeed);
+        
+        SavesYG state = YandexGame.savesData;
+        state.TargetScore = _currentLevel.Points;
+        state.LevelIndex = levelIndex;
         
         GenerateNextSector();
     }
-    
+
+    private void ChangeLevelColor()
+    {
+        _gameField.DOColor(_currentLevel.FieldColor, 0.7f);
+        _camera.DOColor(_currentLevel.BackgroundColor, 0.7f);
+    }
+
     public void GenerateNextSector()
     {
         if (_currentSector != null)
         {
             _currentSector.gameObject.SetActive(false);
             _currentSector.GetComponent<Sector>().Move = false;
-            _generatedSectors.Remove(_currentSector);
+            _sectorsPool.Remove(_currentSector);
         }
 
-        if (_generatedSectors.Count <= 0)
+        if (_sectorsPool.IsEmpty())
         {
-            _generatedSectors.AddRange(_sectors);
+            _sectorsPool.AddRange(_allSectors);
         }
 
         Random random = new Random();
-        if (YandexGame.savesData.Score == _currentVariant.Points - 1)
+        if (YandexGame.savesData.Score == _currentLevel.Points - 1)
         {
             _currentSector = _finishSector;
         }
         else
         {
-            int nextIndex = random.Next(_generatedSectors.Count);
-            _currentSector = _generatedSectors[nextIndex];
+            int nextIndex = random.Next(_sectorsPool.Count);
+            _currentSector = _sectorsPool[nextIndex];
         }
 
         int rowIndex = random.Next(_angleRanges.GetUpperBound(0) + 1);
@@ -106,13 +123,13 @@ public class LevelGenerator
         int maxAngle = _angleRanges[rowIndex, 1];
 
         int changeDirectionProbability = random.Next(1, 10);
-        if (_currentVariant.ChangeDirectionProbability > changeDirectionProbability)
+        if (_currentLevel.ChangeDirectionProbability > changeDirectionProbability)
         {
             _player.ChangeDirection();
         }
 
         int movingSectorProbability = random.Next(1, 10);
-        if (_currentVariant.MoveSectorsProbability > movingSectorProbability)
+        if (_currentLevel.MoveSectorsProbability > movingSectorProbability)
         {
             _currentSector.Move = true;
         }
@@ -129,7 +146,8 @@ public class LevelGenerator
             _currentSector.gameObject.SetActive(false);
             _currentSector = null;
         }
-        _generatedSectors.AddRange(_sectors);
+        _sectorsPool.Clear();
+        _sectorsPool.AddRange(_allSectors);
     }
 
     public void ShowGems()
@@ -138,5 +156,12 @@ public class LevelGenerator
         {
             gem.Show();
         }
+    }
+
+    private LevelVariantItem GetLevelFromPool(int index)
+    {
+        LevelVariantItem level = _levelsPool[index];
+        _levelsPool.RemoveAt(index);
+        return level;
     }
 }

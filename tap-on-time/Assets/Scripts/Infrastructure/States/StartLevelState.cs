@@ -25,7 +25,7 @@ namespace Infrastructure.States
         {
             Debug.Log($"{GetType()} entered.");
 
-            _container.Resolve<LevelGenerator>().GenerateLevel();
+            _container.Resolve<LevelGenerator>().ChooseNextLevel();
             
             PlayerComponent player = _container.Resolve<PlayerComponent>();
             player.ResetComponent();

@@ -27,6 +27,7 @@ namespace YG
         [SerializeField] private int level;
         [SerializeField] private int score;
         [SerializeField] private int targetScore;
+        [SerializeField] private int levelIndex;
         [SerializeField] private SkinType skinType;
 
         private bool levelStarted;
@@ -41,6 +42,7 @@ namespace YG
             gems = 0;
             score = 0;
             level = 0;
+            levelIndex = 0;
             targetScore = 0;
             skinType = SkinType.Rocket;
             
@@ -113,6 +115,12 @@ namespace YG
         {
             get => levelStarted;
             set => levelStarted = value;
+        }
+
+        public int LevelIndex
+        {
+            get => levelIndex;
+            set => levelIndex = value;
         }
     }
 }

@@ -93,7 +93,7 @@ namespace Infrastructure.Services.Factory
         
         public void CreateLevelGenerator()
         {
-            _levelGenerator = new LevelGenerator(_sectors, _gems, _items, _player);
+            _levelGenerator = new LevelGenerator(_sectors, _finishSector, _gems, _items, _player, _gameField);
             _diContainer.Bind<LevelGenerator>().FromInstance(_levelGenerator).AsSingle();
         }
     }
