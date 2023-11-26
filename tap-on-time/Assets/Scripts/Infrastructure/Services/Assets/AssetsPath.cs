@@ -3,5 +3,6 @@
     public static class AssetsPath
     {
         public const string HudPrefabPath = "Prefabs/Ui/Hud/HUD";
+        public const string FieldPrefabPath = "Prefabs/GameObjects/Field/Field";
     }
 }

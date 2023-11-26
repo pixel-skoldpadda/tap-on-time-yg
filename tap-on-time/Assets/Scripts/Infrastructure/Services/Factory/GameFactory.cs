@@ -17,16 +17,20 @@ namespace Infrastructure.Services.Factory
         private readonly IAssetsService _assets;
 
         private readonly List<Sector> _sectors = new();
+        private Sector _finishSector;
+        
         private readonly List<Gem> _gems = new();
         
         private PlayerComponent _player;
         private LevelGenerator _levelGenerator;
+        private SpriteRenderer _gameField;
 
         [Inject]
-        public GameFactory(DiContainer diContainer, IItemsService items)
+        public GameFactory(DiContainer diContainer, IItemsService items, IAssetsService assets)
         {
             _diContainer = diContainer;
             _items = items;
+            _assets = assets;
         }
 
         public void CreatePlayer()
@@ -56,6 +60,9 @@ namespace Infrastructure.Services.Factory
                 sector.gameObject.SetActive(false);
                 _sectors.Add(sector);
             }
+
+            _finishSector = Object.Instantiate(sectorsItem.FinishSector, spawnPoint, Quaternion.identity).GetComponent<Sector>();
+            _finishSector.gameObject.SetActive(false);
         }
 
         public void CreateGems()
@@ -78,11 +85,15 @@ namespace Infrastructure.Services.Factory
                 _gems.Add(gem);
             }
         }
+
+        public void CreateGameField()
+        {
+            _gameField = _assets.Instantiate(AssetsPath.FieldPrefabPath).GetComponentInChildren<SpriteRenderer>();
+        }
         
         public void CreateLevelGenerator()
         {
             _levelGenerator = new LevelGenerator(_sectors, _gems, _items, _player);
-
             _diContainer.Bind<LevelGenerator>().FromInstance(_levelGenerator).AsSingle();
         }
     }

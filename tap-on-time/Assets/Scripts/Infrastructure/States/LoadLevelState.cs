@@ -48,6 +48,7 @@ namespace Infrastructure.States
 
         private void InitGameWorld()
         {
+            _gameFactory.CreateGameField();
             _gameFactory.CreatePlayer();
             _gameFactory.CreateSectors();
             _gameFactory.CreateLevelGenerator();

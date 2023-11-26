@@ -6,5 +6,6 @@ namespace Infrastructure.Services.Factory
         void CreateSectors();
         void CreateLevelGenerator();
         void CreateGems();
+        void CreateGameField();
     }
 }
