@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc66d4f6d3624d0796b25473e4d0af12, type: 3}
-  m_Name: PLAYER_ITEM
+  m_Script: {fileID: 11500000, guid: 94d091e4c75542fd8295ad3769ea1d98, type: 3}
+  m_Name: GEMS_ITEM
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5263675957880856934, guid: 6661bdcb76ec73a429687e3abd11aa6c, type: 3}
-  speed: 100
-  claimRewardSpeed: 300
-  startPoint: {x: 0, y: 2.9, z: 0}
+  prefab: {fileID: 7253447629243474132, guid: f927346e6e1b1b74386fcb0f365b2ae7, type: 3}
+  amount: 16
+  cost: 5

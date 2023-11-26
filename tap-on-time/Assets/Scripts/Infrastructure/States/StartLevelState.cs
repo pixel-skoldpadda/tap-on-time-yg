@@ -24,10 +24,13 @@ namespace Infrastructure.States
         public void Enter()
         {
             Debug.Log($"{GetType()} entered.");
-            
-            _container.Resolve<PlayerComponent>().ResetComponent();
+
             _container.Resolve<LevelGenerator>().GenerateLevel();
             
+            PlayerComponent player = _container.Resolve<PlayerComponent>();
+            player.ResetComponent();
+            player.StartMoving();
+
             Hud hud = _container.Resolve<Hud>();
             hud.PlayModeContainer.Show();
             hud.ProgressContainer.Show();

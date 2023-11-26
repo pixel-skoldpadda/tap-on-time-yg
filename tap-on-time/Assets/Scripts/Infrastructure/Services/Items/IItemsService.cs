@@ -11,6 +11,7 @@ namespace Infrastructure.Services.Items
         List<LevelVariantItem> VariantItems { get; }
         PlayerItem PlayerItem { get; }
         SectorsItem SectorsItem { get; }
+        GemsItem GemsItem { get; }
         SkinItem GetSkinItem(SkinType type);
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Components;
 using Components.Player;
 using Infrastructure.Services.Assets;
 using Infrastructure.Services.Items;
@@ -16,6 +17,8 @@ namespace Infrastructure.Services.Factory
         private readonly IAssetsService _assets;
 
         private readonly List<Sector> _sectors = new();
+        private readonly List<Gem> _gems = new();
+        
         private PlayerComponent _player;
         private LevelGenerator _levelGenerator;
 
@@ -37,7 +40,7 @@ namespace Infrastructure.Services.Factory
             moveAroundComponent.StartMove();
             
             _player = playerGameObject.GetComponent<PlayerComponent>();
-            _player.Construct(playerItem, _items.GetSkinItem(YandexGame.savesData.SkinType));
+            _player.Construct(_items.GetSkinItem(YandexGame.savesData.SkinType));
 
             _diContainer.Bind<PlayerComponent>().FromInstance(_player).AsSingle();
         }
@@ -54,10 +57,31 @@ namespace Infrastructure.Services.Factory
                 _sectors.Add(sector);
             }
         }
+
+        public void CreateGems()
+        {
+            Vector3 spawnPoint = _items.PlayerItem.StartPoint;
+
+            GemsItem gemsItem = _items.GemsItem;
+            int amount = gemsItem.Amount;
+            GameObject prefab = gemsItem.Prefab;
+
+            float angle = 360f / amount;
+
+            for (int i = 1; i < amount; i++)
+            {
+                GameObject gemGameObject = Object.Instantiate(prefab, spawnPoint, Quaternion.identity);
+                gemGameObject.transform.RotateAround(Vector3.zero, Vector3.back, i * angle);
+                
+                Gem gem = gemGameObject.GetComponent<Gem>();
+                gem.Construct(gemsItem);
+                _gems.Add(gem);
+            }
+        }
         
         public void CreateLevelGenerator()
         {
-            _levelGenerator = new LevelGenerator(_sectors, _items, _player);
+            _levelGenerator = new LevelGenerator(_sectors, _gems, _items, _player);
 
             _diContainer.Bind<LevelGenerator>().FromInstance(_levelGenerator).AsSingle();
         }

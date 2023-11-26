@@ -1,4 +1,6 @@
-﻿using Items;
+﻿using System;
+using System.Collections;
+using Items;
 using UnityEngine;
 
 namespace Components.Player
@@ -13,10 +15,16 @@ namespace Components.Player
         private float angularSpeed;
         
         [SerializeField] private Vector3 _moveVector;
+        
         private bool _isMoving;
+        private bool _isMoving360;
 
         private PlayerItem _playerItem;
 
+        private Action _onMove360End;
+
+        private float _moveAngle;
+        
         public void Construct(PlayerItem playerItem)
         {
             _playerItem = playerItem;
@@ -32,9 +40,40 @@ namespace Components.Player
 
         private void Update()
         {
-            if (_isMoving)
+            if (!_isMoving)
             {
-                transform.RotateAround(Vector3.zero, _moveVector, angularSpeed * Time.deltaTime);
+                return;
+            }
+            
+            if (_isMoving360)
+            {
+                Move360();
+            }
+            else
+            {
+                Move();
+            }
+        }
+
+        private void Move()
+        {
+            transform.RotateAround(Vector3.zero, _moveVector, angularSpeed * Time.deltaTime);
+        }
+
+        private void Move360()
+        {
+            if (_moveAngle >= 360f)
+            {
+                _isMoving360 = false;
+                _isMoving = false;
+                _moveAngle = 0f;
+                _onMove360End?.Invoke();
+            }
+            else
+            {
+                float angle = _playerItem.ClaimRewardSpeed * Time.deltaTime;
+                _moveAngle += angle;
+                transform.RotateAround(Vector3.zero, _moveVector, angle);   
             }
         }
 
@@ -48,8 +87,23 @@ namespace Components.Player
             _isMoving = false;
         }
 
+        public void StartMove360()
+        {
+            StartCoroutine(WaitMove360Routine());
+        }
+
+        private IEnumerator WaitMove360Routine()
+        {
+            yield return new WaitForSeconds(1f);
+            
+            _isMoving360 = true;
+            _isMoving = true;
+        }
+
         public void ResetComponent()
         {
+            _isMoving = false;
+            _isMoving360 = false;
             _moveVector = Vector3.back;
             angularSpeed = _playerItem.Speed;
             spriteTransform.localScale = _defaultScale;
@@ -72,6 +126,12 @@ namespace Components.Player
         public void ChangeSpeed(float speed)
         {
             angularSpeed = speed;
+        }
+
+        public Action OnMove360End
+        {
+            get => _onMove360End;
+            set => _onMove360End = value;
         }
     }
 }

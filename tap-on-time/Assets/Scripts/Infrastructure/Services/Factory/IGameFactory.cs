@@ -5,5 +5,6 @@ namespace Infrastructure.Services.Factory
         void CreatePlayer();
         void CreateSectors();
         void CreateLevelGenerator();
+        void CreateGems();
     }
 }

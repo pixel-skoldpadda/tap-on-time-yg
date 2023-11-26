@@ -1,3 +1,4 @@
+using System;
 using Items;
 using UnityEngine;
 
@@ -13,11 +14,9 @@ namespace Components.Player
         private Vector3 _startPosition;
         private Quaternion _startQuaternion;
         
-        private PlayerItem _playerItem;
 
-        public void Construct(PlayerItem playerItem, SkinItem skinItem)
+        public void Construct(SkinItem skinItem)
         {
-            _playerItem = playerItem;
             spriteRenderer.sprite = skinItem.Sprite;
         }
 
@@ -32,6 +31,21 @@ namespace Components.Player
             _moveAroundComponent.StopMove();
         }
 
+        public void StartMove360()
+        {
+            _moveAroundComponent.StartMove360();
+        }
+
+        public void AddMove360EndAction(Action action)
+        {
+            _moveAroundComponent.OnMove360End += action;
+        }
+        
+        public void RemoveMove360EndAction(Action action)
+        {
+            _moveAroundComponent.OnMove360End -= action;
+        }
+        
         public void StartMoving()
         {
             _moveAroundComponent.StartMove();

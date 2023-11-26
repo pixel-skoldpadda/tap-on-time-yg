@@ -14,6 +14,7 @@ namespace Infrastructure.Services.Items
         private List<LevelVariantItem> _variantItems;
         private PlayerItem _playerItem;
         private SectorsItem _sectorsItem;
+        private GemsItem _gemsItem;
         
         public void LoadAllItems()
         {
@@ -22,6 +23,12 @@ namespace Infrastructure.Services.Items
             LoadPlayerItem();
             LoadSkinsItems();
             LoadSectorsItem();
+            LoadGemsItem();
+        }
+
+        private void LoadGemsItem()
+        {
+            _gemsItem = Resources.Load<GemsItem>(ItemsPath.GemsItemPath);
         }
 
         private void LoadSectorsItem()
@@ -64,5 +71,6 @@ namespace Infrastructure.Services.Items
         public List<LevelVariantItem> VariantItems => _variantItems;
         public PlayerItem PlayerItem => _playerItem;
         public SectorsItem SectorsItem => _sectorsItem;
+        public GemsItem GemsItem => _gemsItem;
     }
 }

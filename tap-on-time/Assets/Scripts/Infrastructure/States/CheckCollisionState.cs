@@ -31,7 +31,7 @@ namespace Infrastructure.States
             {
                 if (state.Score >= state.TargetScore)
                 {
-                    _stateMachine.Enter<StartLevelState>();
+                    _stateMachine.Enter<FinishLevelState>();
                 }
                 else
                 {

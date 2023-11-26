@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Components;
 using Components.Player;
 using Infrastructure.Services.Items;
 using Items;
@@ -23,23 +24,26 @@ public class LevelGenerator
      * Список, который будет спользоватся для выборки следующего сектора.
      */
     private readonly List<Sector> _generatedSectors = new();
-    
+
     /**
      * Коорднатные четверти в которых будем генерровать сектора.
      */
     private readonly int[,] _angleRanges = { {0, 90}, {90, 180}, {180, 270}, {270, 360} };
 
+
     private int _currentVariantIndex;
     private LevelVariantItem _currentVariant;
-    
+
     private readonly IItemsService _itemsService;
     private readonly PlayerComponent _player;
+    private readonly List<Gem> _gems;
 
-    public LevelGenerator(List<Sector> sectors, IItemsService itemsService, PlayerComponent player)
+    public LevelGenerator(List<Sector> sectors, List<Gem> gems, IItemsService itemsService, PlayerComponent player)
     {
         _itemsService = itemsService;
         _player = player;
-        
+        _gems = gems;
+
         int count = sectors.Count;
         for (var i = 0; i < count; i++)
         {
@@ -126,5 +130,13 @@ public class LevelGenerator
             _currentSector = null;
         }
         _generatedSectors.AddRange(_sectors);
+    }
+
+    public void ShowGems()
+    {
+        foreach (Gem gem in _gems)
+        {
+            gem.Show();
+        }
     }
 }
