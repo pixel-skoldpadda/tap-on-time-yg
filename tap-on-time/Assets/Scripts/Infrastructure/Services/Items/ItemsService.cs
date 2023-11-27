@@ -68,7 +68,7 @@ namespace Infrastructure.Services.Items
             return _skins.TryGetValue(type, out SkinItem item) ? item : null;
         }
 
-        public List<LevelItem> VariantItems => _variantItems;
+        public List<LevelItem> LevelItems => _variantItems;
         public PlayerItem PlayerItem => _playerItem;
         public SectorsItem SectorsItem => _sectorsItem;
         public GemsItem GemsItem => _gemsItem;

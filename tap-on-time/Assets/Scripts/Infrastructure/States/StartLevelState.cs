@@ -41,7 +41,7 @@ namespace Infrastructure.States
             data.Score = 0;
             data.LevelStarted = true;
             
-            _stateMachine.Enter<WaitInputState>();
+            _stateMachine.Enter<SaveProgressState>();
         }
 
         public void Exit()

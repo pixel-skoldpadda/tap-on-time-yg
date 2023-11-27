@@ -60,7 +60,7 @@ namespace Generator
 
         private void Init()
         {
-            _levelsPool.AddRange(_items.VariantItems);
+            _levelsPool.AddRange(_items.LevelItems);
 
             int levelIndex = YandexGame.savesData.LevelIndex;
             YandexGame.savesData.CurrentLevel = new Level(GetLevelFromPool(levelIndex), levelIndex);
@@ -72,7 +72,7 @@ namespace Generator
         {
             if (_levelsPool.IsEmpty())
             {
-                _levelsPool.AddRange(_items.VariantItems);
+                _levelsPool.AddRange(_items.LevelItems);
             }
 
             if (YandexGame.savesData.CurrentLevel.Completed)
