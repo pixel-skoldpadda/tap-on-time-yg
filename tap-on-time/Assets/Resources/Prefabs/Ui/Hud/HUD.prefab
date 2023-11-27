@@ -257,7 +257,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gemsContainer: {fileID: 8263366169772008679}
-  playModeContainer: {fileID: 0}
   progressContainer: {fileID: 3589453189133295845}
   splashScreen: {fileID: 8214156410346650238}
 --- !u!1 &7508067042494607455
@@ -329,8 +328,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ec64826627175d54595b2a3bf67f49ff, type: 2}
+  m_sharedMaterial: {fileID: 3291978834064376263, guid: ec64826627175d54595b2a3bf67f49ff, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
