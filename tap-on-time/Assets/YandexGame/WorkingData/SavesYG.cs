@@ -1,8 +1,8 @@
 ﻿
 using System;
+using Generator;
 using Items;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace YG
 {
@@ -26,15 +26,15 @@ namespace YG
         [SerializeField] private int gems;
         [SerializeField] private int level;
         [SerializeField] private int score;
-        [SerializeField] private int targetScore;
         [SerializeField] private int levelIndex;
         [SerializeField] private SkinType skinType;
 
-        private bool levelStarted;
-        
-        private Action gemsChanged;
-        private Action scoreChanged; 
-        private Action targetScoreChanged;
+        private Level _currentLevel;
+        private bool _levelStarted;
+
+        private Action _gemsChanged;
+        private Action _scoreChanged;
+        private Action<Level> _levelChanged;
 
         // Вы можете выполнить какие то действия при загрузке сохранений
         public SavesYG()
@@ -43,8 +43,10 @@ namespace YG
             score = 0;
             level = 0;
             levelIndex = 0;
-            targetScore = 0;
             skinType = SkinType.Rocket;
+
+            _currentLevel = null;
+            _levelStarted = false;
             
             // Допустим, задать значения по умолчанию для отдельных элементов массива
 
@@ -63,7 +65,7 @@ namespace YG
             set
             {
                 gems = value;
-                gemsChanged?.Invoke();
+                _gemsChanged?.Invoke();
             }
         }
 
@@ -79,48 +81,48 @@ namespace YG
             set
             {
                 score = value;
-                scoreChanged?.Invoke();
-            }
-        }
-        
-        public int TargetScore
-        {
-            get => targetScore;
-            set
-            {
-                targetScore = value;
-                targetScoreChanged?.Invoke();
+                _scoreChanged?.Invoke();
             }
         }
         
         public Action GemsChanged
         {
-            get => gemsChanged;
-            set => gemsChanged = value;
+            get => _gemsChanged;
+            set => _gemsChanged = value;
         }
         
         public Action ScoreChanged
         {
-            get => scoreChanged;
-            set => scoreChanged = value;
+            get => _scoreChanged;
+            set => _scoreChanged = value;
         }
-        
-        public Action TargetScoreChanged
+
+        public Action<Level> LevelChanged
         {
-            get => targetScoreChanged;
-            set => targetScoreChanged = value;
+            get => _levelChanged;
+            set => _levelChanged = value;
         }
 
         public bool LevelStarted
         {
-            get => levelStarted;
-            set => levelStarted = value;
+            get => _levelStarted;
+            set => _levelStarted = value;
         }
 
         public int LevelIndex
         {
             get => levelIndex;
             set => levelIndex = value;
+        }
+
+        public Level CurrentLevel
+        {
+            get => _currentLevel;
+            set
+            {
+                _currentLevel = value;
+                _levelChanged?.Invoke(_currentLevel);
+            }
         }
     }
 }

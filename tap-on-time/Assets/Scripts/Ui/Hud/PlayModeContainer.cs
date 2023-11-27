@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using Generator;
 using TMPro;
 using UnityEngine;
 using YG;
@@ -29,8 +30,9 @@ namespace UI.Hud
         {
             SavesYG state = YandexGame.savesData;
             state.ScoreChanged += UpdateScore;
-            state.TargetScoreChanged += UpdateTargetScore;
+            state.LevelChanged += UpdateTargetScore;
             UpdateScore();
+            UpdateTargetScore(state.CurrentLevel);
         }
 
         public void Show()
@@ -49,7 +51,7 @@ namespace UI.Hud
         {
             SavesYG state = YandexGame.savesData;
             state.ScoreChanged -= UpdateScore;
-            state.TargetScoreChanged -= UpdateTargetScore;
+            state.LevelChanged -= UpdateTargetScore;
             scaleSequence?.Kill();
         }
 
@@ -76,9 +78,10 @@ namespace UI.Hud
             scoreCounter.text = YandexGame.savesData.Score.ToString();
         }
 
-        private void UpdateTargetScore()
+        private void UpdateTargetScore(Level level)
         {
-            targetScoreCounter.text = YandexGame.savesData.TargetScore.ToString();
+            targetScoreCounter.text = 
+                level.TargetScore.ToString();
         }
     }
 }

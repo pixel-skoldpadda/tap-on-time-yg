@@ -8,7 +8,7 @@ namespace Infrastructure.Services.Items
     {
         void LoadAllItems();
         WindowItem GetWindowItem(WindowType type);
-        List<LevelVariantItem> VariantItems { get; }
+        List<LevelItem> VariantItems { get; }
         PlayerItem PlayerItem { get; }
         SectorsItem SectorsItem { get; }
         GemsItem GemsItem { get; }

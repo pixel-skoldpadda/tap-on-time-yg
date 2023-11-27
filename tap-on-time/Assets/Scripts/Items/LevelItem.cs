@@ -2,8 +2,8 @@
 
 namespace Items
 {
-    [CreateAssetMenu(fileName = "_LEVEL_VARIANT_ITEM", menuName = "Items/LevelVariant")]
-    public class LevelVariantItem : ScriptableObject
+    [CreateAssetMenu(fileName = "_LEVEL_ITEM", menuName = "Items/Level")]
+    public class LevelItem : ScriptableObject
     {
         [SerializeField] private Color backgroundColor;
         [SerializeField] private Color fieldColor;

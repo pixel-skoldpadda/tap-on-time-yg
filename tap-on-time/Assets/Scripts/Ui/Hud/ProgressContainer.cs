@@ -19,7 +19,7 @@ namespace UI.Hud
         private void UpdateProgressBar()
         {
             SavesYG state = YandexGame.savesData;
-            float fillAmount = state.Score / (float) state.TargetScore;
+            float fillAmount = state.Score / (float) state.CurrentLevel.TargetScore;
             progressBar.UpdateProgress(fillAmount);
         }
         

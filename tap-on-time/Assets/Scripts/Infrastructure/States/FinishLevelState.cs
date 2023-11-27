@@ -1,5 +1,7 @@
 ﻿using Components.Player;
+using Generator;
 using Infrastructure.States.Interfaces;
+using YG;
 using Zenject;
 
 namespace Infrastructure.States
@@ -30,6 +32,7 @@ namespace Infrastructure.States
 
         private void OnMoveEnd()
         {
+            YandexGame.savesData.CurrentLevel.Completed = true;
             _stateMachine.Enter<StartLevelState>();
         }
 

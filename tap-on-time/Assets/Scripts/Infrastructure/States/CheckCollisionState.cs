@@ -1,4 +1,5 @@
 using Components.Player;
+using Generator;
 using Infrastructure.States.Interfaces;
 using UnityEngine;
 using YG;
@@ -23,19 +24,17 @@ namespace Infrastructure.States
             Debug.Log($"{GetType()} entered.");
             
             PlayerComponent player = _container.Resolve<PlayerComponent>();
-            LevelGenerator levelGenerator = _container.Resolve<LevelGenerator>();
-
             SavesYG state = YandexGame.savesData;
 
             if (player.Collision)
             {
-                if (state.Score >= state.TargetScore)
+                if (state.Score >= state.CurrentLevel.TargetScore)
                 {
                     _stateMachine.Enter<FinishLevelState>();
                 }
                 else
                 {
-                    levelGenerator.GenerateNextSector();
+                    _container.Resolve<LevelGenerator>().GenerateNextSector();
                     state.Score++;
                     _stateMachine.Enter<WaitInputState>();   
                 }

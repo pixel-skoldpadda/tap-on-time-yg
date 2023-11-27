@@ -11,7 +11,7 @@ namespace Infrastructure.Services.Items
         private Dictionary<WindowType, WindowItem> _windows;
         private Dictionary<SkinType, SkinItem> _skins;
         
-        private List<LevelVariantItem> _variantItems;
+        private List<LevelItem> _variantItems;
         private PlayerItem _playerItem;
         private SectorsItem _sectorsItem;
         private GemsItem _gemsItem;
@@ -49,7 +49,7 @@ namespace Infrastructure.Services.Items
 
         private void LoadLevelVariantItems()
         {
-            _variantItems = Resources.LoadAll<LevelVariantItem>(ItemsPath.LevelVariantsPath).ToList();
+            _variantItems = Resources.LoadAll<LevelItem>(ItemsPath.LevelVariantsPath).ToList();
         }
 
         private void LoadWindowItems()
@@ -68,7 +68,7 @@ namespace Infrastructure.Services.Items
             return _skins.TryGetValue(type, out SkinItem item) ? item : null;
         }
 
-        public List<LevelVariantItem> VariantItems => _variantItems;
+        public List<LevelItem> VariantItems => _variantItems;
         public PlayerItem PlayerItem => _playerItem;
         public SectorsItem SectorsItem => _sectorsItem;
         public GemsItem GemsItem => _gemsItem;
