@@ -31,7 +31,10 @@ namespace Infrastructure.States
             SavesYG data = YandexGame.savesData;
 
             data.LevelStarted = false;
-            _container.Resolve<PlayerComponent>().ResetComponent();
+            PlayerComponent player = _container.Resolve<PlayerComponent>();
+            player.ResetComponent();
+            player.StartMoving();
+            
             _container.Resolve<LevelGenerator>().Reset();
 
             hud.PlayModeContainer.Hide();

@@ -102,6 +102,7 @@ namespace Components.Player
 
         public void ResetComponent()
         {
+            _isMoving = false;
             _isMoving360 = false;
             _moveVector = Vector3.back;
             angularSpeed = _playerItem.Speed;
