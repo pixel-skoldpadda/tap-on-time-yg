@@ -14,14 +14,15 @@ namespace YG
         public string language = "ru";
         public bool promptDone;
 
+        [SerializeField] private int totalScore;
         [SerializeField] private int gems;
         [SerializeField] private int level;
-        [SerializeField] private int score;
         [SerializeField] private int levelIndex;
         [SerializeField] private SkinType skinType = SkinType.Rocket;
 
         private Level _currentLevel;
         private bool _levelStarted;
+        private int score;
 
         private Action _gemsChanged;
         private Action _scoreChanged;
@@ -97,6 +98,12 @@ namespace YG
                 _currentLevel = value;
                 _levelChanged?.Invoke(_currentLevel);
             }
+        }
+
+        public int TotalScore
+        {
+            get => totalScore;
+            set => totalScore = value;
         }
     }
 }

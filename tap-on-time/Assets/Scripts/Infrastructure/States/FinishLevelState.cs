@@ -1,4 +1,5 @@
 ﻿using Components.Player;
+using Configs;
 using Generator;
 using Infrastructure.States.Interfaces;
 using YG;
@@ -32,7 +33,13 @@ namespace Infrastructure.States
 
         private void OnMoveEnd()
         {
-            YandexGame.savesData.CurrentLevel.Completed = true;
+            SavesYG state = YandexGame.savesData;
+            Level currentLevel = state.CurrentLevel;
+            currentLevel.Completed = true;
+            state.TotalScore += state.Score;
+
+            YandexGame.NewLeaderboardScores(GameConfig.LeaderboardId, state.TotalScore);
+            
             _stateMachine.Enter<StartLevelState>();
         }
 
