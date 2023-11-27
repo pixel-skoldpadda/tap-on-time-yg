@@ -27,6 +27,8 @@ namespace Infrastructure.Services.Factory
         public void CreateHud()
         {
             Hud hud = _assets.Instantiate(AssetsPath.HudPrefabPath).GetComponent<Hud>();
+            hud.PlayModeContainer = _assets.Instantiate(AssetsPath.PlayModeContainer).GetComponent<PlayModeContainer>();
+            
             _diContainer.Bind<Hud>().FromInstance(hud).AsSingle();
         }
         
