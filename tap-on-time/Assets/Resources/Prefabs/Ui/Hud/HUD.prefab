@@ -170,8 +170,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4304724777931676479}
   - {fileID: 440245288327482976}
+  - {fileID: 4304724777931676479}
   - {fileID: 7508067042494607452}
   - {fileID: 1331425773578716905}
   m_Father: {fileID: 0}
@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 7508067042494607452}
   - component: {fileID: 7508067042494607522}
   - component: {fileID: 7508067042494607453}
+  - component: {fileID: 321021298991140726}
   m_Layer: 5
   m_Name: TapToPLay
   m_TagString: Untagged
@@ -395,6 +396,58 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &321021298991140726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7508067042494607455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textMPComponent: {fileID: 7508067042494607453}
+  uniqueFontTMP: {fileID: 0}
+  textLComponent: {fileID: 0}
+  infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
+  text: 
+  ru: "\u041D\u0430\u0436\u043C\u0438 \u0447\u0442\u043E\u0431\u044B \u0438\u0433\u0440\u0430\u0442\u044C"
+  en: Tap to play
+  tr: 
+  az: 
+  be: 
+  he: 
+  hy: 
+  ka: 
+  et: 
+  fr: 
+  kk: 
+  ky: 
+  lt: 
+  lv: 
+  ro: 
+  tg: 
+  tk: 
+  uk: 
+  uz: 
+  es: 
+  pt: 
+  ar: 
+  id: 
+  ja: 
+  it: 
+  de: 
+  hi: 
+  changeOnlyFont: 0
+  fontNumber: 0
+  uniqueFont: {fileID: 0}
+  additionalText: {fileID: 0}
+  textHeight: 20
+  processTranslateLabel: 
+  componentTextField: 0
+  countLang: 0
 --- !u!1001 &978623419584753505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -509,11 +562,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 831147302708486401, guid: 64611a939b9e7b14a99415597f4c191b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -60
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 831147302708486401, guid: 64611a939b9e7b14a99415597f4c191b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -60
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 831147302708486401, guid: 64611a939b9e7b14a99415597f4c191b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -582,11 +635,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4755404152924215061, guid: ae8cd716eaa6bc44a8fbd6b9ee42a420, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -120
+      value: -60
       objectReference: {fileID: 0}
     - target: {fileID: 4755404152924215061, guid: ae8cd716eaa6bc44a8fbd6b9ee42a420, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 4755404152924215061, guid: ae8cd716eaa6bc44a8fbd6b9ee42a420, type: 3}
       propertyPath: m_LocalPosition.x
@@ -622,7 +675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4755404152924215061, guid: ae8cd716eaa6bc44a8fbd6b9ee42a420, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -140
+      value: -85
       objectReference: {fileID: 0}
     - target: {fileID: 4755404152924215061, guid: ae8cd716eaa6bc44a8fbd6b9ee42a420, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

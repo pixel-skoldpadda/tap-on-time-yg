@@ -28,8 +28,8 @@ namespace UI.Hud
             gameObject.SetActive(true);
             
             int level = YandexGame.savesData.Level;
-            currentLevel.text = level.ToString();
-            nextLevel.text = $"{level + 1}";
+            currentLevel.text = $"{currentLevel.text.Split(" ")[0]} {level}";
+            nextLevel.text = $"{nextLevel.text.Split(" ")[0]} {level + 1}";
         }
         
         public void Hide()
