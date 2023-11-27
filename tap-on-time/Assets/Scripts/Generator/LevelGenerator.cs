@@ -82,6 +82,7 @@ namespace Generator
                 YandexGame.savesData.CurrentLevel = new Level(GetLevelFromPool(levelIndex), levelIndex);   
             }
 
+            _player.ChangeSpeed(YandexGame.savesData.CurrentLevel.PlayerSpeed);
             SetupLevel();
             GenerateNextSector();
         }
@@ -93,8 +94,7 @@ namespace Generator
 
             _gameField.DOColor(currentLevel.FieldColor, 0.7f);
             _camera.DOColor(currentLevel.BackgroundColor, 0.7f);
-        
-            _player.ChangeSpeed(currentLevel.PlayerSpeed);
+            
             state.LevelIndex = currentLevel.Index;
         }
     
