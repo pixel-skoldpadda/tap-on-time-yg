@@ -3,6 +3,7 @@ using Infrastructure.Services.Loader;
 using Infrastructure.States.Interfaces;
 using Ui.Curtain;
 using UnityEngine;
+using YG;
 
 namespace Infrastructure.States
 {
@@ -42,6 +43,7 @@ namespace Infrastructure.States
         private void OnLoaded()
         {
             InitGameWorld();
+            YandexGame.GameReadyAPI();
             
             _stateMachine.Enter<WaitInputState>();
         }
