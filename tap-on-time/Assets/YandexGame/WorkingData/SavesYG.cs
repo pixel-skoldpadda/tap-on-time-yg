@@ -26,6 +26,7 @@ namespace YG
 
         private Action _gemsChanged;
         private Action _scoreChanged;
+        private Action<int> _totalScoreChanged;
         private Action<Level> _levelChanged;
 
         public SkinType SkinType
@@ -103,7 +104,17 @@ namespace YG
         public int TotalScore
         {
             get => totalScore;
-            set => totalScore = value;
+            set
+            {
+                totalScore = value;
+                _totalScoreChanged?.Invoke(totalScore);
+            }
+        }
+
+        public Action<int> TotalScoreChanged
+        {
+            get => _totalScoreChanged;
+            set => _totalScoreChanged = value;
         }
     }
 }

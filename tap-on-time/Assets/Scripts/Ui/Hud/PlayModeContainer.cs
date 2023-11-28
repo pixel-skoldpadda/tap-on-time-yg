@@ -80,8 +80,7 @@ namespace UI.Hud
 
         private void UpdateTargetScore(Level level)
         {
-            targetScoreCounter.text = 
-                level.TargetScore.ToString();
+            targetScoreCounter.text = level.TargetScore.ToString();
         }
     }
 }
