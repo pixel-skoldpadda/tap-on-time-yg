@@ -39,6 +39,7 @@ namespace Infrastructure.States
             Hud hud = _container.Resolve<Hud>();
             hud.PlayModeContainer.Show();
             hud.ProgressContainer.Show();
+            hud.TapToPLay.SetActive(false);
             
             _stateMachine.Enter<SaveProgressState>();
         }

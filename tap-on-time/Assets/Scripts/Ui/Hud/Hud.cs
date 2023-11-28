@@ -5,7 +5,8 @@ namespace UI.Hud
     public class Hud : MonoBehaviour
     {
         private PlayModeContainer playModeContainer;
-        
+
+        [SerializeField] private GameObject tapToPLay;
         [SerializeField] private GemsContainer gemsContainer;
         [SerializeField] private ProgressContainer progressContainer;
         [SerializeField] private SplashScreen splashScreen;
@@ -13,6 +14,7 @@ namespace UI.Hud
         public GemsContainer GemsContainer => gemsContainer;
         public ProgressContainer ProgressContainer => progressContainer;
         public SplashScreen SplashScreen => splashScreen;
+        public GameObject TapToPLay => tapToPLay;
 
         public PlayModeContainer PlayModeContainer
         {
