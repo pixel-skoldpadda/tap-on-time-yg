@@ -28,9 +28,7 @@ namespace Infrastructure.States
             splashScreen.OnSplashHide += _stateMachine.Enter<WaitInputState>;
             splashScreen.Show();
             
-            SavesYG data = YandexGame.savesData;
-
-            data.LevelStarted = false;
+            YandexGame.savesData.LevelStarted = false;
             PlayerComponent player = _container.Resolve<PlayerComponent>();
             player.ResetComponent();
             player.StartMoving();
@@ -39,8 +37,6 @@ namespace Infrastructure.States
 
             hud.PlayModeContainer.Hide();
             hud.ProgressContainer.Hide();
-            
-            data.Level--;
         }
 
         public void Exit()

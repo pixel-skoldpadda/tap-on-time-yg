@@ -27,7 +27,6 @@ namespace Infrastructure.States
             Debug.Log($"{GetType()} entered.");
 
             SavesYG data = YandexGame.savesData;
-            data.Level++;
             data.Score = 0;
             data.LevelStarted = true;
             

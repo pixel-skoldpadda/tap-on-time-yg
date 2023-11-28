@@ -37,6 +37,7 @@ namespace Infrastructure.States
             Level currentLevel = state.CurrentLevel;
             currentLevel.Completed = true;
             state.TotalScore += state.Score;
+            state.Level++;
 
             YandexGame.NewLeaderboardScores(GameConfig.LeaderboardId, state.TotalScore);
             
