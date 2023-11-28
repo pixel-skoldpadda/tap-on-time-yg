@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d798988dcde2405a956905d11fcb8be7, type: 3}
   m_Name: 6_level_item
   m_EditorClassIdentifier: 
-  backgroundColor: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
-  fieldColor: {r: 0.26415092, g: 0.25044498, b: 0.25044498, a: 1}
-  points: 0
-  startSpeed: 0
-  moveSectorsProbability: 0
-  changeDirectionProbability: 0
+  backgroundColor: {r: 0.8018868, g: 0.76784444, b: 0.76784444, a: 1}
+  fieldColor: {r: 0.3679245, g: 0.3453631, b: 0.3453631, a: 1}
+  points: 7
+  startSpeed: 250
+  moveSectorsProbability: 10
+  changeDirectionProbability: 5
