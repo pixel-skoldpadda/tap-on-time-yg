@@ -11,14 +11,10 @@ namespace UI.Hud
         
         private Sequence scaleSequence;
         
-        private void Awake()
+        private void Start()
         {
             YandexGame.savesData.TotalScoreChanged += TotalScoreChanged;
             YandexGame.SwitchLangEvent += OnLanguageChanged;
-        }
-
-        private void Start()
-        {
             UpdateTotalScore(YandexGame.savesData.TotalScore);
         }
 

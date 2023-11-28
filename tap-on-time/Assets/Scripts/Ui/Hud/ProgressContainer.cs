@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UI.Element;
 using UnityEngine;
@@ -10,8 +11,8 @@ namespace UI.Hud
         [SerializeField] private ProgressBar progressBar;
         [SerializeField] private TextMeshProUGUI currentLevel;
         [SerializeField] private TextMeshProUGUI nextLevel;
-        
-        private void Awake()
+
+        private void Start()
         {
             YandexGame.savesData.ScoreChanged += UpdateProgressBar;
             YandexGame.SwitchLangEvent += OnLanguageChanged;
