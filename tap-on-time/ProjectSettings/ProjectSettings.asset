@@ -44,8 +44,8 @@ PlayerSettings:
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1920
   defaultScreenHeight: 1080
-  defaultScreenWidthWeb: 1080
-  defaultScreenHeightWeb: 1920
+  defaultScreenWidthWeb: 9
+  defaultScreenHeightWeb: 16
   m_StereoRenderingPath: 0
   m_ActiveColorSpace: 0
   m_SpriteBatchVertexThreshold: 300
@@ -384,6 +384,16 @@ PlayerSettings:
     BANNER_DYNAMIC_2: 
     BANNER_STATIC_1: 
     BANNER_STATIC_2: 
+    CHANGE_BAR_COLOR: 
+    CHANGE_LOADING_SCREEN_BACKGROUND: 
+    CHANGE_LOGO_IMAGE: 
+    CONFIGURE_SHADOWS: 
+    CONNECT_WEB_AUDIO_PLUGIN_FILES: 
+    CUSTOMIZE_CURSOR: 
+    DISABLE_CONSOLE_LOG: 
+    ENABLE_CONSOLE: 
+    LOCK_ASPECT_RATIO_ON_DESKTOP: true
+    LOCK_ASPECT_RATIO_ON_MOBILE: 
   mobileMTRendering:
     Android: 1
     iPhone: 1
@@ -637,7 +647,7 @@ PlayerSettings:
   webGLDebugSymbols: 0
   webGLEmscriptenArgs: 
   webGLModulesDirectory: 
-  webGLTemplate: PROJECT:PluginYG
+  webGLTemplate: PROJECT:AT_YG1.6
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
   webGLCompressionFormat: 0
