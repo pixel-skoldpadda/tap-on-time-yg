@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: GEMS_ITEM
   m_EditorClassIdentifier: 
   prefab: {fileID: 7253447629243474132, guid: f927346e6e1b1b74386fcb0f365b2ae7, type: 3}
-  amount: 16
-  cost: 5
+  amount: 12
+  cost: 1
