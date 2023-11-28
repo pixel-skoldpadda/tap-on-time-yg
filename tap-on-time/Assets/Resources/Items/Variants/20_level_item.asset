@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundColor: {r: 0.4960841, g: 0.4783731, b: 0.8113208, a: 1}
   fieldColor: {r: 0.29957277, g: 0.31945273, b: 0.6415094, a: 1}
-  points: 1
+  points: 2
   startSpeed: 550
   moveSectorsProbability: 10
   changeDirectionProbability: 10
