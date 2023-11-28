@@ -26,20 +26,20 @@ namespace Infrastructure.States
         {
             Debug.Log($"{GetType()} entered.");
 
-            PlayerComponent player = _container.Resolve<PlayerComponent>();
-            player.ResetComponent();
-            
-            _container.Resolve<LevelGenerator>().ChooseNextLevel();
-            player.StartMoving();
-
-            Hud hud = _container.Resolve<Hud>();
-            hud.PlayModeContainer.Show();
-            hud.ProgressContainer.Show();
-
             SavesYG data = YandexGame.savesData;
             data.Level++;
             data.Score = 0;
             data.LevelStarted = true;
+            
+            PlayerComponent player = _container.Resolve<PlayerComponent>();
+            player.ResetComponent();
+            player.StartMoving();
+
+            _container.Resolve<LevelGenerator>().ChooseNextLevel();
+
+            Hud hud = _container.Resolve<Hud>();
+            hud.PlayModeContainer.Show();
+            hud.ProgressContainer.Show();
             
             _stateMachine.Enter<SaveProgressState>();
         }
