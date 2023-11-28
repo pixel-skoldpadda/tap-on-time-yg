@@ -11,7 +11,10 @@ namespace Infrastructure.Services.Items
         private Dictionary<WindowType, WindowItem> _windows;
         private Dictionary<SkinType, SkinItem> _skins;
         
-        private List<LevelItem> _variantItems;
+        private List<LevelItem> _generatedGeneratedLevelItems;
+        private List<LevelItem> _predefinedLevelItems;
+        
+        
         private PlayerItem _playerItem;
         private SectorsItem _sectorsItem;
         private GemsItem _gemsItem;
@@ -19,11 +22,17 @@ namespace Infrastructure.Services.Items
         public void LoadAllItems()
         {
             LoadWindowItems();
-            LoadLevelVariantItems();
+            LoadGeneratedLevelItems();
+            LoadPredefinedLevelItems();
             LoadPlayerItem();
             LoadSkinsItems();
             LoadSectorsItem();
             LoadGemsItem();
+        }
+
+        private void LoadPredefinedLevelItems()
+        {
+            _predefinedLevelItems = Resources.LoadAll<LevelItem>(ItemsPath.PredefinedLevelItemsPath).ToList();
         }
 
         private void LoadGemsItem()
@@ -47,9 +56,9 @@ namespace Infrastructure.Services.Items
             _playerItem = Resources.Load<PlayerItem>(ItemsPath.PlayerItemPath);
         }
 
-        private void LoadLevelVariantItems()
+        private void LoadGeneratedLevelItems()
         {
-            _variantItems = Resources.LoadAll<LevelItem>(ItemsPath.LevelVariantsPath).ToList();
+            _generatedGeneratedLevelItems = Resources.LoadAll<LevelItem>(ItemsPath.GeneratedLevelItemsPath).ToList();
         }
 
         private void LoadWindowItems()
@@ -68,7 +77,9 @@ namespace Infrastructure.Services.Items
             return _skins.TryGetValue(type, out SkinItem item) ? item : null;
         }
 
-        public List<LevelItem> LevelItems => _variantItems;
+        public List<LevelItem> GeneratedLevelItems => _generatedGeneratedLevelItems;
+        public List<LevelItem> PredefinedLevelItems => _predefinedLevelItems;
+
         public PlayerItem PlayerItem => _playerItem;
         public SectorsItem SectorsItem => _sectorsItem;
         public GemsItem GemsItem => _gemsItem;

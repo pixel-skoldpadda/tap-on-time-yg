@@ -60,31 +60,58 @@ namespace Generator
 
         private void Init()
         {
-            _levelsPool.AddRange(_items.LevelItems);
-
-            int levelIndex = YandexGame.savesData.LevelIndex;
-            YandexGame.savesData.CurrentLevel = new Level(GetLevelFromPool(levelIndex), levelIndex);
+            SavesYG state = YandexGame.savesData;
+            
+            int levelIndex = state.LevelIndex;
+            if (IsAllLevelsCompleted())
+            {
+                _levelsPool.AddRange(_items.GeneratedLevelItems);
+                state.CurrentLevel = new Level(GetLevelFromPool(levelIndex), levelIndex);
+            }
+            else
+            {
+                state.CurrentLevel = new Level(_items.PredefinedLevelItems[levelIndex], levelIndex);
+            }
 
             SetupLevel();
         }
 
         public void ChooseNextLevel()
         {
-            if (_levelsPool.IsEmpty())
+            SavesYG state = YandexGame.savesData;
+            if (state.CurrentLevel.Completed)
             {
-                _levelsPool.AddRange(_items.LevelItems);
+                if (IsAllLevelsCompleted())
+                {
+                    InitGeneratedLevel(state);
+                }
+                else
+                {
+                    InitPredefineLevel(state);
+                }
             }
 
-            if (YandexGame.savesData.CurrentLevel.Completed)
-            {
-                Random random = new Random();
-                int levelIndex = random.Next(0, _levelsPool.Count);
-                YandexGame.savesData.CurrentLevel = new Level(GetLevelFromPool(levelIndex), levelIndex);   
-            }
-
-            _player.ChangeSpeed(YandexGame.savesData.CurrentLevel.PlayerSpeed);
+            _player.ChangeSpeed(state.CurrentLevel.PlayerSpeed);
             SetupLevel();
             GenerateNextSector();
+        }
+
+        private void InitPredefineLevel(SavesYG state)
+        {
+            int level = state.Level;
+            state.CurrentLevel = new Level(_items.PredefinedLevelItems[level], level);
+        }
+
+        private void InitGeneratedLevel(SavesYG state)
+        {
+            if (_levelsPool.IsEmpty())
+            {
+                _levelsPool.AddRange(_items.GeneratedLevelItems);
+            }
+            
+            Random random = new Random();
+            int levelIndex = random.Next(0, _levelsPool.Count);
+            state.CurrentLevel = new Level(GetLevelFromPool(levelIndex), levelIndex);
         }
 
         private void SetupLevel()
@@ -97,8 +124,7 @@ namespace Generator
             
             state.LevelIndex = currentLevel.Index;
         }
-    
-
+        
         public void GenerateNextSector()
         {
             if (_currentSector != null)
@@ -172,6 +198,12 @@ namespace Generator
             LevelItem level = _levelsPool[index];
             _levelsPool.RemoveAt(index);
             return level;
+        }
+
+
+        private bool IsAllLevelsCompleted()
+        {
+            return YandexGame.savesData.Level > _items.PredefinedLevelItems.Count - 1;
         }
     }
 }

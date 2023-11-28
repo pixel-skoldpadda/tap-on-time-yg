@@ -8,10 +8,11 @@ namespace Infrastructure.Services.Items
     {
         void LoadAllItems();
         WindowItem GetWindowItem(WindowType type);
-        List<LevelItem> LevelItems { get; }
+        List<LevelItem> GeneratedLevelItems { get; }
         PlayerItem PlayerItem { get; }
         SectorsItem SectorsItem { get; }
         GemsItem GemsItem { get; }
+        List<LevelItem> PredefinedLevelItems { get; }
         SkinItem GetSkinItem(SkinType type);
     }
 }
