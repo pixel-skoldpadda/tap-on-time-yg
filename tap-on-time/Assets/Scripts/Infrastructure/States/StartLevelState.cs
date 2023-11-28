@@ -26,10 +26,10 @@ namespace Infrastructure.States
         {
             Debug.Log($"{GetType()} entered.");
 
-            _container.Resolve<LevelGenerator>().ChooseNextLevel();
-            
             PlayerComponent player = _container.Resolve<PlayerComponent>();
             player.ResetComponent();
+            
+            _container.Resolve<LevelGenerator>().ChooseNextLevel();
             player.StartMoving();
 
             Hud hud = _container.Resolve<Hud>();
