@@ -1,5 +1,4 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using YG;
@@ -15,6 +14,7 @@ namespace UI.Hud
         private void Awake()
         {
             YandexGame.savesData.TotalScoreChanged += TotalScoreChanged;
+            YandexGame.SwitchLangEvent += OnLanguageChanged;
         }
 
         private void Start()
@@ -25,6 +25,12 @@ namespace UI.Hud
         private void OnDestroy()
         {
             YandexGame.savesData.TotalScoreChanged -= TotalScoreChanged;
+            YandexGame.SwitchLangEvent -= OnLanguageChanged;
+        }
+
+        private void OnLanguageChanged(string lang)
+        {
+            UpdateTotalScore(YandexGame.savesData.TotalScore);
         }
 
         private void TotalScoreChanged(int totalScore)

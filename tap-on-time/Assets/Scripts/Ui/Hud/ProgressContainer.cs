@@ -14,6 +14,17 @@ namespace UI.Hud
         private void Awake()
         {
             YandexGame.savesData.ScoreChanged += UpdateProgressBar;
+            YandexGame.SwitchLangEvent += OnLanguageChanged;
+        }
+
+        private void OnDestroy()
+        {
+            YandexGame.SwitchLangEvent -= OnLanguageChanged;
+        }
+
+        private void OnLanguageChanged(string lang)
+        {
+            ChangeLevels();
         }
 
         private void UpdateProgressBar()
@@ -26,15 +37,19 @@ namespace UI.Hud
         public void Show()
         {
             gameObject.SetActive(true);
-            
-            int level = YandexGame.savesData.Level;
-            currentLevel.text = $"{currentLevel.text.Split(" ")[0]} {level}";
-            nextLevel.text = $"{nextLevel.text.Split(" ")[0]} {level + 1}";
+            ChangeLevels();
         }
-        
+
         public void Hide()
         {
             gameObject.SetActive(false);
+        }
+
+        private void ChangeLevels()
+        {
+            int level = YandexGame.savesData.Level;
+            currentLevel.text = $"{currentLevel.text.Split(" ")[0]} {level}";
+            nextLevel.text = $"{nextLevel.text.Split(" ")[0]} {level + 1}";
         }
     }
 }
