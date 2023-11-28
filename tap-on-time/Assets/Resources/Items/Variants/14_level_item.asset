@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d798988dcde2405a956905d11fcb8be7, type: 3}
+  m_Name: 14_level_item
+  m_EditorClassIdentifier: 
+  backgroundColor: {r: 0.76805204, g: 0.58717513, b: 0.8584906, a: 1}
+  fieldColor: {r: 0.54319197, g: 0.31043077, b: 0.6037736, a: 1}
+  points: 7
+  startSpeed: 400
+  moveSectorsProbability: 5
+  changeDirectionProbability: 10
