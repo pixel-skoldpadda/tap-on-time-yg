@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d798988dcde2405a956905d11fcb8be7, type: 3}
-  m_Name: VeryHardLevel
+  m_Name: 5_level_item
   m_EditorClassIdentifier: 
-  backgroundColor: {r: 0.9411765, g: 0.7372549, b: 0.16862746, a: 1}
-  fieldColor: {r: 0.8980392, g: 0.63529414, b: 0.1254902, a: 1}
-  points: 30
-  startSpeed: 300
-  moveSectorsProbability: 8
-  changeDirectionProbability: 8
+  backgroundColor: {r: 0.9245283, g: 0.78984696, b: 0.41429335, a: 1}
+  fieldColor: {r: 0.7169812, g: 0.5596762, b: 0.26041296, a: 1}
+  points: 12
+  startSpeed: 200
+  moveSectorsProbability: 10
+  changeDirectionProbability: 10

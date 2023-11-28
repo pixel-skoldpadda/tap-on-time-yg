@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d798988dcde2405a956905d11fcb8be7, type: 3}
-  m_Name: MediumLevel
+  m_Name: 4_level_item
   m_EditorClassIdentifier: 
-  backgroundColor: {r: 0.4862745, g: 0.7137255, b: 0.23137255, a: 1}
-  fieldColor: {r: 0.2901961, g: 0.56078434, b: 0.14509805, a: 1}
+  backgroundColor: {r: 0.68467426, g: 0.9245283, b: 0.9047238, a: 1}
+  fieldColor: {r: 0.17621931, g: 0.6792453, b: 0.6579048, a: 1}
   points: 10
-  startSpeed: 200
-  moveSectorsProbability: 0
-  changeDirectionProbability: 3
+  startSpeed: 150
+  moveSectorsProbability: 7
+  changeDirectionProbability: 7
