@@ -11,5 +11,11 @@ namespace Editor
             PlayerPrefs.DeleteAll();
             PlayerPrefs.Save();
         }
+
+        [MenuItem("Tools/Screenshot")]
+        public static void MakeScreenshot()
+        {
+            ScreenCapture.CaptureScreenshot("fast_tap_.png");
+        }
     }
 }
