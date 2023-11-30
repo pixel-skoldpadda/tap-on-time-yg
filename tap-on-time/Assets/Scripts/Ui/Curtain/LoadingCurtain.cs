@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UI.Element;
 using UnityEngine;
@@ -23,13 +24,14 @@ namespace Ui.Curtain
             curtain.alpha = 1;
         }
 
-        public void Hide()
+        public void Hide(Action onComplete = null)
         {
             _fadeTwin = curtain.DOFade(0f, 1.5f)
                 .OnComplete(() =>
                 {
                     gameObject.SetActive(false);
                     _fadeTwin = null;
+                    onComplete?.Invoke();
                 })
                 .OnKill(() => curtain.alpha = 1f);
         }
