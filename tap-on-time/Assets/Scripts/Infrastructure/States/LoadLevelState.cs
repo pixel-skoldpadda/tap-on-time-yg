@@ -36,14 +36,16 @@ namespace Infrastructure.States
         public void Exit()
         {
             Debug.Log($"{GetType()} exited.");
-            
-            _loadingCurtain.Hide(YandexGame.GameReadyAPI);
         }
 
         private void OnLoaded()
         {
             InitGameWorld();
-            _stateMachine.Enter<WaitInputState>();
+            _loadingCurtain.Hide(() =>
+            {
+                YandexGame.GameReadyAPI();
+                _stateMachine.Enter<WaitInputState>();
+            });
         }
 
         private void InitGameWorld()
