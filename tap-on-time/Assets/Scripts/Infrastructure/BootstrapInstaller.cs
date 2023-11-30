@@ -8,7 +8,6 @@ using Infrastructure.Services.WindowsManager;
 using Infrastructure.States;
 using Ui.Curtain;
 using UnityEngine;
-using YG;
 using Zenject;
 
 namespace Infrastructure
@@ -16,7 +15,6 @@ namespace Infrastructure
     public class BootstrapInstaller : MonoInstaller
     {
         [SerializeField] private LoadingCurtain loadingCurtainPrefab;
-        [SerializeField] private GameObject _yandexGamePrefab;
         
         public override void InstallBindings()
         {
@@ -29,15 +27,8 @@ namespace Infrastructure
             Container.Bind<IUiFactory>().To<UiFactory>().AsSingle();
             Container.Bind<IWindowsManager>().To<WindowsManager>().AsSingle();
             Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
-
-            BindYandexGame();
+            
             BindLoadingCurtain();
-        }
-
-        private void BindYandexGame()
-        {
-            YandexGame yandexGame = Instantiate(_yandexGamePrefab).GetComponent<YandexGame>();
-            yandexGame.singleton = true;
         }
 
         private void BindLoadingCurtain()
