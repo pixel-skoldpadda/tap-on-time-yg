@@ -30,14 +30,15 @@ namespace Ui.Curtain
                 {
                     gameObject.SetActive(false);
                     _fadeTwin = null;
-                });
+                })
+                .OnKill(() => curtain.alpha = 1f);
         }
 
         private void OnDestroy()
         {
             if (_fadeTwin != null)
             {
-                _fadeTwin.Kill();
+                _fadeTwin.Kill(true);
                 _fadeTwin = null;
             }
         }
