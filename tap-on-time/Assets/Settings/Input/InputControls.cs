@@ -41,7 +41,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""04110189-d942-45bf-8ea0-e6e96403a40b"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""desktop"",
@@ -80,7 +80,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             ""bindingGroup"": ""desktop"",
             ""devices"": [
                 {
-                    ""devicePath"": ""<Keyboard>"",
+                    ""devicePath"": ""<Mouse>"",
                     ""isOptional"": false,
                     ""isOR"": false
                 }
