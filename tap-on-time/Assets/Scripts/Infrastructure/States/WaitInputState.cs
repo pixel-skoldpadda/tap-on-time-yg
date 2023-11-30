@@ -1,6 +1,7 @@
 using Infrastructure.Services.Input;
 using Infrastructure.States.Interfaces;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using YG;
 
@@ -33,6 +34,12 @@ namespace Infrastructure.States
 
         private void OnTap(InputAction.CallbackContext context)
         {
+            // TODO найти другое решение. Кидает предупреждения при каждом вызове.
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+            
             if (YandexGame.savesData.LevelStarted)
             {
                 _stateMachine.Enter<CheckCollisionState>();
