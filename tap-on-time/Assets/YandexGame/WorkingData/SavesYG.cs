@@ -18,7 +18,7 @@ namespace YG
         [SerializeField] private int gems;
         [SerializeField] private int level;
         [SerializeField] private int levelIndex;
-        [SerializeField] private SkinType skinType = SkinType.Lemon;
+        [SerializeField] private SkinType skinType = SkinType.Watermelon;
 
         private Level _currentLevel;
         private bool _levelStarted;

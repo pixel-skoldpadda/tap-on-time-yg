@@ -5,6 +5,7 @@
         Rocket,
         Meteorite,
         GradientPlanet,
+        Watermelon,
         Lemon,
     }
 }
