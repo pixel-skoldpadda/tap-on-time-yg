@@ -4,6 +4,7 @@
     {
         Rocket,
         Meteorite,
-        Ball
+        GradientPlanet,
+        Lemon,
     }
 }
