@@ -9,5 +9,6 @@
         Lemon,
         ChristmasCane,
         Snowflake,
+        ChristmasWreath
     }
 }
