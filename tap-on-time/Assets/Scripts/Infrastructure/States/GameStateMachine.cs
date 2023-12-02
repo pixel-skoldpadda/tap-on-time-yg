@@ -6,7 +6,6 @@ using Infrastructure.Services.Items;
 using Infrastructure.Services.Loader;
 using Infrastructure.Services.SaveLoad;
 using Infrastructure.States.Interfaces;
-using Ui.Curtain;
 using Zenject;
 
 namespace Infrastructure.States
@@ -17,13 +16,13 @@ namespace Infrastructure.States
         private IExitableState _activeState;
 
         [Inject]
-        public GameStateMachine(DiContainer diContainer, ISceneLoader sceneLoader, LoadingCurtain loadingCurtain, ISaveLoadService saveLoadService, IItemsService items, 
+        public GameStateMachine(DiContainer diContainer, ISceneLoader sceneLoader, ISaveLoadService saveLoadService, IItemsService items, 
             IGameFactory gameFactory, IInputService input, IUiFactory uiFactory)
         {
             _states = new Dictionary<Type, IExitableState>
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, items),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain, gameFactory, uiFactory),
+                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, gameFactory, uiFactory),
                 [typeof(LoadProgressState)] = new LoadProgressState(this),
                 [typeof(WaitInputState)] = new WaitInputState(this, input),
                 [typeof(StartLevelState)] = new StartLevelState(this, diContainer),
