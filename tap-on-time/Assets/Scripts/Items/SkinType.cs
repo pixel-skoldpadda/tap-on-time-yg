@@ -7,5 +7,6 @@
         GradientPlanet,
         Watermelon,
         Lemon,
+        ChristmasCane,
     }
 }
