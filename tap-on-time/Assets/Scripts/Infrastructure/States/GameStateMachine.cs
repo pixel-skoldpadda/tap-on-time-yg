@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Components.Player;
 using Infrastructure.Services.Factory;
 using Infrastructure.Services.Input;
 using Infrastructure.Services.Items;
@@ -25,7 +24,6 @@ namespace Infrastructure.States
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, items),
                 [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain, gameFactory, uiFactory),
-                [typeof(LoadSceneState)] = new LoadSceneState(sceneLoader, loadingCurtain),
                 [typeof(LoadProgressState)] = new LoadProgressState(this),
                 [typeof(WaitInputState)] = new WaitInputState(this, input),
                 [typeof(StartLevelState)] = new StartLevelState(this, diContainer),
