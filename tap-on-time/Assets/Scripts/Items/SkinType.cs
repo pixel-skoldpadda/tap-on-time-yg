@@ -8,5 +8,6 @@
         Watermelon,
         Lemon,
         ChristmasCane,
+        Snowflake,
     }
 }
