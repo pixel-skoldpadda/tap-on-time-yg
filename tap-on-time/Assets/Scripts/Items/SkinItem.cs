@@ -7,8 +7,10 @@ namespace Items
     {
         [SerializeField] private SkinType type;
         [SerializeField] private Sprite sprite;
+        [SerializeField] private int price;
 
         public SkinType Type => type;
         public Sprite Sprite => sprite;
+        public int Price => price;
     }
 }

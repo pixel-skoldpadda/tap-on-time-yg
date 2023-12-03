@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 317621dfb39b44719c9c66d47517717a, type: 3}
-  m_Name: CHRISTMAS_CANE_SKIN_ITEM
+  m_Name: 1_ROCKET_SKIN_ITEM
   m_EditorClassIdentifier: 
-  type: 5
-  sprite: {fileID: 21300000, guid: ad8c3112023b403409b5b0ec1663c6f6, type: 3}
+  type: 0
+  sprite: {fileID: 21300000, guid: f3b3c1e1135f6ef48a36ee30ddc9b2a6, type: 3}

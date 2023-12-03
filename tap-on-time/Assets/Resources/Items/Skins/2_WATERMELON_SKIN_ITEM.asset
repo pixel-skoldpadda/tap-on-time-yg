@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 317621dfb39b44719c9c66d47517717a, type: 3}
-  m_Name: ROCKET_SKIN_ITEM
+  m_Name: 2_WATERMELON_SKIN_ITEM
   m_EditorClassIdentifier: 
-  type: 0
-  sprite: {fileID: 21300000, guid: f3b3c1e1135f6ef48a36ee30ddc9b2a6, type: 3}
+  type: 3
+  sprite: {fileID: 21300000, guid: 31cd2c80df7e82e4ab12275dc52af791, type: 3}
+  price: 250
