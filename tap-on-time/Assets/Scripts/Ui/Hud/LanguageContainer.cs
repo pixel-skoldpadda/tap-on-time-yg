@@ -5,7 +5,7 @@ using YG;
 
 namespace UI.Hud
 {
-    public class LanguageContainer : MonoBehaviour
+    public class LanguageContainer : BaseHudContainer
     {
         [SerializeField] private TextMeshProUGUI currentLanguage;
 

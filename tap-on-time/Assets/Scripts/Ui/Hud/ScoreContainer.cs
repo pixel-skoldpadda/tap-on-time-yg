@@ -5,7 +5,7 @@ using YG;
 
 namespace UI.Hud
 {
-    public class ScoreContainer : MonoBehaviour
+    public class ScoreContainer : BaseHudContainer
     {
         [SerializeField] private TextMeshProUGUI score;
         

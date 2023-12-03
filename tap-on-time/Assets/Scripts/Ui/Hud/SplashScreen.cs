@@ -4,15 +4,17 @@ using UnityEngine;
 
 namespace UI.Hud
 {
-    public class SplashScreen : MonoBehaviour
+    // TODO Избавиться от корутины
+    public class SplashScreen : BaseHudContainer
     {
         [SerializeField] private CanvasGroup splashBackground;
         
         private Action onSplashHide;
         
-        public void Show()
+        public override void Show()
         {
-            gameObject.SetActive(true);
+            base.Show();
+            
             splashBackground.alpha = 1;
             StartCoroutine(DoFadeIn());
         }

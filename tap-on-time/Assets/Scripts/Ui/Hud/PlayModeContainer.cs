@@ -6,7 +6,7 @@ using YG;
 
 namespace UI.Hud
 {
-    public class PlayModeContainer : MonoBehaviour
+    public class PlayModeContainer : BaseHudContainer
     {
         /**
          * Текстовый компонент для отображения текущего прогресса.
@@ -35,13 +35,13 @@ namespace UI.Hud
             UpdateTargetScore(state.CurrentLevel);
         }
 
-        public void Show()
+        public override void Show() 
         {
             playIcon.SetActive(false);
             scoreContainer.SetActive(true);
         }
         
-        public void Hide()
+        public override void Hide()
         {
             playIcon.SetActive(true);
             scoreContainer.SetActive(false);

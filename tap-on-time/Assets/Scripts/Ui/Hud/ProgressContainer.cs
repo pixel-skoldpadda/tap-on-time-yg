@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UI.Element;
 using UnityEngine;
@@ -6,7 +5,7 @@ using YG;
 
 namespace UI.Hud
 {
-    public class ProgressContainer : MonoBehaviour
+    public class ProgressContainer : BaseHudContainer
     {
         [SerializeField] private ProgressBar progressBar;
         [SerializeField] private TextMeshProUGUI currentLevel;
@@ -35,15 +34,11 @@ namespace UI.Hud
             progressBar.UpdateProgress(fillAmount);
         }
         
-        public void Show()
+        public override void Show()
         {
-            gameObject.SetActive(true);
+            base.Show();
+            
             ChangeLevels();
-        }
-
-        public void Hide()
-        {
-            gameObject.SetActive(false);
         }
 
         private void ChangeLevels()

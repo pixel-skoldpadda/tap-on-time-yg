@@ -7,7 +7,7 @@ namespace UI.Hud
     /**
      * Ui контейнер на HUD, отображающий количество набранных гемов.
      */
-    public class GemsContainer : MonoBehaviour
+    public class GemsContainer : BaseHudContainer
     {
         /**
          * Текстовый компонент для отображения количества собранных гемов.
