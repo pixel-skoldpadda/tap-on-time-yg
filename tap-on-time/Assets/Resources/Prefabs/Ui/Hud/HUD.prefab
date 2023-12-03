@@ -457,7 +457,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -493,9 +493,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tapToPLay: {fileID: 7508067042494607455}
-  gemsContainer: {fileID: 8263366169772008679}
   progressContainer: {fileID: 3589453189133295845}
   splashScreen: {fileID: 8214156410346650238}
+  marketContainer: {fileID: 8656902657437402403}
 --- !u!1 &6292145516827651548
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,8 +828,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 43530553567540611}
+  - component: {fileID: 8656902657437402403}
   m_Layer: 5
-  m_Name: Market
+  m_Name: MarketContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -853,8 +854,20 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 30, y: 30}
-  m_SizeDelta: {x: 150, y: 150}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &8656902657437402403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7666646029953745705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bc0226ca3b24d8c9f55291d177e1bf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8018305849379795311
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,7 +987,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 907546099248540984}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8656902657437402403}
+        m_TargetAssemblyTypeName: UI.Hud.MarketContainer, Assembly-CSharp
+        m_MethodName: OnButtonCLicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8718617988078274841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,17 +1329,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 831147302708486401, guid: 64611a939b9e7b14a99415597f4c191b, type: 3}
   m_PrefabInstance: {fileID: 978623419584753505}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8263366169772008679 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9167529012246317958, guid: 64611a939b9e7b14a99415597f4c191b, type: 3}
-  m_PrefabInstance: {fileID: 978623419584753505}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 275025f6d10541ed829561bb68b7b9d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8810134339980856362
 PrefabInstance:
   m_ObjectHideFlags: 0

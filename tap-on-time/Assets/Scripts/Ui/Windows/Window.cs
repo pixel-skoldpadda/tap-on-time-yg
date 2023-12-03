@@ -2,7 +2,6 @@
 using DG.Tweening;
 using Infrastructure.Services.WindowsManager;
 using UnityEngine;
-using Zenject;
 
 namespace Ui.Windows
 {
@@ -17,8 +16,7 @@ namespace Ui.Windows
         private Action _onWindowOpened;
 
         protected IWindowsManager WindowsManager;
-
-        [Inject]
+        
         protected void Construct(IWindowsManager windowsManager)
         {
             WindowsManager = windowsManager;
@@ -61,7 +59,7 @@ namespace Ui.Windows
             });
         }
 
-        protected void Close()
+        public void Close()
         {
             WindowsManager.CloseWindow(this);
         }

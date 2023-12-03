@@ -45,7 +45,7 @@ namespace Infrastructure.Services.Factory
             moveAroundComponent.StartMove();
             
             _player = playerGameObject.GetComponent<PlayerComponent>();
-            _player.Construct(_items.GetSkinItem(YandexGame.savesData.SkinType));
+            _player.Construct(_items.GetSkinItem(YandexGame.savesData.SkinType), _items);
 
             _diContainer.Bind<PlayerComponent>().FromInstance(_player).AsSingle();
         }

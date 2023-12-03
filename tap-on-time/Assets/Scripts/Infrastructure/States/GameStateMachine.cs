@@ -5,6 +5,7 @@ using Infrastructure.Services.Input;
 using Infrastructure.Services.Items;
 using Infrastructure.Services.Loader;
 using Infrastructure.Services.SaveLoad;
+using Infrastructure.Services.WindowsManager;
 using Infrastructure.States.Interfaces;
 using Zenject;
 
@@ -17,7 +18,7 @@ namespace Infrastructure.States
 
         [Inject]
         public GameStateMachine(DiContainer diContainer, ISceneLoader sceneLoader, ISaveLoadService saveLoadService, IItemsService items, 
-            IGameFactory gameFactory, IInputService input, IUiFactory uiFactory)
+            IGameFactory gameFactory, IInputService input, IUiFactory uiFactory, IWindowsManager windows)
         {
             _states = new Dictionary<Type, IExitableState>
             {
@@ -29,7 +30,8 @@ namespace Infrastructure.States
                 [typeof(CheckCollisionState)] = new CheckCollisionState(this, diContainer),
                 [typeof(RestartLevelState)] = new RestartLevelState(this, diContainer),
                 [typeof(FinishLevelState)] = new FinishLevelState(this, diContainer),
-                [typeof(SaveProgressState)] = new SaveProgressState(this, saveLoadService)
+                [typeof(SaveProgressState)] = new SaveProgressState(this, saveLoadService),
+                [typeof(OpenWindowState)] = new OpenWindowState(this, windows, diContainer)
             };
         }
 

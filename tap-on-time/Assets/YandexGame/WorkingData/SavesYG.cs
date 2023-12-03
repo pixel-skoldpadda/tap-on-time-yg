@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using Generator;
 using Items;
 using UnityEngine;
@@ -18,8 +19,9 @@ namespace YG
         [SerializeField] private int gems;
         [SerializeField] private int level;
         [SerializeField] private int levelIndex;
-        [SerializeField] private SkinType skinType = SkinType.ChristmasWreath;
-
+        [SerializeField] private SkinType skinType = SkinType.Rocket;
+        [SerializeField] private List<SkinType> purchasedSkins = new() { SkinType.Rocket };
+        
         private Level _currentLevel;
         private bool _levelStarted;
         private int score;
@@ -28,11 +30,16 @@ namespace YG
         private Action _scoreChanged;
         private Action<int> _totalScoreChanged;
         private Action<Level> _levelChanged;
+        private Action<SkinType> _onSkinChanged;
 
         public SkinType SkinType
         {
             get => skinType;
-            set => skinType = value;
+            set
+            {
+                skinType = value;
+                _onSkinChanged?.Invoke(skinType);
+            }
         }
 
         public int Gems
@@ -116,5 +123,13 @@ namespace YG
             get => _totalScoreChanged;
             set => _totalScoreChanged = value;
         }
+
+        public Action<SkinType> OnSkinChanged
+        {
+            get => _onSkinChanged;
+            set => _onSkinChanged = value;
+        }
+
+        public List<SkinType> PurchasedSkins => purchasedSkins;
     }
 }

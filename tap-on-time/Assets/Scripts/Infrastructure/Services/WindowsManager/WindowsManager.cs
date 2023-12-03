@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Infrastructure.Services.Factory;
+using Infrastructure.Services.Items;
+using Items;
 using Ui.Windows;
 using Zenject;
 
@@ -8,18 +9,20 @@ namespace Infrastructure.Services.WindowsManager
 {
     public class WindowsManager : IWindowsManager
     {
-        private readonly IUiFactory _uiFactory;
-        
         private readonly Queue<WindowData> _queue = new();
         private Window _current;
 
         private Action _onWindowOpened;
         private Action _onWindowClosed;
 
+        private IItemsService _items;
+        private DiContainer _container;
+        
         [Inject]
-        public WindowsManager(IUiFactory uiFactory)
+        public void Construct(DiContainer container, IItemsService items)
         {
-            _uiFactory = uiFactory;
+            _container = container;
+            _items = items;
         }
         
         public void CloseWindow(Window window)
@@ -44,7 +47,7 @@ namespace Infrastructure.Services.WindowsManager
 
             if (_current == null)
             {
-                Window window = _uiFactory.CreateWindow<Window>(windowType, this, args);
+                Window window = CreateWindow<Window>(windowType);
                 if (onClose != null)
                 {
                     window.OnWindowClosed += onClose;   
@@ -66,6 +69,14 @@ namespace Infrastructure.Services.WindowsManager
             {
                 OpenWindow(windowData.Type, false, windowData.OnClose, windowData.Args);
             }
+        }
+
+        private T CreateWindow<T>(WindowType type) where T : Window
+        {
+            WindowItem item = _items.GetWindowItem(type);
+            Window window = _container.InstantiatePrefabForComponent<T>(item.Prefab);
+            
+            return (T) window;
         }
 
         public Action OnWindowOpened

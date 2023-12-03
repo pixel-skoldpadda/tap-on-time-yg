@@ -20,8 +20,8 @@ namespace Infrastructure
             Container.Bind<IAssetsService>().To<AssetsService>().AsSingle();
             Container.Bind<ISaveLoadService>().To<SaveLoadService>().AsSingle();
             Container.Bind<IItemsService>().To<ItemsService>().AsSingle();
-            Container.Bind<IUiFactory>().To<UiFactory>().AsSingle();
             Container.Bind<IWindowsManager>().To<WindowsManager>().AsSingle();
+            Container.Bind<IUiFactory>().To<UiFactory>().AsSingle();
             Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
         }
     }

@@ -1,6 +1,8 @@
 using System;
+using Infrastructure.Services.Items;
 using Items;
 using UnityEngine;
+using YG;
 
 namespace Components.Player
 {
@@ -13,11 +15,19 @@ namespace Components.Player
 
         private Vector3 _startPosition;
         private Quaternion _startQuaternion;
-        
 
-        public void Construct(SkinItem skinItem)
+        private IItemsService _items;
+
+        public void Construct(SkinItem skinItem, IItemsService items)
         {
+            _items = items;
             spriteRenderer.sprite = skinItem.Sprite;
+            YandexGame.savesData.OnSkinChanged += OnSkinChanged;
+        }
+
+        private void OnSkinChanged(SkinType type)
+        {
+            spriteRenderer.sprite = _items.GetSkinItem(type).Sprite;
         }
 
         private void Start()
@@ -79,5 +89,10 @@ namespace Components.Player
         }
 
         public bool Collision => _collision;
+
+        private void OnDestroy()
+        {
+            YandexGame.savesData.OnSkinChanged -= OnSkinChanged;
+        }
     }
 }

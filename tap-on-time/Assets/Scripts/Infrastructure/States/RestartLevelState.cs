@@ -38,6 +38,7 @@ namespace Infrastructure.States
             hud.PlayModeContainer.Hide();
             hud.ProgressContainer.Hide();
             hud.TapToPLay.SetActive(true);
+            hud.MarketContainer.Show();
         }
 
         public void Exit()

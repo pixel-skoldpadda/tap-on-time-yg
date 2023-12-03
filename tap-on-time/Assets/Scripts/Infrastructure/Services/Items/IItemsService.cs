@@ -13,6 +13,7 @@ namespace Infrastructure.Services.Items
         SectorsItem SectorsItem { get; }
         GemsItem GemsItem { get; }
         List<LevelItem> PredefinedLevelItems { get; }
+        List<SkinItem> SkinItems { get; }
         SkinItem GetSkinItem(SkinType type);
     }
 }

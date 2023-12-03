@@ -1,10 +1,5 @@
 ﻿using Infrastructure.Services.Assets;
-using Infrastructure.Services.Items;
-using Infrastructure.Services.WindowsManager;
-using Infrastructure.States;
-using Items;
 using UI.Hud;
-using Ui.Windows;
 using Zenject;
 
 namespace Infrastructure.Services.Factory
@@ -12,32 +7,22 @@ namespace Infrastructure.Services.Factory
     public class UiFactory : IUiFactory
     {
         private readonly IAssetsService _assets;
-        private readonly IItemsService _items;
-        private readonly DiContainer _diContainer;
-        private readonly IGameStateMachine _stateMachine;
+        private readonly DiContainer _container;
 
         [Inject]
-        public UiFactory(IItemsService items, IAssetsService assets, DiContainer diContainer)
+        public UiFactory(IAssetsService assets, DiContainer container)
         {
-            _items = items;
             _assets = assets;
-            _diContainer = diContainer;
+            _container = container;
         }
         
         public void CreateHud()
         {
             Hud hud = _assets.Instantiate(AssetsPath.HudPrefabPath).GetComponent<Hud>();
             hud.PlayModeContainer = _assets.Instantiate(AssetsPath.PlayModeContainer).GetComponent<PlayModeContainer>();
+            hud.MarketContainer.Construct(_container);
             
-            _diContainer.Bind<Hud>().FromInstance(hud).AsSingle();
-        }
-        
-        public T CreateWindow<T>(WindowType type, IWindowsManager windowsManager, object[] args) where T : Window
-        {
-            WindowItem item = _items.GetWindowItem(type);
-            Window window = _diContainer.InstantiatePrefabForComponent<T>(item.Prefab);
-
-            return (T) window;
+            _container.Bind<Hud>().FromInstance(hud).AsSingle();
         }
     }
 }

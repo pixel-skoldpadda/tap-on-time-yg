@@ -9,7 +9,7 @@ namespace Infrastructure.Services.Items
     public class ItemsService : IItemsService
     {
         private Dictionary<WindowType, WindowItem> _windows;
-        private Dictionary<SkinType, SkinItem> _skins;
+        private Dictionary<SkinType, SkinItem> _skinItems;
         
         private List<LevelItem> _generatedGeneratedLevelItems;
         private List<LevelItem> _predefinedLevelItems;
@@ -47,7 +47,7 @@ namespace Infrastructure.Services.Items
 
         private void LoadSkinsItems()
         {
-            _skins = Resources.LoadAll<SkinItem>(ItemsPath.SkinsItemsPath).ToDictionary(
+            _skinItems = Resources.LoadAll<SkinItem>(ItemsPath.SkinsItemsPath).ToDictionary(
                 k => k.Type, v => v);
         }
 
@@ -74,7 +74,7 @@ namespace Infrastructure.Services.Items
 
         public SkinItem GetSkinItem(SkinType type)
         {
-            return _skins.TryGetValue(type, out SkinItem item) ? item : null;
+            return _skinItems.TryGetValue(type, out SkinItem item) ? item : null;
         }
 
         public List<LevelItem> GeneratedLevelItems => _generatedGeneratedLevelItems;
@@ -83,5 +83,6 @@ namespace Infrastructure.Services.Items
         public PlayerItem PlayerItem => _playerItem;
         public SectorsItem SectorsItem => _sectorsItem;
         public GemsItem GemsItem => _gemsItem;
+        public List<SkinItem> SkinItems => _skinItems.Values.ToList();
     }
 }

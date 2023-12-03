@@ -7,14 +7,14 @@ namespace UI.Hud
         private PlayModeContainer playModeContainer;
 
         [SerializeField] private GameObject tapToPLay;
-        [SerializeField] private GemsContainer gemsContainer;
         [SerializeField] private ProgressContainer progressContainer;
         [SerializeField] private SplashScreen splashScreen;
+        [SerializeField] private MarketContainer marketContainer;
         
-        public GemsContainer GemsContainer => gemsContainer;
         public ProgressContainer ProgressContainer => progressContainer;
         public SplashScreen SplashScreen => splashScreen;
         public GameObject TapToPLay => tapToPLay;
+        public MarketContainer MarketContainer => marketContainer;
 
         public PlayModeContainer PlayModeContainer
         {
