@@ -86,9 +86,9 @@ namespace Ui.MarketWindow
             foreach (SkinItem skinItem in skins)
             {
                 MarketItemView marketItemView = Instantiate(marketItemViewPrefab, grid).GetComponent<MarketItemView>();
-                marketItemView.Construct(skinItem);
                 marketItemView.OnSelectedListener += OnItemSelected;
-                
+                marketItemView.Construct(skinItem);
+
                 _marketItemViews.Add(marketItemView);
             }
         }
