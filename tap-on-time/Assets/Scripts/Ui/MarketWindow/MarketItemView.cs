@@ -70,6 +70,7 @@ namespace Ui.MarketWindow
         {
             lockIcon.SetActive(false);
             selectedIcon.SetActive(true);
+            ChangeOutlineColor(true);
         }
 
         private void NotPurchasedState()
