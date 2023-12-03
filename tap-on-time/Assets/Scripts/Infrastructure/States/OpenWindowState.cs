@@ -2,6 +2,7 @@
 using Infrastructure.States.Interfaces;
 using UI.Hud;
 using Ui.Windows;
+using UnityEngine;
 using Zenject;
 
 namespace Infrastructure.States
@@ -21,13 +22,18 @@ namespace Infrastructure.States
         
         public void Enter(WindowType payload)
         {
-            MarketContainer marketContainer = _container.Resolve<Hud>().MarketContainer;
-            marketContainer.Hide();
+            Hud hud = _container.Resolve<Hud>();
+            MarketContainer marketContainer = hud.MarketContainer;
+            GameObject tapToPLay = hud.TapToPLay;
             
+            marketContainer.Hide();
+            tapToPLay.SetActive(false);
+                
             _windows.OpenWindow(payload, false, () =>
             {
                 _stateMachine.Enter<WaitInputState>();
                 marketContainer.Show();
+                tapToPLay.SetActive(true);
             });
         }
 
