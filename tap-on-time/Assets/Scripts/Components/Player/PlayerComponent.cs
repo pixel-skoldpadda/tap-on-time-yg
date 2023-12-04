@@ -2,6 +2,7 @@ using System;
 using Infrastructure.Services.Items;
 using Items;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using YG;
 
 namespace Components.Player
@@ -17,6 +18,8 @@ namespace Components.Player
         private Quaternion _startQuaternion;
 
         private IItemsService _items;
+
+        private bool _isPointerOverGameObject;
 
         public void Construct(SkinItem skinItem, IItemsService items)
         {
@@ -36,9 +39,9 @@ namespace Components.Player
             _startQuaternion = transform.rotation;
         }
 
-        public void StopMoving()
+        private void Update()
         {
-            _moveAroundComponent.StopMove();
+            _isPointerOverGameObject = EventSystem.current.IsPointerOverGameObject();
         }
 
         public void StartMove360()
@@ -94,5 +97,7 @@ namespace Components.Player
         {
             YandexGame.savesData.OnSkinChanged -= OnSkinChanged;
         }
+
+        public bool IsPointerOverGameObject => _isPointerOverGameObject;
     }
 }

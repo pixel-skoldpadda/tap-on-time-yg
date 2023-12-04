@@ -25,7 +25,7 @@ namespace Infrastructure.States
                 [typeof(BootstrapState)] = new BootstrapState(this, items),
                 [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, gameFactory, uiFactory),
                 [typeof(LoadProgressState)] = new LoadProgressState(this),
-                [typeof(WaitInputState)] = new WaitInputState(this, input),
+                [typeof(WaitInputState)] = new WaitInputState(this, input, diContainer),
                 [typeof(StartLevelState)] = new StartLevelState(this, diContainer),
                 [typeof(CheckCollisionState)] = new CheckCollisionState(this, diContainer),
                 [typeof(RestartLevelState)] = new RestartLevelState(this, diContainer),
