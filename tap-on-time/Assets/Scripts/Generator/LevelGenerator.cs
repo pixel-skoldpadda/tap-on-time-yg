@@ -12,17 +12,23 @@ using Random = System.Random;
 namespace Generator
 {
     public class LevelGenerator
-    { 
-        private readonly List<Sector> _allSectors;
+    {
         private readonly List<LevelItem> _levelsPool = new();
-        
-        private readonly Sector _finishSector;
-
-        private readonly List<Sector> _generatedSectors = new();
-        
+        private readonly List<Quarter> _quartersPool = new();
         private readonly List<Sector> _sectorsPool = new();
         
-        private readonly int[,] _angleRanges = { { 0, 90 }, { 90, 180 }, { 180, 270 }, { 270, 360 } };
+        private readonly List<Sector> _generatedSectors = new();
+
+        private readonly List<Sector> _allSectors;
+        private readonly Sector _finishSector;
+
+        private readonly List<Quarter> quarters = new()
+        {
+            new Quarter(0, 90),
+            new Quarter(90, 180),
+            new Quarter(180, 270),
+            new Quarter(270, 360)
+        };
 
         private int _currentVariantIndex;
 
@@ -206,10 +212,16 @@ namespace Generator
 
         private int GetRandomAngle(Random random)
         {
-            int rowIndex = random.Next(_angleRanges.GetUpperBound(0) + 1);
-            int minAngle = _angleRanges[rowIndex, 0];
-            int maxAngle = _angleRanges[rowIndex, 1];
-            return random.Next(minAngle, maxAngle);
+            if (_quartersPool.IsEmpty())
+            {
+                _quartersPool.AddRange(quarters);
+            }
+
+            int quarterIndex = random.Next(_quartersPool.Count);
+            Quarter quarter = _quartersPool[quarterIndex];
+            _quartersPool.RemoveAt(quarterIndex);
+            
+            return random.Next(quarter.MinAngle, quarter.MaxAngle);
         }
 
         private bool CanMove(int moveProbability, Random random)
