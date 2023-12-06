@@ -27,7 +27,8 @@ namespace Generator
         public int ChangeDirection => _levelItem.ChangeDirectionProbability;
         public int MoveSector => _levelItem.MoveSectorsProbability;
         public int PlayerSpeed => _levelItem.StartSpeed;
-
+        public int GenerateTwoSectorsProbability => _levelItem.GenerateTwoSectorsProbability;
+        
         public Color BackgroundColor => _levelItem.BackgroundColor;
         public Color FieldColor => _levelItem.FieldColor;
     }

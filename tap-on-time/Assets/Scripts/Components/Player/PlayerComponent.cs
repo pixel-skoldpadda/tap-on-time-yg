@@ -21,6 +21,8 @@ namespace Components.Player
 
         private bool _isPointerOverGameObject;
 
+        private Sector _collidedSector;
+        
         public void Construct(SkinItem skinItem, IItemsService items)
         {
             _items = items;
@@ -66,12 +68,12 @@ namespace Components.Player
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            _collision = true;
+            _collidedSector = other.gameObject.GetComponent<Sector>();
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            _collision = false;
+            _collidedSector = null;
         }
 
         public void ResetComponent()
@@ -91,11 +93,15 @@ namespace Components.Player
             _moveAroundComponent.ChangeDirection();
         }
 
-        public bool Collision => _collision;
-
         private void OnDestroy()
         {
             YandexGame.savesData.OnSkinChanged -= OnSkinChanged;
+        }
+
+        public Sector CollidedSector
+        {
+            get => _collidedSector;
+            set => _collidedSector = value;
         }
 
         public bool IsPointerOverGameObject => _isPointerOverGameObject;

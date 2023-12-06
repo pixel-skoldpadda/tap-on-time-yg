@@ -1,3 +1,4 @@
+using Components;
 using Components.Player;
 using Generator;
 using Infrastructure.States.Interfaces;
@@ -26,15 +27,19 @@ namespace Infrastructure.States
             PlayerComponent player = _container.Resolve<PlayerComponent>();
             SavesYG state = YandexGame.savesData;
 
-            if (player.Collision)
+            Sector collidedSector = player.CollidedSector;
+            if (collidedSector != null)
             {
+                collidedSector.Tap();
+                player.CollidedSector = null;
+                
                 if (state.Score >= state.CurrentLevel.TargetScore)
                 {
                     _stateMachine.Enter<FinishLevelState>();
                 }
                 else
                 {
-                    _container.Resolve<LevelGenerator>().GenerateNextSector();
+                    _container.Resolve<LevelGenerator>().NextLevelStep();
                     state.Score++;
                     _stateMachine.Enter<WaitInputState>();   
                 }

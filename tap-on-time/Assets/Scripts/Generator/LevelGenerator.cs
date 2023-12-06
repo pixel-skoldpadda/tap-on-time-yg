@@ -12,29 +12,17 @@ using Random = System.Random;
 namespace Generator
 {
     public class LevelGenerator
-    {
+    { 
         private readonly List<Sector> _allSectors;
         private readonly List<LevelItem> _levelsPool = new();
-
-        /**
-     * финишный сектор.
-     */
+        
         private readonly Sector _finishSector;
 
-        /**
-     * Текущий видимый сектор.
-     */
-        private Sector _currentSector;
-
-        /**
-     * Список, который будет спользоватся для выборки следующего сектора.
-     */
+        private readonly List<Sector> _generatedSectors = new();
+        
         private readonly List<Sector> _sectorsPool = new();
-
-        /**
-     * Коорднатные четверти в которых будем генерровать сектора.
-     */
-        private readonly int[,] _angleRanges = { {0, 90}, {90, 180}, {180, 270}, {270, 360} };
+        
+        private readonly int[,] _angleRanges = { { 0, 90 }, { 90, 180 }, { 180, 270 }, { 270, 360 } };
 
         private int _currentVariantIndex;
 
@@ -44,7 +32,7 @@ namespace Generator
 
         private readonly SpriteRenderer _gameField;
         private readonly Camera _camera;
-    
+
         public LevelGenerator(List<Sector> sectors, Sector finishSector, List<Gem> gems, IItemsService items, PlayerComponent player, SpriteRenderer gameField)
         {
             _items = items;
@@ -61,7 +49,7 @@ namespace Generator
         private void Init()
         {
             SavesYG state = YandexGame.savesData;
-            
+
             int levelIndex = state.LevelIndex;
             if (IsAllLevelsCompleted())
             {
@@ -93,7 +81,22 @@ namespace Generator
 
             _player.ChangeSpeed(state.CurrentLevel.PlayerSpeed);
             SetupLevel();
-            GenerateNextSector();
+            NextLevelStep();
+        }
+
+        public void NextLevelStep()
+        {
+            Random random = new Random();
+            SavesYG state = YandexGame.savesData;
+            Level _currentLevel = state.CurrentLevel;
+
+            int changeDirectionProbability = random.Next(1, 10);
+            if (_currentLevel.ChangeDirection > changeDirectionProbability)
+            {
+                _player.ChangeDirection();
+            }
+
+            GenerateSectors();
         }
 
         private void InitPredefineLevel(SavesYG state)
@@ -108,7 +111,7 @@ namespace Generator
             {
                 _levelsPool.AddRange(_items.GeneratedLevelItems);
             }
-            
+
             Random random = new Random();
             int levelIndex = random.Next(0, _levelsPool.Count);
             state.CurrentLevel = new Level(GetLevelFromPool(levelIndex), levelIndex);
@@ -121,19 +124,17 @@ namespace Generator
 
             _gameField.DOColor(currentLevel.FieldColor, 0.7f);
             _camera.DOColor(currentLevel.BackgroundColor, 0.7f);
-            
+
             state.LevelIndex = currentLevel.Index;
         }
-        
-        public void GenerateNextSector()
-        {
-            if (_currentSector != null)
-            {
-                _currentSector.gameObject.SetActive(false);
-                _currentSector.GetComponent<Sector>().Move = false;
-                _sectorsPool.Remove(_currentSector);
-            }
 
+        private void GenerateSectors()
+        {
+            if (!_generatedSectors.IsEmpty())
+            {
+                return;
+            }
+            
             if (_sectorsPool.IsEmpty())
             {
                 _sectorsPool.AddRange(_allSectors);
@@ -141,46 +142,91 @@ namespace Generator
 
             SavesYG state = YandexGame.savesData;
             Level _currentLevel = state.CurrentLevel;
+            
+            int targetScore = _currentLevel.TargetScore;
+            int currentScore = state.Score;
+            int moveProbability = _currentLevel.MoveSector;
 
             Random random = new Random();
-            if (state.Score == _currentLevel.TargetScore - 1)
+            if (currentScore == targetScore - 1)
             {
-                _currentSector = _finishSector;
+                _generatedSectors.Add(_finishSector);
+                SetupSector(_finishSector, GetRandomAngle(random), CanMove(moveProbability, random));
             }
             else
             {
-                int nextIndex = random.Next(_sectorsPool.Count);
-                _currentSector = _sectorsPool[nextIndex];
-            }
+                int spawnTwoSectors = random.Next(1, 10);
+                
+                // Проверяем на -3 так как последний сектор всегда должен быть финишным.
+                if (_currentLevel.GenerateTwoSectorsProbability > spawnTwoSectors && currentScore <= targetScore - 3)
+                {
+                    int angle = GetRandomAngle(random);
+                    bool canMove = CanMove(moveProbability, random);
 
+                    Sector firstSector = GetSectorFromPool(random);
+                    Sector secondSector = GetSectorFromPool(random);
+
+                    SetupSector(firstSector, angle, canMove);
+                    SetupSector(secondSector, angle + 180, canMove);
+
+                    _generatedSectors.Add(firstSector);
+                    _generatedSectors.Add(secondSector);
+                }
+                else
+                {
+                    Sector sector = GetSectorFromPool(random);
+                    SetupSector(sector, GetRandomAngle(random), CanMove(moveProbability, random));
+                    _generatedSectors.Add(sector);
+                }
+            }
+        }
+
+        private void OnSectorTapped(Sector sector)
+        {
+            sector.Reset();
+            _generatedSectors.Remove(sector);
+            sector.OnTaped -= OnSectorTapped;
+        }
+
+        private Sector GetSectorFromPool(Random random)
+        {
+            int nextIndex = random.Next(_sectorsPool.Count);
+            Sector sector = _sectorsPool[nextIndex];
+            _sectorsPool.RemoveAt(nextIndex);
+            return sector;
+        }
+
+        private void SetupSector(Sector sector, int angle, bool canMove)
+        {
+            sector.Move = canMove;
+            sector.transform.RotateAround(Vector3.zero, Vector3.back, angle);
+            sector.gameObject.SetActive(true);
+            sector.OnTaped += OnSectorTapped;
+        }
+
+        private int GetRandomAngle(Random random)
+        {
             int rowIndex = random.Next(_angleRanges.GetUpperBound(0) + 1);
             int minAngle = _angleRanges[rowIndex, 0];
             int maxAngle = _angleRanges[rowIndex, 1];
+            return random.Next(minAngle, maxAngle);
+        }
 
-            int changeDirectionProbability = random.Next(1, 10);
-            if (_currentLevel.ChangeDirection > changeDirectionProbability)
-            {
-                _player.ChangeDirection();
-            }
-
+        private bool CanMove(int moveProbability, Random random)
+        {
             int movingSectorProbability = random.Next(1, 10);
-            if (_currentLevel.MoveSector > movingSectorProbability)
-            {
-                _currentSector.Move = true;
-            }
-        
-            int angle = random.Next(minAngle, maxAngle);
-            _currentSector.transform.RotateAround(Vector3.zero, Vector3.back, angle);
-            _currentSector.gameObject.SetActive(true);
+            return moveProbability > movingSectorProbability;
         }
 
         public void Reset()
         {
-            if (_currentSector != null)
+            foreach (Sector sector in _generatedSectors)
             {
-                _currentSector.gameObject.SetActive(false);
-                _currentSector = null;
+                sector.gameObject.SetActive(false);
+                sector.OnTaped -= OnSectorTapped;
             }
+            
+            _generatedSectors.Clear();
             _sectorsPool.Clear();
             _sectorsPool.AddRange(_allSectors);
         }
@@ -199,7 +245,6 @@ namespace Generator
             _levelsPool.RemoveAt(index);
             return level;
         }
-
 
         private bool IsAllLevelsCompleted()
         {
