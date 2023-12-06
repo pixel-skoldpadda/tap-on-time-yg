@@ -222,7 +222,7 @@ namespace Generator
         {
             foreach (Sector sector in _generatedSectors)
             {
-                sector.gameObject.SetActive(false);
+                sector.Reset();
                 sector.OnTaped -= OnSectorTapped;
             }
             
