@@ -30,8 +30,7 @@ namespace Infrastructure.States
                 [typeof(CheckCollisionState)] = new CheckCollisionState(this, diContainer),
                 [typeof(RestartLevelState)] = new RestartLevelState(this, diContainer),
                 [typeof(FinishLevelState)] = new FinishLevelState(this, diContainer),
-                [typeof(SaveProgressState)] = new SaveProgressState(this, saveLoadService),
-                [typeof(OpenWindowState)] = new OpenWindowState(this, windows, diContainer)
+                [typeof(SaveProgressState)] = new SaveProgressState(this, saveLoadService)
             };
         }
 

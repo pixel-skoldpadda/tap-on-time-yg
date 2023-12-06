@@ -1,22 +1,28 @@
-﻿using Infrastructure.States;
+﻿using Infrastructure.Services.WindowsManager;
 using Ui.Windows;
-using Zenject;
+using UnityEngine;
+using Button = UnityEngine.UI.Button;
 
 namespace UI.Hud
 {
     public class MarketContainer : BaseHudContainer
     {
-        private DiContainer _container;
+        [SerializeField] private Button _marketButton;
+        private IWindowsManager _windows;
         
-        // TODO придумать как по другому передать сюда {IGameStateMachine}
-        public void Construct(DiContainer container)
+        public void Construct(IWindowsManager windows)
         {
-            _container = container;
+            _windows = windows;
         }
 
         public void OnButtonCLicked()
         {
-            _container.Resolve<IGameStateMachine>().Enter<OpenWindowState, WindowType>(WindowType.Market);
+            _marketButton.interactable = false;
+                
+            _windows.OpenWindow(WindowType.Market, false, () =>
+            {
+                _marketButton.interactable = true;
+            });
         }
     }
 }
