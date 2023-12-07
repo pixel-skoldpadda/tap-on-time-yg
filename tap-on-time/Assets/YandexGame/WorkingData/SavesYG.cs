@@ -32,6 +32,8 @@ namespace YG
         private Action<Level> _levelChanged;
         private Action<SkinType> _onSkinChanged;
 
+        private bool _gamePaused;
+        
         public SkinType SkinType
         {
             get => skinType;
@@ -128,6 +130,12 @@ namespace YG
         {
             get => _onSkinChanged;
             set => _onSkinChanged = value;
+        }
+
+        public bool GamePaused
+        {
+            get => _gamePaused;
+            set => _gamePaused = value;
         }
 
         public List<SkinType> PurchasedSkins => purchasedSkins;

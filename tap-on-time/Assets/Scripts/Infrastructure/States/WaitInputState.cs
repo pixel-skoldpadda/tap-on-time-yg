@@ -38,6 +38,11 @@ namespace Infrastructure.States
 
         private void OnTap(InputAction.CallbackContext context)
         {
+            if (YandexGame.savesData.GamePaused)
+            {
+                return;   
+            }
+            
             if (_container.Resolve<PlayerComponent>().IsPointerOverGameObject)
             {
                 return;
