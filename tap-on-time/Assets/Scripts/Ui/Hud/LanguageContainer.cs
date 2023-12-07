@@ -1,19 +1,10 @@
 ﻿using Configs;
-using TMPro;
-using UnityEngine;
 using YG;
 
 namespace UI.Hud
 {
     public class LanguageContainer : BaseHudContainer
     {
-        [SerializeField] private TextMeshProUGUI currentLanguage;
-
-        private void Start()
-        {
-            currentLanguage.text = YandexGame.savesData.language;
-        }
-
         // TODO 100% можно оптимизировать
         public void ChangeLanguage()
         {
@@ -32,7 +23,6 @@ namespace UI.Hud
 
                     currentLang = langs[nextLangIndex];
                     YandexGame.SwitchLanguage(currentLang);
-                    currentLanguage.text = currentLang;
                     return;
                 }
             }
