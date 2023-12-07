@@ -18,3 +18,4 @@ MonoBehaviour:
   startSpeed: 320
   moveSectorsProbability: 10
   changeDirectionProbability: 10
+  generateTwoSectorsProbability: 1
