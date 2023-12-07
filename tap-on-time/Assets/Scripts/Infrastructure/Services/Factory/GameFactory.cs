@@ -91,6 +91,12 @@ namespace Infrastructure.Services.Factory
         {
             _gameField = _assets.Instantiate(AssetsPath.FieldPrefabPath).GetComponentInChildren<SpriteRenderer>();
         }
+
+        public void CreateTapArea()
+        {
+            TapArea tapArea = _assets.Instantiate(AssetsPath.TapAreaPrefabPath).GetComponent<TapArea>();
+            _diContainer.Bind<TapArea>().FromInstance(tapArea);
+        }
         
         public void CreateLevelGenerator()
         {

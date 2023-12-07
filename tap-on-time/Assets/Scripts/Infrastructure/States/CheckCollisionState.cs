@@ -25,6 +25,8 @@ namespace Infrastructure.States
             Debug.Log($"{GetType()} entered.");
             
             PlayerComponent player = _container.Resolve<PlayerComponent>();
+            _container.Resolve<TapArea>().Show(player.gameObject.transform.position);
+            
             SavesYG state = YandexGame.savesData;
 
             Sector collidedSector = player.CollidedSector;

@@ -5,5 +5,6 @@
         public const string HudPrefabPath = "Prefabs/Ui/Hud/HUD";
         public const string FieldPrefabPath = "Prefabs/GameObjects/Field/Field";
         public const string PlayModeContainer = "Prefabs/Ui/Hud/PlayModeContainer";
+        public const string TapAreaPrefabPath = "Prefabs/GameObjects/TapArea/TapArea";
     }
 }

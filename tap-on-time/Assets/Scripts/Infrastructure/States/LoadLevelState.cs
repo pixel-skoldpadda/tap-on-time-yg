@@ -42,6 +42,7 @@ namespace Infrastructure.States
 
         private void InitGameWorld()
         {
+            _gameFactory.CreateTapArea();
             _gameFactory.CreateGameField();
             _gameFactory.CreatePlayer();
             _gameFactory.CreateSectors();

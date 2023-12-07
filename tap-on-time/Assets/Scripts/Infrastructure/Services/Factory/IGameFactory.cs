@@ -7,5 +7,6 @@ namespace Infrastructure.Services.Factory
         void CreateLevelGenerator();
         void CreateGems();
         void CreateGameField();
+        void CreateTapArea();
     }
 }
