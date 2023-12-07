@@ -140,11 +140,6 @@ namespace Generator
             {
                 return;
             }
-            
-            if (_sectorsPool.IsEmpty())
-            {
-                _sectorsPool.AddRange(_allSectors);
-            }
 
             SavesYG state = YandexGame.savesData;
             Level _currentLevel = state.CurrentLevel;
@@ -196,6 +191,11 @@ namespace Generator
 
         private Sector GetSectorFromPool(Random random)
         {
+            if (_sectorsPool.IsEmpty())
+            {
+                _sectorsPool.AddRange(_allSectors);
+            }
+            
             int nextIndex = random.Next(_sectorsPool.Count);
             Sector sector = _sectorsPool[nextIndex];
             _sectorsPool.RemoveAt(nextIndex);
