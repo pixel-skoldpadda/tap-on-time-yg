@@ -97,6 +97,12 @@ namespace Infrastructure.Services.Factory
             TapArea tapArea = _assets.Instantiate(AssetsPath.TapAreaPrefabPath).GetComponent<TapArea>();
             _diContainer.Bind<TapArea>().FromInstance(tapArea);
         }
+
+        public void CreateConfetti()
+        {
+            Confetti confetti = _assets.Instantiate(AssetsPath.ConfettiPath).GetComponent<Confetti>();
+            _diContainer.Bind<Confetti>().FromInstance(confetti);
+        }
         
         public void CreateLevelGenerator()
         {

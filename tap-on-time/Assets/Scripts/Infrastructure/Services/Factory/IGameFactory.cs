@@ -8,5 +8,6 @@ namespace Infrastructure.Services.Factory
         void CreateGems();
         void CreateGameField();
         void CreateTapArea();
+        void CreateConfetti();
     }
 }

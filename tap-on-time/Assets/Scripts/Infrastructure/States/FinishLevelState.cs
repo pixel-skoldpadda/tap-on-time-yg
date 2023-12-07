@@ -1,4 +1,5 @@
-﻿using Components.Player;
+﻿using Components;
+using Components.Player;
 using Configs;
 using Generator;
 using Infrastructure.States.Interfaces;
@@ -22,6 +23,8 @@ namespace Infrastructure.States
         {
             PlayerComponent player = _diContainer.Resolve<PlayerComponent>();
             LevelGenerator generator = _diContainer.Resolve<LevelGenerator>();
+            
+            _diContainer.Resolve<Confetti>().Play();
             
             player.ResetComponent();
             generator.Reset();
