@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d798988dcde2405a956905d11fcb8be7, type: 3}
-  m_Name: 17_level_item
+  m_Name: 39_level_item
   m_EditorClassIdentifier: 
-  backgroundColor: {r: 0.8301887, g: 0.66180134, b: 0.74309176, a: 1}
-  fieldColor: {r: 0.6509434, g: 0.26099145, b: 0.45827314, a: 1}
-  points: 5
-  startSpeed: 450
-  moveSectorsProbability: 10
-  changeDirectionProbability: 10
-  generateTwoSectorsProbability: 0
+  backgroundColor: {r: 0.7490196, g: 0.8627451, b: 0.8980392, a: 1}
+  fieldColor: {r: 0.24313726, g: 0.32941177, b: 0.6745098, a: 1}
+  points: 20
+  startSpeed: 380
+  moveSectorsProbability: 8
+  changeDirectionProbability: 6
+  generateTwoSectorsProbability: 4
