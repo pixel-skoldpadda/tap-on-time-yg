@@ -2,6 +2,7 @@
 using DG.Tweening;
 using Infrastructure.Services.WindowsManager;
 using UnityEngine;
+using Zenject;
 
 namespace Ui.Windows
 {
@@ -17,12 +18,13 @@ namespace Ui.Windows
 
         protected IWindowsManager WindowsManager;
         
+        [Inject]
         protected void Construct(IWindowsManager windowsManager)
         {
             WindowsManager = windowsManager;
         }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             layout.alpha = 0f;
         }
