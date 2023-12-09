@@ -25,6 +25,7 @@ namespace Infrastructure.States
         private void OnYandexGameDataLoaded()
         {
             ChangePlayerLanguage();
+            YandexGame.GetDataEvent -= OnYandexGameDataLoaded;
             _stateMachine.Enter<LoadLevelState, string>(SceneConfig.GameScene);
         }
 
