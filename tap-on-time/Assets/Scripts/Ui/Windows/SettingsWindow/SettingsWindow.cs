@@ -38,7 +38,7 @@ namespace Ui.Windows.SettingsWindow
 
         public void OpenAuthDialog()
         {
-            YandexGame.RequestAuth();
+            YandexGame.AuthDialog();
             Close();
         }
     }
