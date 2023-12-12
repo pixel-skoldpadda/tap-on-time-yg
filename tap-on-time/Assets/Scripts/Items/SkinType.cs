@@ -9,6 +9,10 @@
         Lemon,
         ChristmasCane,
         Snowflake,
-        ChristmasWreath
+        ChristmasWreath,
+        Axe,
+        Sword,
+        Shield,
+        Hammer
     }
 }

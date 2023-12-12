@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Items;
 using Ui.Windows;
@@ -47,7 +48,10 @@ namespace Infrastructure.Services.Items
 
         private void LoadSkinsItems()
         {
-            _skinItems = Resources.LoadAll<SkinItem>(ItemsPath.SkinsItemsPath).ToDictionary(
+            SkinItem[] skinItems = Resources.LoadAll<SkinItem>(ItemsPath.SkinsItemsPath);
+            Array.Sort(skinItems);
+
+            _skinItems = skinItems.ToDictionary(
                 k => k.Type, v => v);
         }
 
