@@ -15,6 +15,7 @@ MonoBehaviour:
   backgroundColor: {r: 0.62824845, g: 0.66590863, b: 0.735849, a: 1}
   fieldColor: {r: 0.4140772, g: 0.4069509, b: 0.5566038, a: 1}
   points: 12
+  sectorsAmount: 12
   startSpeed: 400
   moveSectorsProbability: 10
   changeDirectionProbability: 2

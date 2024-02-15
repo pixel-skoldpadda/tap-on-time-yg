@@ -9,6 +9,7 @@ namespace Items
         [SerializeField] private Color fieldColor;
         
         [SerializeField] private int points;
+        [SerializeField] private int sectorsAmount;
         [SerializeField] private int startSpeed;
         
         [SerializeField] [Range(0, 10)] private int moveSectorsProbability;
@@ -16,6 +17,7 @@ namespace Items
         [SerializeField] [Range(0, 10)] private int generateTwoSectorsProbability;
 
         public int Points => points;
+        public int SectorsAmount => sectorsAmount;
         public int MoveSectorsProbability => moveSectorsProbability;
         public int ChangeDirectionProbability => changeDirectionProbability;
         public int GenerateTwoSectorsProbability => generateTwoSectorsProbability;
