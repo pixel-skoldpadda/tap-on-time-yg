@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07e9e0add5d94f4a9b8f65d54cfe885e, type: 3}
-  m_Name: 5_FINISH_SECTOR_ITEM
+  m_Name: 6_ICE_SMALL_SECTOR_ITEM
   m_EditorClassIdentifier: 
-  type: 3
-  prefab: {fileID: 4088327122914920575, guid: e75e2ff393c28bd4782743c1bc32567f, type: 3}
+  type: 2
+  prefab: {fileID: 4088327122914920575, guid: d2419d61ce4d76749a94866ced2b6822, type: 3}
   position: {x: 0, y: 3.64}
-  health: 1
-  color: {r: 1, g: 1, b: 1, a: 1}
-  material: {fileID: -876546973899608171, guid: 960f58c533f692641a209cc505cd334c, type: 3}
+  health: 2
+  color: {r: 0.34509805, g: 0.4745098, b: 1, a: 1}
+  material: {fileID: -876546973899608171, guid: 9aa5119bdeed37443b5d268eac54cf96, type: 3}

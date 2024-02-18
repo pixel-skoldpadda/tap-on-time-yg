@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07e9e0add5d94f4a9b8f65d54cfe885e, type: 3}
-  m_Name: 5_FINISH_SECTOR_ITEM
+  m_Name: 13_FIRE_VERY_BIG_SECTOR_ITEM
   m_EditorClassIdentifier: 
-  type: 3
-  prefab: {fileID: 4088327122914920575, guid: e75e2ff393c28bd4782743c1bc32567f, type: 3}
+  type: 1
+  prefab: {fileID: 4088327122914920575, guid: 5bc4db27a23986444a820891b4092cfb, type: 3}
   position: {x: 0, y: 3.64}
-  health: 1
-  color: {r: 1, g: 1, b: 1, a: 1}
-  material: {fileID: -876546973899608171, guid: 960f58c533f692641a209cc505cd334c, type: 3}
+  health: 3
+  color: {r: 0.5176471, g: 0.21176471, b: 0, a: 1}
+  material: {fileID: -876546973899608171, guid: 510a825a81eec8345aee9e94a02cfec4, type: 3}
