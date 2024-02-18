@@ -10,6 +10,7 @@ namespace Components
         
         private bool _move;
         private Action<Sector> _onTaped;
+        private int _health;
         
         public void Init(SectorItem item, float angle, bool canMove)
         {
@@ -18,6 +19,8 @@ namespace Components
 
             spriteRenderer.color = item.Color;
             spriteRenderer.material = item.Material;
+
+            _health = item.Health;
         }
 
         private void Update()
@@ -35,6 +38,7 @@ namespace Components
 
         public void Tap()
         {
+            _health--;
             _onTaped?.Invoke(this);
         }
         
@@ -43,5 +47,7 @@ namespace Components
             get => _onTaped;
             set => _onTaped = value;
         }
+
+        public int Health => _health;
     }
 }

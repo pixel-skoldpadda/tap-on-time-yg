@@ -165,9 +165,12 @@ namespace Generator
 
         private void OnSectorTapped(Sector sector)
         {
-            _generatedSectors.Remove(sector);
-            sector.OnTaped -= OnSectorTapped;
-            Object.Destroy(sector.gameObject);
+            if (sector.Health == 0)
+            {
+                _generatedSectors.Remove(sector);
+                sector.OnTaped -= OnSectorTapped;
+                Object.Destroy(sector.gameObject);   
+            }
         }
 
         private int GetRandomAngle(Random random)
