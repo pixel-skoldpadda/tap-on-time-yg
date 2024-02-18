@@ -5,6 +5,7 @@ using Generator;
 using Infrastructure.Services.Assets;
 using Infrastructure.Services.Items;
 using Items;
+using Items.Sector;
 using UnityEngine;
 using YG;
 using Zenject;
@@ -16,14 +17,10 @@ namespace Infrastructure.Services.Factory
         private readonly DiContainer _diContainer;
         private readonly IItemsService _items;
         private readonly IAssetsService _assets;
-
-        private readonly List<Sector> _sectors = new();
-        private Sector _finishSector;
         
         private readonly List<Gem> _gems = new();
         
         private PlayerComponent _player;
-        private LevelGenerator _levelGenerator;
         private SpriteRenderer _gameField;
 
         [Inject]
@@ -50,22 +47,14 @@ namespace Infrastructure.Services.Factory
             _diContainer.Bind<PlayerComponent>().FromInstance(_player).AsSingle();
         }
 
-        public void CreateSectors()
+        public Sector CreateSector(SectorItem item, float angle, bool canMove)
         {
-            SectorsItem sectorsItem = _items.SectorsItem;
-            Vector3 spawnPoint = sectorsItem.SpawnPoint;
-            
-            foreach (GameObject prefab in sectorsItem.SectorPrefabs)
-            {
-                Sector sector = Object.Instantiate(prefab, spawnPoint, Quaternion.identity).GetComponent<Sector>();
-                sector.gameObject.SetActive(false);
-                _sectors.Add(sector);
-            }
+            Sector sector = Object.Instantiate(item.Prefab, item.Position, Quaternion.identity).GetComponent<Sector>();
+            sector.Init(item, angle, canMove);
 
-            _finishSector = Object.Instantiate(sectorsItem.FinishSector, spawnPoint, Quaternion.identity).GetComponent<Sector>();
-            _finishSector.gameObject.SetActive(false);
+            return sector;
         }
-
+        
         public void CreateGems()
         {
             Vector3 spawnPoint = _items.PlayerItem.StartPoint;
@@ -106,8 +95,8 @@ namespace Infrastructure.Services.Factory
         
         public void CreateLevelGenerator()
         {
-            _levelGenerator = new LevelGenerator(_sectors, _finishSector, _gems, _items, _player, _gameField);
-            _diContainer.Bind<LevelGenerator>().FromInstance(_levelGenerator).AsSingle();
+            LevelGenerator levelGenerator = new LevelGenerator(_gems, _items, _player, _gameField, this);
+            _diContainer.Bind<LevelGenerator>().FromInstance(levelGenerator).AsSingle();
         }
     }
 }

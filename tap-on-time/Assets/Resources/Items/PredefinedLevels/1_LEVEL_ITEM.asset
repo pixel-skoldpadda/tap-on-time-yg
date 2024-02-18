@@ -20,3 +20,4 @@ MonoBehaviour:
   moveSectorsProbability: 4
   changeDirectionProbability: 0
   generateTwoSectorsProbability: 0
+  sectorTypes: 00000000

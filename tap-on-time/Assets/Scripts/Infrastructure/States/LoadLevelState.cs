@@ -46,7 +46,6 @@ namespace Infrastructure.States
             _gameFactory.CreateTapArea();
             _gameFactory.CreateGameField();
             _gameFactory.CreatePlayer();
-            _gameFactory.CreateSectors();
             _gameFactory.CreateLevelGenerator();
             _uiFactory.CreateHud();
             _gameFactory.CreateGems();

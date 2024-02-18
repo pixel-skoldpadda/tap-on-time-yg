@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Items;
+using Items.Sector;
 using Ui.Windows;
 using UnityEngine;
 
@@ -11,13 +12,12 @@ namespace Infrastructure.Services.Items
     {
         private Dictionary<WindowType, WindowItem> _windows;
         private Dictionary<SkinType, SkinItem> _skinItems;
-        
+        private Dictionary<SectorType, List<SectorItem>> _sectorItemsGroup;
+
         private List<LevelItem> _generatedGeneratedLevelItems;
         private List<LevelItem> _predefinedLevelItems;
-        
-        
+
         private PlayerItem _playerItem;
-        private SectorsItem _sectorsItem;
         private GemsItem _gemsItem;
         
         public void LoadAllItems()
@@ -27,8 +27,27 @@ namespace Infrastructure.Services.Items
             LoadPredefinedLevelItems();
             LoadPlayerItem();
             LoadSkinsItems();
-            LoadSectorsItem();
+            LoadSectorItems();
             LoadGemsItem();
+        }
+
+        private void LoadSectorItems()
+        {
+            _sectorItemsGroup = new Dictionary<SectorType, List<SectorItem>>();
+
+            List<SectorItem> items = Resources.LoadAll<SectorItem>(ItemsPath.SectorItemsPath).ToList();
+            foreach (SectorItem sectorsItem in items)
+            {
+                SectorType type = sectorsItem.Type;
+                if (_sectorItemsGroup.ContainsKey(type))
+                {
+                    _sectorItemsGroup[type].Add(sectorsItem);
+                }
+                else
+                {
+                    _sectorItemsGroup[type] =  new List<SectorItem> { sectorsItem };
+                }
+            }
         }
 
         private void LoadPredefinedLevelItems()
@@ -40,12 +59,7 @@ namespace Infrastructure.Services.Items
         {
             _gemsItem = Resources.Load<GemsItem>(ItemsPath.GemsItemPath);
         }
-
-        private void LoadSectorsItem()
-        {
-            _sectorsItem = Resources.Load<SectorsItem>(ItemsPath.SectorsItemPath);
-        }
-
+        
         private void LoadSkinsItems()
         {
             SkinItem[] skinItems = Resources.LoadAll<SkinItem>(ItemsPath.SkinsItemsPath);
@@ -81,11 +95,15 @@ namespace Infrastructure.Services.Items
             return _skinItems.TryGetValue(type, out SkinItem item) ? item : null;
         }
 
+        public List<SectorItem> GetSectorItems(SectorType type)
+        {
+            return _sectorItemsGroup.TryGetValue(type, out List<SectorItem> items) ? items : null;
+        }
+        
         public List<LevelItem> GeneratedLevelItems => _generatedGeneratedLevelItems;
         public List<LevelItem> PredefinedLevelItems => _predefinedLevelItems;
 
         public PlayerItem PlayerItem => _playerItem;
-        public SectorsItem SectorsItem => _sectorsItem;
         public GemsItem GemsItem => _gemsItem;
         public List<SkinItem> SkinItems => _skinItems.Values.ToList();
     }

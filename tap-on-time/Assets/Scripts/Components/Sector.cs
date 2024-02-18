@@ -1,22 +1,23 @@
 ﻿using System;
+using Items.Sector;
 using UnityEngine;
 
 namespace Components
 {
     public class Sector : MonoBehaviour
     {
-        private bool _move;
-
-        private Action<Sector> _onTaped;
-
-        private Vector3 defaultPosition;
-        private Quaternion defaultRotation;
+        [SerializeField] private SpriteRenderer spriteRenderer;
         
-        private void Awake()
+        private bool _move;
+        private Action<Sector> _onTaped;
+        
+        public void Init(SectorItem item, float angle, bool canMove)
         {
-            Transform sectorTransform = transform;
-            defaultPosition = sectorTransform.position;
-            defaultRotation = sectorTransform.rotation;
+            transform.RotateAround(Vector3.zero, Vector3.back, angle);
+            _move = canMove;
+
+            spriteRenderer.color = item.Color;
+            spriteRenderer.material = item.Material;
         }
 
         private void Update()
@@ -36,21 +37,7 @@ namespace Components
         {
             _onTaped?.Invoke(this);
         }
-
-        public void Reset()
-        {
-            Transform sectorTransform = transform;
-            sectorTransform.position = defaultPosition;
-            sectorTransform.rotation = defaultRotation;
-            _move = false;
-            gameObject.SetActive(false);
-        }
-
-        public bool Move
-        {
-            set => _move = value;
-        }
-
+        
         public Action<Sector> OnTaped
         {
             get => _onTaped;

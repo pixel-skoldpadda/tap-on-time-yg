@@ -29,6 +29,8 @@ namespace Infrastructure.States
             splashScreen.Show();
             
             YandexGame.savesData.LevelStarted = false;
+            YandexGame.savesData.CurrentLevel.Reset();
+            
             PlayerComponent player = _container.Resolve<PlayerComponent>();
             player.ResetComponent();
             player.StartMoving();
