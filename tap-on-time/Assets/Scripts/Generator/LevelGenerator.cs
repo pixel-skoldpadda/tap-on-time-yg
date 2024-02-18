@@ -8,6 +8,7 @@ using Items;
 using ModestTree;
 using UnityEngine;
 using YG;
+using Zenject;
 using Random = System.Random;
 
 namespace Generator
@@ -32,13 +33,16 @@ namespace Generator
 
         private readonly SpriteRenderer _gameField;
         private readonly IGameFactory _factory;
+        private readonly DiContainer _diContainer;
         private readonly Camera _camera;
         
-        public LevelGenerator(List<Gem> gems, IItemsService items, PlayerComponent player, SpriteRenderer gameField, IGameFactory factory)
+        public LevelGenerator(List<Gem> gems, IItemsService items, PlayerComponent player, SpriteRenderer gameField, IGameFactory factory,
+            DiContainer diContainer)
         {
             _items = items;
             _gameField = gameField;
             _factory = factory;
+            _diContainer = diContainer;
             _camera = Camera.main;
             _player = player;
             _gems = gems;
@@ -170,6 +174,8 @@ namespace Generator
                 _generatedSectors.Remove(sector);
                 sector.OnTaped -= OnSectorTapped;
                 Object.Destroy(sector.gameObject);   
+                
+                _diContainer.Resolve<PlayerComponent>();
             }
         }
 

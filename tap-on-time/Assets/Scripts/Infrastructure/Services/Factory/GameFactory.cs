@@ -95,7 +95,7 @@ namespace Infrastructure.Services.Factory
         
         public void CreateLevelGenerator()
         {
-            LevelGenerator levelGenerator = new LevelGenerator(_gems, _items, _player, _gameField, this);
+            LevelGenerator levelGenerator = new LevelGenerator(_gems, _items, _player, _gameField, this, _diContainer);
             _diContainer.Bind<LevelGenerator>().FromInstance(levelGenerator).AsSingle();
         }
     }

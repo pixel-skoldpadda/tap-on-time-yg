@@ -34,8 +34,7 @@ namespace Infrastructure.States
             {
                 collidedSector.Tap();
                 state.Score++;
-                player.CollidedSector = null;
-                
+
                 if (state.Score >= state.CurrentLevel.TargetScore)
                 {
                     _stateMachine.Enter<FinishLevelState>();
