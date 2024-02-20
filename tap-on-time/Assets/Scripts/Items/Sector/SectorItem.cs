@@ -15,6 +15,7 @@ namespace Items.Sector
         [Header("Graphics settings")]
         [SerializeField] private Color color;
         [SerializeField] private Material material;
+        [SerializeField] private Sprite sprite;
         
         public int Health => health;
         public SectorType Type => type;
@@ -22,5 +23,6 @@ namespace Items.Sector
         public Material Material => material;
         public GameObject Prefab => prefab;
         public Vector2 Position => position;
+        public Sprite Sprite => sprite;
     }
 }

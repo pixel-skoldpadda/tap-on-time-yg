@@ -18,3 +18,4 @@ MonoBehaviour:
   health: 1
   color: {r: 1, g: 1, b: 1, a: 1}
   material: {fileID: -876546973899608171, guid: 960f58c533f692641a209cc505cd334c, type: 3}
+  sprite: {fileID: 21300000, guid: b28a189a5785b834a8dada98cf4369a4, type: 3}

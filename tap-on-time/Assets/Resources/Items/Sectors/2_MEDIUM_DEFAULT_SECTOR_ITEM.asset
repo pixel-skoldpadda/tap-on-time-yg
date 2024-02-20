@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e9e0add5d94f4a9b8f65d54cfe885e, type: 3}
   m_Name: 2_MEDIUM_DEFAULT_SECTOR_ITEM
   m_EditorClassIdentifier: 
-  id: S_MEDIUM_DEFAULT_SECTOR
   type: 0
   prefab: {fileID: 4088327122914920575, guid: e75e2ff393c28bd4782743c1bc32567f, type: 3}
   position: {x: 0, y: 3.64}
   health: 1
   color: {r: 0, g: 0, b: 0, a: 0.5882353}
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  sprite: {fileID: 21300000, guid: b28a189a5785b834a8dada98cf4369a4, type: 3}
