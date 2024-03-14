@@ -43,7 +43,10 @@ namespace Components.Player
 
         private void Update()
         {
-            _isPointerOverGameObject = EventSystem.current.IsPointerOverGameObject();
+            if (_moveAroundComponent.IsMoving)
+            {
+                _isPointerOverGameObject = EventSystem.current.IsPointerOverGameObject();   
+            }
         }
 
         public void StartMove360()

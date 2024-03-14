@@ -1,5 +1,7 @@
-﻿using Infrastructure.Ads;
+﻿using Components.Player;
+using Infrastructure.Ads;
 using Infrastructure.States.Interfaces;
+using UI.Hud;
 using UnityEngine;
 using YG;
 using Zenject;
@@ -8,13 +10,13 @@ namespace Infrastructure.States
 {
     public class ShowRewardAdsState : IState
     {
-        private readonly GameStateMachine stateMachine;
-        private readonly DiContainer container;
+        private readonly GameStateMachine _stateMachine;
+        private readonly DiContainer _container;
 
         public ShowRewardAdsState(GameStateMachine stateMachine, DiContainer container)
         {
-            this.stateMachine = stateMachine;
-            this.container = container;
+            _stateMachine = stateMachine;
+            _container = container;
         }
 
         public void Enter()
@@ -22,19 +24,40 @@ namespace Infrastructure.States
             Debug.Log($"{GetType()} entered.");
 
             YandexGame.RewardVideoEvent += OnRewardAdsShowSuccessful;
+            YandexGame.ErrorVideoEvent += OnRewardAdsError;
+            
+            YandexGame.RewVideoShow((int) AdsRewardType.ExtraLife);
+        }
+
+        public void Exit()
+        {
+            Debug.Log($"{GetType()} exited.");
+            
+            YandexGame.RewardVideoEvent -= OnRewardAdsShowSuccessful;
+            YandexGame.ErrorVideoEvent -= OnRewardAdsError;
+        }
+
+        private void OnRewardAdsError()
+        {
+            HideAdsContainer();
+            _stateMachine.Enter<RestartLevelState>();
         }
 
         private void OnRewardAdsShowSuccessful(int id)
         {
             if ((int) AdsRewardType.ExtraLife == id)
             {
+                YandexGame.savesData.CurrentLevel.IsAdsRewardShown = true;
                 
+                HideAdsContainer();
+                _container.Resolve<PlayerComponent>().StartMoving();
+                _stateMachine.Enter<WaitInputState>();
             }
         }
 
-        public void Exit()
+        private void HideAdsContainer()
         {
-            Debug.Log($"{GetType()} exited.");
+            _container.Resolve<Hud>().AdsContainer.Hide();
         }
     }
 }

@@ -133,5 +133,7 @@ namespace Components.Player
             get => _onMove360End;
             set => _onMove360End = value;
         }
+
+        public bool IsMoving => _isMoving;
     }
 }

@@ -29,6 +29,7 @@ namespace Infrastructure.States
             _container.Resolve<TapArea>().Show(player.gameObject.transform.position);
             
             SavesYG state = YandexGame.savesData;
+            Level currentLevel = state.CurrentLevel;
 
             Sector collidedSector = player.CollidedSector;
             if (collidedSector != null)
@@ -36,7 +37,7 @@ namespace Infrastructure.States
                 collidedSector.Tap();
                 player.CollidedSector = null;
                 
-                if (state.Score >= state.CurrentLevel.TargetScore)
+                if (state.Score >= currentLevel.TargetScore)
                 {
                     _stateMachine.Enter<FinishLevelState>();
                 }
@@ -51,7 +52,7 @@ namespace Infrastructure.States
             {
                 player.StopMoving();
                 
-                if (state.Score >= state.CurrentLevel.TargetScore / 2)
+                if (!currentLevel.IsAdsRewardShown && state.Score >= currentLevel.TargetScore / 2)
                 {
                     _container.Resolve<Hud>().AdsContainer.Show();
                 }

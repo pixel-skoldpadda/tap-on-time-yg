@@ -8,6 +8,7 @@ namespace Generator
         private readonly LevelItem _levelItem;
         private readonly int _index;
         private bool _completed;
+        private bool _adsRewardShown;
 
         public Level(LevelItem levelItem, int index)
         {
@@ -28,7 +29,13 @@ namespace Generator
         public int MoveSector => _levelItem.MoveSectorsProbability;
         public int PlayerSpeed => _levelItem.StartSpeed;
         public int GenerateTwoSectorsProbability => _levelItem.GenerateTwoSectorsProbability;
-        
+
+        public bool IsAdsRewardShown
+        {
+            get => _adsRewardShown;
+            set => _adsRewardShown = value;
+        }
+
         public Color BackgroundColor => _levelItem.BackgroundColor;
         public Color FieldColor => _levelItem.FieldColor;
     }
