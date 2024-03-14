@@ -29,12 +29,14 @@ namespace Infrastructure.States
             splashScreen.Show();
             
             YandexGame.savesData.LevelStarted = false;
+            YandexGame.savesData.CurrentLevel.IsAdsRewardShown = false;
+            
             PlayerComponent player = _container.Resolve<PlayerComponent>();
             player.ResetComponent();
             player.StartMoving();
             
             _container.Resolve<LevelGenerator>().Reset();
-
+            
             hud.PlayModeContainer.Hide();
             hud.ProgressContainer.Hide();
             hud.TapToPLay.SetActive(true);
