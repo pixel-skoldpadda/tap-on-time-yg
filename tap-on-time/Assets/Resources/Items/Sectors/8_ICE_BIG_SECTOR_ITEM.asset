@@ -19,3 +19,7 @@ MonoBehaviour:
   color: {r: 1, g: 1, b: 1, a: 1}
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   sprite: {fileID: 21300000, guid: eb3d68ee4db65cb46b305943b3f69334, type: 3}
+  crackSprites:
+  - {fileID: 21300000, guid: e6dd85feefc265542abbd6c06a3f79ba, type: 3}
+  - {fileID: 21300000, guid: e1500a9fc76aa5240a1301f651f7c658, type: 3}
+  - {fileID: 21300000, guid: f96100c1011ee6f41b290089614ea530, type: 3}

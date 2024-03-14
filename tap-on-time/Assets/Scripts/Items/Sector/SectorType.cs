@@ -3,7 +3,7 @@
     public enum SectorType
     {
         Default,
-        Fiery,
+        Wood,
         Ice,
         Finish
     }

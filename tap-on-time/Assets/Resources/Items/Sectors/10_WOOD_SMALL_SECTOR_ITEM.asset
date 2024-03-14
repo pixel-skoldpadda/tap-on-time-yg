@@ -10,11 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07e9e0add5d94f4a9b8f65d54cfe885e, type: 3}
-  m_Name: 10_FIRE_SMALL_SECTOR_ITEM
+  m_Name: 10_WOOD_SMALL_SECTOR_ITEM
   m_EditorClassIdentifier: 
   type: 1
   prefab: {fileID: 4088327122914920575, guid: d2419d61ce4d76749a94866ced2b6822, type: 3}
   position: {x: 0, y: 3.64}
   health: 2
-  color: {r: 0.5176471, g: 0.21176471, b: 0, a: 1}
-  material: {fileID: -876546973899608171, guid: 510a825a81eec8345aee9e94a02cfec4, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  sprite: {fileID: 21300000, guid: 6395b6d8e86a9be48ac8db8f76df4cd9, type: 3}
+  crackSprites:
+  - {fileID: 21300000, guid: 3731052cd645f3848b2a83fdc36446ff, type: 3}
+  - {fileID: 21300000, guid: 3ee70b5b9b9cea34381f9f5130c425a1, type: 3}
+  - {fileID: 21300000, guid: 6950d5356e5548c4990cf0dec7d6c008, type: 3}

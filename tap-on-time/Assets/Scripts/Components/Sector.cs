@@ -18,7 +18,6 @@ namespace Components
             _move = canMove;
 
             spriteRenderer.color = item.Color;
-            spriteRenderer.material = item.Material;
             spriteRenderer.sprite = item.Sprite;
 
             _health = item.Health;

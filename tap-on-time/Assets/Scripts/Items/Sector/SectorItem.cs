@@ -14,15 +14,15 @@ namespace Items.Sector
         [Space(10)]
         [Header("Graphics settings")]
         [SerializeField] private Color color;
-        [SerializeField] private Material material;
         [SerializeField] private Sprite sprite;
+        [SerializeField] private Sprite[] crackSprites;
         
         public int Health => health;
         public SectorType Type => type;
         public Color Color => color;
-        public Material Material => material;
         public GameObject Prefab => prefab;
         public Vector2 Position => position;
         public Sprite Sprite => sprite;
+        public Sprite[] CrackSprites => crackSprites;
     }
 }
