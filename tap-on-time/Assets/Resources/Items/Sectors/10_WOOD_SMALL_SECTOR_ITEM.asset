@@ -19,5 +19,5 @@ MonoBehaviour:
   color: {r: 1, g: 1, b: 1, a: 1}
   sprite: {fileID: 21300000, guid: 6395b6d8e86a9be48ac8db8f76df4cd9, type: 3}
   crackSprites:
+  - {fileID: 21300000, guid: 3731052cd645f3848b2a83fdc36446ff, type: 3}
   - {fileID: 21300000, guid: 3ee70b5b9b9cea34381f9f5130c425a1, type: 3}
-  - {fileID: 21300000, guid: 6950d5356e5548c4990cf0dec7d6c008, type: 3}
