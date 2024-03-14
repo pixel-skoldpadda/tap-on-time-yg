@@ -18,6 +18,8 @@ namespace Generator
         private int _targetScore;
         private int _currentIndex;
         
+        private bool _adsRewardShown;
+        
         public Level(LevelItem levelItem, IItemsService items)
         {
             _levelItem = levelItem;
@@ -78,6 +80,7 @@ namespace Generator
         {
             _completed = false;
             _currentIndex = 0;
+            _adsRewardShown = false;
         }
         
         public bool Completed
@@ -91,7 +94,13 @@ namespace Generator
         public int MoveSector => _levelItem.MoveSectorsProbability;
         public int PlayerSpeed => _levelItem.StartSpeed;
         public int GenerateTwoSectorsProbability => _levelItem.GenerateTwoSectorsProbability;
-        
+
+        public bool IsAdsRewardShown
+        {
+            get => _adsRewardShown;
+            set => _adsRewardShown = value;
+        }
+
         public Color BackgroundColor => _levelItem.BackgroundColor;
         public Color FieldColor => _levelItem.FieldColor;
     }

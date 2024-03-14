@@ -2,6 +2,7 @@ using Components;
 using Components.Player;
 using Generator;
 using Infrastructure.States.Interfaces;
+using UI.Hud;
 using UnityEngine;
 using YG;
 using Zenject;
@@ -28,6 +29,7 @@ namespace Infrastructure.States
             _container.Resolve<TapArea>().Show(player.gameObject.transform.position);
             
             SavesYG state = YandexGame.savesData;
+            Level currentLevel = state.CurrentLevel;
 
             Sector collidedSector = player.CollidedSector;
             if (collidedSector != null)
@@ -35,7 +37,7 @@ namespace Infrastructure.States
                 collidedSector.Tap();
                 state.Score++;
 
-                if (state.Score >= state.CurrentLevel.TargetScore)
+                if (state.Score >= currentLevel.TargetScore)
                 {
                     _stateMachine.Enter<FinishLevelState>();
                 }
@@ -47,7 +49,16 @@ namespace Infrastructure.States
             }
             else
             {
-                _stateMachine.Enter<RestartLevelState>();
+                player.StopMoving();
+                
+                if (!currentLevel.IsAdsRewardShown && state.Score >= currentLevel.TargetScore / 2)
+                {
+                    _container.Resolve<Hud>().AdsContainer.Show();
+                }
+                else
+                {
+                    _stateMachine.Enter<RestartLevelState>();   
+                }
             }
         }
 

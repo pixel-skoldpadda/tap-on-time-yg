@@ -11,12 +11,14 @@ namespace UI.Hud
         [SerializeField] private SplashScreen splashScreen;
         [SerializeField] private MarketContainer marketContainer;
         [SerializeField] private SettingsContainer settingsContainer;
+        [SerializeField] private AdsContainer adsContainer;
         
         public ProgressContainer ProgressContainer => progressContainer;
         public SplashScreen SplashScreen => splashScreen;
         public GameObject TapToPLay => tapToPLay;
         public MarketContainer MarketContainer => marketContainer;
         public SettingsContainer SettingsContainer => settingsContainer;
+        public AdsContainer AdsContainer => adsContainer;
 
         public PlayModeContainer PlayModeContainer
         {

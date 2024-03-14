@@ -43,7 +43,10 @@ namespace Components.Player
 
         private void Update()
         {
-            _isPointerOverGameObject = EventSystem.current.IsPointerOverGameObject();
+            if (_moveAroundComponent.IsMoving)
+            {
+                _isPointerOverGameObject = EventSystem.current.IsPointerOverGameObject();   
+            }
         }
 
         public void StartMove360()
@@ -64,6 +67,11 @@ namespace Components.Player
         public void StartMoving()
         {
             _moveAroundComponent.StartMove();
+        }
+        
+        public void StopMoving()
+        {
+            _moveAroundComponent.StopMove();
         }
 
         private void OnTriggerEnter2D(Collider2D other)

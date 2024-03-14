@@ -36,7 +36,7 @@ namespace Infrastructure.States
             player.StartMoving();
             
             _container.Resolve<LevelGenerator>().Reset();
-
+            
             hud.PlayModeContainer.Hide();
             hud.ProgressContainer.Hide();
             hud.TapToPLay.SetActive(true);
