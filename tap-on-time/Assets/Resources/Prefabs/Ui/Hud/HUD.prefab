@@ -296,6 +296,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4863237146651285186}
+  - component: {fileID: 7048881811740260594}
   m_Layer: 5
   m_Name: AdsContainer
   m_TagString: Untagged
@@ -324,6 +325,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -150}
   m_SizeDelta: {x: 400, y: 700}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7048881811740260594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620105910330615391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03b40bf6e69409ebd9899bbaca20650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 10
+  fillTimer: {fileID: 2324720439737663736}
+  adsIcon: {fileID: 1965043744733234184}
 --- !u!1 &1787252010326539136
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,7 +505,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7048881811740260594}
+        m_TargetAssemblyTypeName: UI.Hud.AdsContainer, Assembly-CSharp
+        m_MethodName: OnShowAdsButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2857727114794464557
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,6 +915,7 @@ MonoBehaviour:
   splashScreen: {fileID: 8214156410346650238}
   marketContainer: {fileID: 8656902657437402403}
   settingsContainer: {fileID: 895196024394967186}
+  adsContainer: {fileID: 7048881811740260594}
 --- !u!1 &4880476948328099500
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,7 +976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1367,7 +1396,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1391,7 +1420,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7048881811740260594}
+        m_TargetAssemblyTypeName: UI.Hud.AdsContainer, Assembly-CSharp
+        m_MethodName: OnSkipAdsButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7508067042494607455
 GameObject:
   m_ObjectHideFlags: 0

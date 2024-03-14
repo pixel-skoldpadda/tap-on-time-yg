@@ -25,6 +25,7 @@ namespace Infrastructure.Services.Factory
             hud.PlayModeContainer = _assets.Instantiate(AssetsPath.PlayModeContainer).GetComponent<PlayModeContainer>();
             hud.MarketContainer.Construct(_windows);
             hud.SettingsContainer.Construct(_windows);
+            hud.AdsContainer.Construct(_container);
             
             _container.Bind<Hud>().FromInstance(hud).AsSingle();
         }

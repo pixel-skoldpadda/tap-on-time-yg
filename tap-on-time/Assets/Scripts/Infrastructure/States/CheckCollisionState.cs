@@ -2,6 +2,7 @@ using Components;
 using Components.Player;
 using Generator;
 using Infrastructure.States.Interfaces;
+using UI.Hud;
 using UnityEngine;
 using YG;
 using Zenject;
@@ -48,7 +49,16 @@ namespace Infrastructure.States
             }
             else
             {
-                _stateMachine.Enter<RestartLevelState>();
+                player.StopMoving();
+                
+                if (state.Score >= state.CurrentLevel.TargetScore / 2)
+                {
+                    _container.Resolve<Hud>().AdsContainer.Show();
+                }
+                else
+                {
+                    _stateMachine.Enter<RestartLevelState>();   
+                }
             }
         }
 

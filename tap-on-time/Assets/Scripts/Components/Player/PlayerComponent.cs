@@ -65,6 +65,11 @@ namespace Components.Player
         {
             _moveAroundComponent.StartMove();
         }
+        
+        public void StopMoving()
+        {
+            _moveAroundComponent.StopMove();
+        }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
