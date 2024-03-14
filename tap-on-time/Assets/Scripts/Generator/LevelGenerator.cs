@@ -174,8 +174,6 @@ namespace Generator
                 _generatedSectors.Remove(sector);
                 sector.OnTaped -= OnSectorTapped;
                 Object.Destroy(sector.gameObject);   
-                
-                _diContainer.Resolve<PlayerComponent>();
             }
         }
 

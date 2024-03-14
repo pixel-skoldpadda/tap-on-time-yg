@@ -15,9 +15,8 @@ MonoBehaviour:
   type: 2
   prefab: {fileID: 4088327122914920575, guid: 5bc4db27a23986444a820891b4092cfb, type: 3}
   position: {x: 0, y: 3.64}
-  health: 3
+  health: 4
   color: {r: 1, g: 1, b: 1, a: 1}
-  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   sprite: {fileID: 21300000, guid: 7052788050e35fd4d9af1f20b22ff744, type: 3}
   crackSprites:
   - {fileID: 21300000, guid: d0f326cc060fea74b807c0d218011e15, type: 3}
