@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundColor: {r: 0.78039217, g: 0.8627451, b: 0.654902, a: 1}
   fieldColor: {r: 0.5372549, g: 0.7254902, b: 0.6784314, a: 1}
-  points: 10
   sectorsAmount: 10
   startSpeed: 400
   moveSectorsProbability: 4
   changeDirectionProbability: 7
-  generateTwoSectorsProbability: 0
+  generateTwoSectorsProbability: 6
+  sectorTypes: 00000000
