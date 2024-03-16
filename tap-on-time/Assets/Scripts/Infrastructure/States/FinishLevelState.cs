@@ -44,7 +44,7 @@ namespace Infrastructure.States
 
             YandexGame.NewLeaderboardScores(GameConfig.LeaderboardId, state.TotalScore);
             
-            _stateMachine.Enter<StartLevelState>();
+            _stateMachine.Enter<ShowFullScreenAdsState>();
         }
 
         public void Exit()
