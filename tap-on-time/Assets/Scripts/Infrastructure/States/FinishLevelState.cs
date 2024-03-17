@@ -43,8 +43,15 @@ namespace Infrastructure.States
             state.Level++;
 
             YandexGame.NewLeaderboardScores(GameConfig.LeaderboardId, state.TotalScore);
-            
-            _stateMachine.Enter<ShowFullScreenAdsState>();
+
+            if (YandexGame.timerShowAd >= YandexGame.Instance.infoYG.fullscreenAdInterval)
+            {
+                _stateMachine.Enter<ShowFullScreenAdsState>();   
+            }
+            else
+            {
+                _stateMachine.Enter<StartLevelState>();
+            }
         }
 
         public void Exit()
