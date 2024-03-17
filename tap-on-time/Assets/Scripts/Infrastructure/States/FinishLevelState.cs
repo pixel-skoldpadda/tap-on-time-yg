@@ -44,14 +44,17 @@ namespace Infrastructure.States
 
             YandexGame.NewLeaderboardScores(GameConfig.LeaderboardId, state.TotalScore);
 
-            if (YandexGame.timerShowAd >= YandexGame.Instance.infoYG.fullscreenAdInterval)
+            string canShowAd = YandexGame.GetFlag(GameConfig.ShowFullScreenAdFeatureToggle);
+            if (canShowAd != null && bool.Parse(canShowAd))
             {
-                _stateMachine.Enter<ShowFullScreenAdsState>();   
+                if (YandexGame.timerShowAd >= YandexGame.Instance.infoYG.fullscreenAdInterval)
+                {
+                    _stateMachine.Enter<ShowFullScreenAdsState>();
+                    return;
+                }
             }
-            else
-            {
-                _stateMachine.Enter<StartLevelState>();
-            }
+            
+            _stateMachine.Enter<StartLevelState>();
         }
 
         public void Exit()
