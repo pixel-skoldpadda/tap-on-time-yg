@@ -26,6 +26,7 @@ namespace Infrastructure.Services.Factory
             hud.MarketContainer.Construct(_windows);
             hud.SettingsContainer.Construct(_windows);
             hud.AdsContainer.Construct(_container);
+            hud.TasksContainer.Construct(_windows, _container);
             
             _container.Bind<Hud>().FromInstance(hud).AsSingle();
         }

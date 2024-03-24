@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Items;
 using Items.Sector;
+using Items.Task;
 using Ui.Windows;
 
 namespace Infrastructure.Services.Items
@@ -14,7 +15,9 @@ namespace Infrastructure.Services.Items
         GemsItem GemsItem { get; }
         List<LevelItem> PredefinedLevelItems { get; }
         List<SkinItem> SkinItems { get; }
+        List<DailyTaskItem> DailyTaskItems { get; }
         SkinItem GetSkinItem(SkinType type);
         List<SectorItem> GetSectorItems(SectorType type);
+        DailyTaskItem GetDailyTaskItemById(string id);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Items;
 using Items.Sector;
+using Items.Task;
 using Ui.Windows;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace Infrastructure.Services.Items
         private Dictionary<WindowType, WindowItem> _windows;
         private Dictionary<SkinType, SkinItem> _skinItems;
         private Dictionary<SectorType, List<SectorItem>> _sectorItemsGroup;
+        private Dictionary<string, DailyTaskItem> _dailyTaskItems;
 
         private List<LevelItem> _generatedGeneratedLevelItems;
         private List<LevelItem> _predefinedLevelItems;
@@ -29,8 +31,9 @@ namespace Infrastructure.Services.Items
             LoadSkinsItems();
             LoadSectorItems();
             LoadGemsItem();
+            LoadDailyTasksItems();
         }
-
+        
         private void LoadSectorItems()
         {
             _sectorItemsGroup = new Dictionary<SectorType, List<SectorItem>>();
@@ -85,6 +88,12 @@ namespace Infrastructure.Services.Items
                 k => k.Type, v => v);
         }
 
+        private void LoadDailyTasksItems()
+        {
+            _dailyTaskItems = Resources.LoadAll<DailyTaskItem>(ItemsPath.DailyTasksItemsPath).ToDictionary(
+                k => k.ID, v => v);
+        }
+        
         public WindowItem GetWindowItem(WindowType type)
         {
             return _windows.TryGetValue(type, out var item) ? item : null;
@@ -99,6 +108,11 @@ namespace Infrastructure.Services.Items
         {
             return _sectorItemsGroup.TryGetValue(type, out List<SectorItem> items) ? items : null;
         }
+
+        public DailyTaskItem GetDailyTaskItemById(string id)
+        {
+            return  _dailyTaskItems.TryGetValue(id, out DailyTaskItem taskItem) ? taskItem : null;
+        }
         
         public List<LevelItem> GeneratedLevelItems => _generatedGeneratedLevelItems;
         public List<LevelItem> PredefinedLevelItems => _predefinedLevelItems;
@@ -106,5 +120,6 @@ namespace Infrastructure.Services.Items
         public PlayerItem PlayerItem => _playerItem;
         public GemsItem GemsItem => _gemsItem;
         public List<SkinItem> SkinItems => _skinItems.Values.ToList();
+        public List<DailyTaskItem> DailyTaskItems => _dailyTaskItems.Values.ToList();
     }
 }

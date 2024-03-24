@@ -1,8 +1,10 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using DailyTasks;
 using Generator;
 using Items;
+using Items.Sector;
 using UnityEngine;
 
 namespace YG
@@ -21,16 +23,19 @@ namespace YG
         [SerializeField] private int levelIndex;
         [SerializeField] private SkinType skinType = SkinType.Rocket;
         [SerializeField] private List<SkinType> purchasedSkins = new() { SkinType.Rocket };
+        [SerializeField] private List<DailyTask> _tasks = new();
         
         private Level _currentLevel;
         private bool _levelStarted;
         private int score;
 
-        private Action _gemsChanged;
+        private Action<int, int> _gemsChanged;
         private Action _scoreChanged;
         private Action<int> _totalScoreChanged;
         private Action<Level> _levelChanged;
         private Action<SkinType> _onSkinChanged;
+
+        private Action<SectorType> _onSectorDestroyed;
 
         private bool _gamePaused;
         
@@ -49,8 +54,8 @@ namespace YG
             get => gems;
             set
             {
+                _gemsChanged?.Invoke(gems, value);
                 gems = value;
-                _gemsChanged?.Invoke();
             }
         }
 
@@ -70,7 +75,7 @@ namespace YG
             }
         }
         
-        public Action GemsChanged
+        public Action<int, int> GemsChanged
         {
             get => _gemsChanged;
             set => _gemsChanged = value;
@@ -138,6 +143,13 @@ namespace YG
             set => _gamePaused = value;
         }
 
+        public Action<SectorType> OnSectorDestroyed
+        {
+            get => _onSectorDestroyed;
+            set => _onSectorDestroyed = value;
+        }
+
+        public List<DailyTask> Tasks => _tasks;
         public List<SkinType> PurchasedSkins => purchasedSkins;
     }
 }

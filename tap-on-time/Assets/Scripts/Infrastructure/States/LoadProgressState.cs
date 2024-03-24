@@ -1,5 +1,4 @@
-﻿using Configs;
-using Infrastructure.States.Interfaces;
+﻿using Infrastructure.States.Interfaces;
 using UnityEngine;
 using YG;
 
@@ -26,7 +25,7 @@ namespace Infrastructure.States
         {
             ChangePlayerLanguage();
             YandexGame.GetDataEvent -= OnYandexGameDataLoaded;
-            _stateMachine.Enter<LoadLevelState, string>(SceneConfig.GameScene);
+            _stateMachine.Enter<InitDailyTasksState>();
         }
 
         public void Exit()

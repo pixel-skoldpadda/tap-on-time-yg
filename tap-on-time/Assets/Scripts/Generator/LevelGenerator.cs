@@ -173,6 +173,7 @@ namespace Generator
             {
                 _generatedSectors.Remove(sector);
                 sector.OnTaped -= OnSectorTapped;
+                YandexGame.savesData.OnSectorDestroyed?.Invoke(sector.Type);
                 Object.Destroy(sector.gameObject);   
             }
         }

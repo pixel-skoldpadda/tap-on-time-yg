@@ -70,7 +70,7 @@ namespace Infrastructure.Services.WindowsManager
                 OpenWindow(windowData.Type, false, windowData.OnClose, windowData.Args);
             }
         }
-
+    
         private T CreateWindow<T>(WindowType type) where T : Window
         {
             WindowItem item = _items.GetWindowItem(type);

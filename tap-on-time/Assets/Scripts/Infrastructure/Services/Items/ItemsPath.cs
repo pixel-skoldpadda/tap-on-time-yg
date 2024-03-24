@@ -9,5 +9,6 @@
         public const string GeneratedLevelItemsPath = "Items/Variants";
         public const string PredefinedLevelItemsPath = "Items/PredefinedLevels";
         public const string SectorItemsPath = "Items/Sectors";
+        public const string DailyTasksItemsPath = "Items/DailyTasks";
     }
 }

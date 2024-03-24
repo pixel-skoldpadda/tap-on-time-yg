@@ -18,13 +18,14 @@ namespace Infrastructure.States
 
         [Inject]
         public GameStateMachine(DiContainer diContainer, ISceneLoader sceneLoader, ISaveLoadService saveLoadService, IItemsService items, 
-            IGameFactory gameFactory, IInputService input, IUiFactory uiFactory, IWindowsManager windows)
+            IGameFactory gameFactory, IInputService input, IUiFactory uiFactory, IWindowsManager windows, IDailyTasksFactory tasksFactory)
         {
             _states = new Dictionary<Type, IExitableState>
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, items),
                 [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, gameFactory, uiFactory),
                 [typeof(LoadProgressState)] = new LoadProgressState(this),
+                [typeof(InitDailyTasksState)] = new InitDailyTasksState(this, items, tasksFactory),
                 [typeof(WaitInputState)] = new WaitInputState(this, input, diContainer),
                 [typeof(StartLevelState)] = new StartLevelState(this, diContainer),
                 [typeof(CheckCollisionState)] = new CheckCollisionState(this, diContainer),

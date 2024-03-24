@@ -17,7 +17,7 @@ namespace UI.Hud
         private void Awake()
         {
             YandexGame.savesData.GemsChanged += UpdateGemsCount;
-            UpdateGemsCount();
+            gemsCounter.text = YandexGame.savesData.Gems.ToString();
         }
         
         private void OnDestroy()
@@ -25,9 +25,9 @@ namespace UI.Hud
             YandexGame.savesData.GemsChanged -= UpdateGemsCount;
         }
         
-        private void UpdateGemsCount()
+        private void UpdateGemsCount(int oldCount, int newCount)
         {
-            gemsCounter.text = YandexGame.savesData.Gems.ToString();
+            gemsCounter.text = newCount.ToString();
         }
     }
 }

@@ -1,6 +1,5 @@
 using Components;
 using Items.Sector;
-using UnityEngine;
 
 namespace Infrastructure.Services.Factory
 {

@@ -76,5 +76,6 @@ namespace Components
         }
 
         public int Health => _health;
+        public SectorType Type => _item.Type;
     }
 }
