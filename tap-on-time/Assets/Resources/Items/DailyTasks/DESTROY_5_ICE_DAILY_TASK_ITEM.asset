@@ -14,8 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: T_DESTROY_5_ICE_SECTORS
   type: 2
-  description: "\u0423\u043D\u0438\u0447\u0442\u043E\u0436\u044C 5 \u043B\u0435\u0434\u044F\u043D\u044B\u0445
-    \u0441\u0435\u043A\u0442\u043E\u0440\u043E\u0432."
+  description:
+    translations:
+    - language: 0
+      value: "\u0423\u043D\u0438\u0447\u0442\u043E\u0436\u044C 5 \u043B\u0435\u0434\u044F\u043D\u044B\u0445
+        \u0441\u0435\u043A\u0442\u043E\u0440\u043E\u0432"
+    - language: 1
+      value: Destroy 5 ice sectros
   icon: {fileID: 21300000, guid: d84efc85fc541a64fa8ec1726f3b9220, type: 3}
   prizeCount: 10
   targetValue: 5

@@ -32,8 +32,8 @@ namespace Ui.Windows.TasksWindow
             _saveLoadService = saveLoadService;
 
             DailyTaskItem taskItem = _dailyTask.TaskItem;
-            //: TODO Реализовать локализацию дескрипшенов таксков
-            description.text = taskItem.Description;
+            
+            description.text = taskItem.Description.Get();
             prizeCount.text = taskItem.PrizeCount.ToString();
             taskIcon.sprite = taskItem.Icon;
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Localization;
+using UnityEngine;
 
 namespace Items.Task
 {
@@ -7,14 +8,14 @@ namespace Items.Task
     {
         [SerializeField] private string id;
         [SerializeField] private DailyTaskType type;
-        [SerializeField] [TextArea] private string description;
+        [SerializeField] private LocalizationString description;
         [SerializeField] private Sprite icon;
         [SerializeField] private int prizeCount;
         [SerializeField] private int targetValue;
 
         public string ID => id;
         public DailyTaskType Type => type;
-        public string Description => description;
+        public LocalizationString Description => description;
         public Sprite Icon => icon;
         public int PrizeCount => prizeCount;
         public int TargetValue => targetValue;
