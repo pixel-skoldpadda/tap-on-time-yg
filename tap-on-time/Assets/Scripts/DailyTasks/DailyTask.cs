@@ -5,7 +5,7 @@ using UnityEngine;
 namespace DailyTasks
 {
     [Serializable]
-    public abstract class DailyTask
+    public class DailyTask
     {
         [NonSerialized] private DailyTaskItem _taskItem;
 
@@ -20,8 +20,8 @@ namespace DailyTasks
             _id = taskItem.ID;
         }
 
-        public abstract void InitProgressListener();
-        public abstract void RemoveProgressListener();
+        public virtual void InitProgressListener() {}
+        public virtual void RemoveProgressListener() {}
 
         protected void IncrementCounter()
         {
