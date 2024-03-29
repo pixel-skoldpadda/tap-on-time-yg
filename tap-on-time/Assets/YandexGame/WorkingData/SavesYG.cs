@@ -24,6 +24,7 @@ namespace YG
         [SerializeField] private SkinType skinType = SkinType.Rocket;
         [SerializeField] private List<SkinType> purchasedSkins = new() { SkinType.Rocket };
         [SerializeField] private List<DailyTask> _tasks = new();
+        [SerializeField] private long lastTasksUpdateTime;
         
         private Level _currentLevel;
         private bool _levelStarted;
@@ -147,6 +148,12 @@ namespace YG
         {
             get => _onSectorDestroyed;
             set => _onSectorDestroyed = value;
+        }
+
+        public long LastTasksUpdateTime
+        {
+            get => lastTasksUpdateTime;
+            set => lastTasksUpdateTime = value;
         }
 
         public List<DailyTask> Tasks => _tasks;

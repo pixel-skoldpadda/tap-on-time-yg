@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Configs;
 using DailyTasks;
+using Data;
 using Infrastructure.Services.Factory;
 using Infrastructure.Services.Items;
 using Infrastructure.States.Interfaces;
 using Items.Task;
-using ModestTree;
 using UnityEngine;
 using YG;
 
@@ -13,6 +14,8 @@ namespace Infrastructure.States
 {
     public class InitDailyTasksState : IState
     {
+        private const long OneDayInSeconds = 86400;
+        
         private readonly IGameStateMachine _stateMachine;
         private readonly IItemsService _items;
         private readonly IDailyTasksFactory _tasksFactory;
@@ -27,33 +30,58 @@ namespace Infrastructure.States
         public void Enter()
         {
             Debug.Log($"{GetType()} entered.");
+
+            SavesYG saveData = YandexGame.savesData;
             
-            // TODO Проверять время прошедшее с последней инициализации тасков/обновлять раз в сутки
-            List<DailyTask> tasks = YandexGame.savesData.Tasks;
-            if (tasks.IsEmpty())
+            long lastTasksUpdateTime = saveData.LastTasksUpdateTime;
+            if (lastTasksUpdateTime > 0)
             {
-                foreach (DailyTaskItem taskItem in _items.DailyTaskItems)
+                long currentTime = DateTime.UtcNow.UnixTimeStamp();
+                if (currentTime - lastTasksUpdateTime >= OneDayInSeconds)
                 {
-                    tasks.Add(_tasksFactory.CreateDailyTask(taskItem));
+                    saveData.LastTasksUpdateTime = currentTime;
+                    saveData.Tasks.Clear();
+                    CreateNewTasks();
+                }
+                else
+                {
+                    InitTasks();
                 }
             }
             else
             {
-                foreach (DailyTask task in tasks)
-                {
-                    task.TaskItem = _items.GetDailyTaskItemById(task.ID);
-                    if (!task.Completed)
-                    {
-                        task.InitProgressListener();   
-                    }
-                }
+                saveData.LastTasksUpdateTime = DateTime.UtcNow.UnixTimeStamp();
+                CreateNewTasks();
             }
+            
             _stateMachine.Enter<LoadLevelState, string>(SceneConfig.GameScene);
         }
-
+        
         public void Exit()
         {
             Debug.Log($"{GetType()} exited.");
+        }
+
+        private void CreateNewTasks()
+        {
+            List<DailyTask> tasks = YandexGame.savesData.Tasks;
+            foreach (DailyTaskItem taskItem in _items.DailyTaskItems)
+            {
+                tasks.Add(_tasksFactory.CreateDailyTask(taskItem));
+            }
+        }
+
+        private void InitTasks()
+        {
+            List<DailyTask> tasks = YandexGame.savesData.Tasks;
+            foreach (DailyTask task in tasks)
+            {
+                task.TaskItem = _items.GetDailyTaskItemById(task.ID);
+                if (!task.Completed)
+                {
+                    task.InitProgressListener();   
+                }
+            }
         }
     }
 }
