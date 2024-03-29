@@ -9,7 +9,7 @@ namespace UI.Hud
 {
     public class TasksContainer : BaseHudContainer
     {
-        [SerializeField] private Button _tasksButton;
+        [SerializeField] private Button tasksButton;
         
         private IWindowsManager _windows;
         private DiContainer _container;
@@ -22,21 +22,17 @@ namespace UI.Hud
 
         public void OnButtonCLicked()
         {
-            _tasksButton.interactable = false;
+            tasksButton.interactable = false;
             YandexGame.savesData.GamePaused = true;
-
-            //: TODO Доработать корректное скрытие HUD
+            
             Hud hud = _container.Resolve<Hud>();
-            hud.SettingsContainer.Hide();
-            hud.GemsContainer.Hide();
+            hud.Hide();
 
             _windows.OpenWindow(WindowType.DailyTasks, false, () =>
             {
                 YandexGame.savesData.GamePaused = false;
-                _tasksButton.interactable = true;
-                
-                hud.SettingsContainer.Show();
-                hud.GemsContainer.Show();
+                tasksButton.interactable = true;
+                hud.Show();
             });
         }
     }

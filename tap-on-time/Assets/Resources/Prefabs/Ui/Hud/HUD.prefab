@@ -147,8 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 4688521209504956239}
-  uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
   text: 
@@ -1051,6 +1049,7 @@ MonoBehaviour:
   settingsContainer: {fileID: 895196024394967186}
   adsContainer: {fileID: 7048881811740260594}
   gemsContainer: {fileID: 2782805910574178383}
+  scoreContainer: {fileID: 8950703811917327369}
 --- !u!1 &4880476948328099500
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,8 +1197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 7956124888050073570}
-  uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
   text: 
@@ -1617,7 +1614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4441ac90731240c1bac0d4216fd3f102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tasksButton: {fileID: 2337221275019141445}
+  tasksButton: {fileID: 2337221275019141445}
 --- !u!1 &7508067042494607455
 GameObject:
   m_ObjectHideFlags: 0
@@ -1767,8 +1764,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 7508067042494607453}
-  uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
   text: 
@@ -2136,8 +2131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 9094208151256853298}
-  uniqueFontTMP: {fileID: 11400000, guid: ec64826627175d54595b2a3bf67f49ff, type: 2}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
   text: 
