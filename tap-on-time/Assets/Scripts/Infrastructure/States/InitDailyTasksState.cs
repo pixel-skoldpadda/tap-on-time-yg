@@ -14,8 +14,6 @@ namespace Infrastructure.States
 {
     public class InitDailyTasksState : IState
     {
-        private const long OneDayInSeconds = 86400;
-        
         private readonly IGameStateMachine _stateMachine;
         private readonly IItemsService _items;
         private readonly IDailyTasksFactory _tasksFactory;
@@ -37,7 +35,7 @@ namespace Infrastructure.States
             if (lastTasksUpdateTime > 0)
             {
                 long currentTime = DateTime.UtcNow.UnixTimeStamp();
-                if (currentTime - lastTasksUpdateTime >= OneDayInSeconds)
+                if (currentTime - lastTasksUpdateTime >= _items.GameConfig.UpdateDailyTasksTime)
                 {
                     saveData.LastTasksUpdateTime = currentTime;
                     saveData.Tasks.Clear();

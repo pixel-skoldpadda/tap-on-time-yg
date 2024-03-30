@@ -30,7 +30,7 @@ namespace Infrastructure.States
                 [typeof(StartLevelState)] = new StartLevelState(this, diContainer),
                 [typeof(CheckCollisionState)] = new CheckCollisionState(this, diContainer),
                 [typeof(RestartLevelState)] = new RestartLevelState(this, diContainer),
-                [typeof(FinishLevelState)] = new FinishLevelState(this, diContainer),
+                [typeof(FinishLevelState)] = new FinishLevelState(this, items, diContainer),
                 [typeof(SaveProgressState)] = new SaveProgressState(this, saveLoadService),
                 [typeof(ShowRewardAdsState)] = new ShowRewardAdsState(this, diContainer),
                 [typeof(ShowFullScreenAdsState)] = new ShowFullScreenAdsState(this, diContainer)

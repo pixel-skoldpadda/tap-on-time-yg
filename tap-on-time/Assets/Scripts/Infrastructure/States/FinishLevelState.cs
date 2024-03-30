@@ -1,8 +1,9 @@
 ﻿using Components;
 using Components.Player;
-using Configs;
 using Generator;
+using Infrastructure.Services.Items;
 using Infrastructure.States.Interfaces;
+using Items;
 using YG;
 using Zenject;
 
@@ -11,11 +12,13 @@ namespace Infrastructure.States
     public class FinishLevelState : IState
     {
         private readonly IGameStateMachine _stateMachine;
+        private readonly IItemsService _items;
         private readonly DiContainer _diContainer;
 
-        public FinishLevelState(IGameStateMachine stateMachine, DiContainer diContainer)
+        public FinishLevelState(IGameStateMachine stateMachine, IItemsService items, DiContainer diContainer)
         {
             _stateMachine = stateMachine;
+            _items = items;
             _diContainer = diContainer;
         }
         
@@ -42,9 +45,10 @@ namespace Infrastructure.States
             state.TotalScore += state.Score;
             state.Level++;
 
-            YandexGame.NewLeaderboardScores(GameConfig.LeaderboardId, state.TotalScore);
+            GameConfig gameConfig = _items.GameConfig;
+            YandexGame.NewLeaderboardScores(gameConfig.LeaderboardId, state.TotalScore);
 
-            string canShowAd = YandexGame.GetFlag(GameConfig.ShowFullScreenAdFeatureToggle);
+            string canShowAd = YandexGame.GetFlag(gameConfig.ShowFullScreenAd);
             if (canShowAd != null && bool.Parse(canShowAd))
             {
                 if (YandexGame.timerShowAd >= YandexGame.Instance.infoYG.fullscreenAdInterval)

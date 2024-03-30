@@ -21,6 +21,7 @@ namespace Infrastructure.Services.Items
 
         private PlayerItem _playerItem;
         private GemsItem _gemsItem;
+        private GameConfig _gameConfig;
         
         public void LoadAllItems()
         {
@@ -32,8 +33,14 @@ namespace Infrastructure.Services.Items
             LoadSectorItems();
             LoadGemsItem();
             LoadDailyTasksItems();
+            LoadGameConfig();
         }
-        
+
+        private void LoadGameConfig()
+        {
+            _gameConfig = Resources.Load<GameConfig>(ItemsPath.GameConfigPath);
+        }
+
         private void LoadSectorItems()
         {
             _sectorItemsGroup = new Dictionary<SectorType, List<SectorItem>>();
@@ -121,5 +128,6 @@ namespace Infrastructure.Services.Items
         public GemsItem GemsItem => _gemsItem;
         public List<SkinItem> SkinItems => _skinItems.Values.ToList();
         public List<DailyTaskItem> DailyTaskItems => _dailyTaskItems.Values.ToList();
+        public GameConfig GameConfig => _gameConfig;
     }
 }
