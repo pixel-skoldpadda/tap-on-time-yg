@@ -46,7 +46,12 @@ namespace DailyTasks
         }
         
         public string ID => _id;
-        public bool Completed => _completed;
+
+        public bool Completed
+        {
+            get => _completed;
+            set => _completed = value;
+        }
 
         public int CurrentCount
         {

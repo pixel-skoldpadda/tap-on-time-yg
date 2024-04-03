@@ -72,13 +72,20 @@ namespace Infrastructure.States
         private void InitTasks()
         {
             List<DailyTask> tasks = YandexGame.savesData.Tasks;
-            foreach (DailyTask task in tasks)
+            for (int i = 0; i < tasks.Count; i++)
             {
-                task.TaskItem = _items.GetDailyTaskItemById(task.ID);
-                if (!task.Completed)
+                DailyTask dailyTask = tasks[i];
+                DailyTask newTask = _tasksFactory.CreateDailyTask(_items.GetDailyTaskItemById(dailyTask.ID));
+                
+                newTask.Completed = dailyTask.Completed;
+                newTask.PrizeClaimed = dailyTask.PrizeClaimed;
+                newTask.CurrentCount = dailyTask.CurrentCount;
+
+                if (newTask.Completed)
                 {
-                    task.InitProgressListener();   
+                    newTask.RemoveProgressListener();
                 }
+                tasks[i] = newTask;
             }
         }
     }
