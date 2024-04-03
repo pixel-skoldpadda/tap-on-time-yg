@@ -14,8 +14,8 @@ namespace Infrastructure.Services.Items
         private Dictionary<WindowType, WindowItem> _windows;
         private Dictionary<SkinType, SkinItem> _skinItems;
         private Dictionary<SectorType, List<SectorItem>> _sectorItemsGroup;
-        private Dictionary<string, DailyTaskItem> _dailyTaskItems;
-
+        private DailyTaskItem[] _dailyTaskItems;
+        
         private List<LevelItem> _generatedGeneratedLevelItems;
         private List<LevelItem> _predefinedLevelItems;
 
@@ -97,8 +97,8 @@ namespace Infrastructure.Services.Items
 
         private void LoadDailyTasksItems()
         {
-            _dailyTaskItems = Resources.LoadAll<DailyTaskItem>(ItemsPath.DailyTasksItemsPath).ToDictionary(
-                k => k.ID, v => v);
+            _dailyTaskItems = Resources.LoadAll<DailyTaskItem>(ItemsPath.DailyTasksItemsPath);
+            Array.Sort(_dailyTaskItems);
         }
         
         public WindowItem GetWindowItem(WindowType type)
@@ -118,7 +118,14 @@ namespace Infrastructure.Services.Items
 
         public DailyTaskItem GetDailyTaskItemById(string id)
         {
-            return  _dailyTaskItems.TryGetValue(id, out DailyTaskItem taskItem) ? taskItem : null;
+            foreach (DailyTaskItem dailyTaskItem in _dailyTaskItems)
+            {
+                if (id.Equals(dailyTaskItem.ID))
+                {
+                    return dailyTaskItem;
+                }
+            }
+            return null;
         }
         
         public List<LevelItem> GeneratedLevelItems => _generatedGeneratedLevelItems;
@@ -127,7 +134,7 @@ namespace Infrastructure.Services.Items
         public PlayerItem PlayerItem => _playerItem;
         public GemsItem GemsItem => _gemsItem;
         public List<SkinItem> SkinItems => _skinItems.Values.ToList();
-        public List<DailyTaskItem> DailyTaskItems => _dailyTaskItems.Values.ToList();
+        public DailyTaskItem[] DailyTaskItems => _dailyTaskItems;
         public GameConfig GameConfig => _gameConfig;
     }
 }

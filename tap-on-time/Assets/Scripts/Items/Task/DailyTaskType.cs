@@ -2,10 +2,10 @@
 {
     public enum DailyTaskType
     {
-        CompleteLevel,
-        DestroySector,
-        DestroyIceSector,
-        DestroyWoodSector,
-        CollectGems
+        CompleteLevel = 0,
+        DestroySector = 1,
+        DestroyIceSector = 2,
+        DestroyWoodSector = 3,
+        CollectGems = 4
     }
 }

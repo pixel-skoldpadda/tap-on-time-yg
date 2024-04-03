@@ -15,7 +15,7 @@ namespace Infrastructure.Services.Items
         GemsItem GemsItem { get; }
         List<LevelItem> PredefinedLevelItems { get; }
         List<SkinItem> SkinItems { get; }
-        List<DailyTaskItem> DailyTaskItems { get; }
+        DailyTaskItem[] DailyTaskItems { get; }
         GameConfig GameConfig { get; }
         SkinItem GetSkinItem(SkinType type);
         List<SectorItem> GetSectorItems(SectorType type);

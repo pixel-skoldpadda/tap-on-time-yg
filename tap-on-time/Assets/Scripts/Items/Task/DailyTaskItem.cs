@@ -1,10 +1,11 @@
-﻿using Localization;
+﻿using System;
+using Localization;
 using UnityEngine;
 
 namespace Items.Task
 {
     [CreateAssetMenu(fileName = "_DAILY_TASK_ITEM", menuName = "Items/Task")]
-    public class DailyTaskItem : ScriptableObject
+    public class DailyTaskItem : ScriptableObject, IComparable
     {
         [SerializeField] private string id;
         [SerializeField] private DailyTaskType type;
@@ -19,5 +20,12 @@ namespace Items.Task
         public Sprite Icon => icon;
         public int PrizeCount => prizeCount;
         public int TargetValue => targetValue;
+        
+        public int CompareTo(object obj)
+        {
+            DailyTaskItem taskItem = (DailyTaskItem) obj;
+            int typeCompare = Type.CompareTo(taskItem.Type);
+            return typeCompare == 0 ? TargetValue.CompareTo(taskItem.TargetValue) : typeCompare;
+        }
     }
 }

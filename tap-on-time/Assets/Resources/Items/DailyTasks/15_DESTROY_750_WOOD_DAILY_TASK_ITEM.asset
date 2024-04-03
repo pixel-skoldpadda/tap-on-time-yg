@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa34054d2bb44d4c87c79b1b357542d0, type: 3}
-  m_Name: DESTROY_5_WOOD_DAILY_TASK_ITEM
+  m_Name: 15_DESTROY_750_WOOD_DAILY_TASK_ITEM
   m_EditorClassIdentifier: 
-  id: T_DESTROY_5_WOOD_SECTORS
+  id: T_DESTROY_750_WOOD_SECTORS
   type: 3
   description:
     translations:
     - language: 0
-      value: "\u0423\u043D\u0438\u0447\u0442\u043E\u0436\u044C 5 \u0434\u0440\u0435\u0432\u0435\u0441\u043D\u044B\u0445
+      value: "\u0423\u043D\u0438\u0447\u0442\u043E\u0436\u044C 750 \u0434\u0440\u0435\u0432\u0435\u0441\u043D\u044B\u0445
         \u0441\u0435\u043A\u0442\u043E\u0440\u043E\u0432"
     - language: 1
-      value: Destroy 5 wood sectors
+      value: Destroy 750 wood sectors
   icon: {fileID: 21300000, guid: 3731052cd645f3848b2a83fdc36446ff, type: 3}
-  prizeCount: 10
-  targetValue: 5
+  prizeCount: 30
+  targetValue: 750
