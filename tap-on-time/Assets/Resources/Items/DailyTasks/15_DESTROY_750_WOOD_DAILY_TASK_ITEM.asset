@@ -21,6 +21,6 @@ MonoBehaviour:
         \u0441\u0435\u043A\u0442\u043E\u0440\u043E\u0432"
     - language: 1
       value: Destroy 750 wood sectors
-  icon: {fileID: 21300000, guid: 3731052cd645f3848b2a83fdc36446ff, type: 3}
+  icon: {fileID: 21300000, guid: 6395b6d8e86a9be48ac8db8f76df4cd9, type: 3}
   prizeCount: 30
   targetValue: 750

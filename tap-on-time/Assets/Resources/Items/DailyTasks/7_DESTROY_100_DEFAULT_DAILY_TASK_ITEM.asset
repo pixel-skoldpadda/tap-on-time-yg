@@ -20,6 +20,6 @@ MonoBehaviour:
       value: "\u0423\u043D\u0438\u0447\u0442\u043E\u0436\u044C 100 \u0441\u0435\u043A\u0442\u043E\u0440\u043E\u0432"
     - language: 1
       value: Destroy 100 sectors
-  icon: {fileID: 21300000, guid: 65fb7d908569deb43a927e63f960ae9e, type: 3}
+  icon: {fileID: 21300000, guid: 622b704a18156bb4a87b0315563b3d54, type: 3}
   prizeCount: 10
   targetValue: 100
