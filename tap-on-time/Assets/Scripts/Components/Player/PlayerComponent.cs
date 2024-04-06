@@ -45,7 +45,8 @@ namespace Components.Player
         {
             if (_moveAroundComponent.IsMoving)
             {
-                _isPointerOverGameObject = EventSystem.current.IsPointerOverGameObject();   
+                EventSystem eventSystem = EventSystem.current;
+                _isPointerOverGameObject = eventSystem != null && eventSystem.IsPointerOverGameObject();
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using DailyTasks;
 using Infrastructure.Services.SaveLoad;
+using Infrastructure.States;
 using Items.Task;
 using TMPro;
 using UnityEngine;
@@ -25,11 +26,15 @@ namespace Ui.Windows.TasksWindow
         
         private DailyTask _dailyTask;
         private ISaveLoadService _saveLoadService;
+        private IGameStateMachine _stateMachine;
+        private DailyTasksWindow _dailyTasksWindow;
         
-        public void Construct(DailyTask dailyTask, ISaveLoadService saveLoadService)
+        public void Construct(DailyTask dailyTask, ISaveLoadService saveLoadService, IGameStateMachine stateMachine, DailyTasksWindow dailyTasksWindow)
         {
             _dailyTask = dailyTask;
             _saveLoadService = saveLoadService;
+            _stateMachine = stateMachine;
+            _dailyTasksWindow = dailyTasksWindow;
 
             DailyTaskItem taskItem = _dailyTask.TaskItem;
             
@@ -62,8 +67,9 @@ namespace Ui.Windows.TasksWindow
         public void OnClaimAdsPrizeButtonPressed()
         {
             DisableButtons();
+            _dailyTasksWindow.Close();
             
-            //: TODO Реализовать выдачу двойной награды за рекламу
+            _stateMachine.Enter<ShowDailyTasksAdsState, DailyTask>(_dailyTask);
         }
 
         private void DisableButtons()

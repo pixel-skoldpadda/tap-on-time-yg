@@ -35,7 +35,6 @@ namespace UI.Hud
         public void Hide()
         {
             tapToPLay.SetActive(false);
-            progressContainer.Hide();
             marketContainer.Hide();
             tasksContainer.Hide();
             settingsContainer.Hide();
@@ -46,7 +45,6 @@ namespace UI.Hud
         public void Show()
         {
             tapToPLay.SetActive(true);
-            progressContainer.Show();
             marketContainer.Show();
             tasksContainer.Show();
             settingsContainer.Show();

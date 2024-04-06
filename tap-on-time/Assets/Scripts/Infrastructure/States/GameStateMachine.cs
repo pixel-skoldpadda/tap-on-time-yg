@@ -33,7 +33,8 @@ namespace Infrastructure.States
                 [typeof(FinishLevelState)] = new FinishLevelState(this, items, diContainer),
                 [typeof(SaveProgressState)] = new SaveProgressState(this, saveLoadService),
                 [typeof(ShowRewardAdsState)] = new ShowRewardAdsState(this, diContainer),
-                [typeof(ShowFullScreenAdsState)] = new ShowFullScreenAdsState(this, diContainer)
+                [typeof(ShowFullScreenAdsState)] = new ShowFullScreenAdsState(this, diContainer),
+                [typeof(ShowDailyTasksAdsState)] = new ShowDailyTasksAdsState(this)
             };
         }
 
