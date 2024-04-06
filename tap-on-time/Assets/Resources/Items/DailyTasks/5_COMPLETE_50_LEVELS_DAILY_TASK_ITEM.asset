@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa34054d2bb44d4c87c79b1b357542d0, type: 3}
   m_Name: 5_COMPLETE_50_LEVELS_DAILY_TASK_ITEM
   m_EditorClassIdentifier: 
-  id: T_COMPLETE_50_LEVELS
+  id: T_COMPLETE_30_LEVELS
   type: 0
   description:
     translations:
     - language: 0
-      value: "\u0417\u0430\u0432\u0435\u0440\u0448\u0438 50 \u0443\u0440\u043E\u0432\u043D\u0435\u0439"
+      value: "\u0417\u0430\u0432\u0435\u0440\u0448\u0438 30 \u0443\u0440\u043E\u0432\u043D\u0435\u0439"
     - language: 1
-      value: Complete 50 levels
+      value: Complete 30 levels
   icon: {fileID: 21300000, guid: c93a3c2cfa43a15498d5327996a079d5, type: 3}
   prizeCount: 20
-  targetValue: 50
+  targetValue: 30

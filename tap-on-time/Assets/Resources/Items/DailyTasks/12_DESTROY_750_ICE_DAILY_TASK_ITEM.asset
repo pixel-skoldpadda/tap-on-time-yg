@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa34054d2bb44d4c87c79b1b357542d0, type: 3}
-  m_Name: 12_DESTROY_750_DEFAULT_DAILY_TASK_ITEM
+  m_Name: 12_DESTROY_750_ICE_DAILY_TASK_ITEM
   m_EditorClassIdentifier: 
-  id: T_DESTROY_750_ICE_SECTORS
+  id: T_DESTROY_150_ICE_SECTORS
   type: 2
   description:
     translations:
     - language: 0
-      value: "\u0423\u043D\u0438\u0447\u0442\u043E\u0436\u044C 750 \u043B\u0435\u0434\u044F\u043D\u044B\u0445
+      value: "\u0423\u043D\u0438\u0447\u0442\u043E\u0436\u044C 150 \u043B\u0435\u0434\u044F\u043D\u044B\u0445
         \u0441\u0435\u043A\u0442\u043E\u0440\u043E\u0432"
     - language: 1
-      value: Destroy 750 ice sectors
+      value: Destroy 150 ice sectors
   icon: {fileID: 21300000, guid: 19675c89a688d8f4ba659fa432b6631f, type: 3}
   prizeCount: 30
-  targetValue: 750
+  targetValue: 150

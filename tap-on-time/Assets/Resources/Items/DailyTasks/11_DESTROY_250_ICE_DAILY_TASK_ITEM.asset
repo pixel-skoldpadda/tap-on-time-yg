@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa34054d2bb44d4c87c79b1b357542d0, type: 3}
-  m_Name: 10_DESTROY_100_DEFAULT_DAILY_TASK_ITEM
+  m_Name: 11_DESTROY_250_ICE_DAILY_TASK_ITEM
   m_EditorClassIdentifier: 
   id: T_DESTROY_100_ICE_SECTORS
   type: 2
@@ -22,5 +22,5 @@ MonoBehaviour:
     - language: 1
       value: Destroy 100 ice sectors
   icon: {fileID: 21300000, guid: 19675c89a688d8f4ba659fa432b6631f, type: 3}
-  prizeCount: 10
+  prizeCount: 20
   targetValue: 100

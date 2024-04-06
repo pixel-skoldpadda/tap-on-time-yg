@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa34054d2bb44d4c87c79b1b357542d0, type: 3}
   m_Name: 8_DESTROY_500_DEFAULT_DAILY_TASK_ITEM
   m_EditorClassIdentifier: 
-  id: T_DESTROY_500_DEFAULT_SECTORS
+  id: T_DESTROY_200_DEFAULT_SECTORS
   type: 1
   description:
     translations:
     - language: 0
-      value: "\u0423\u043D\u0438\u0447\u0442\u043E\u0436\u044C 500 \u0441\u0435\u043A\u0442\u043E\u0440\u043E\u0432"
+      value: "\u0423\u043D\u0438\u0447\u0442\u043E\u0436\u044C 200 \u0441\u0435\u043A\u0442\u043E\u0440\u043E\u0432"
     - language: 1
-      value: Destroy 500 sectors
+      value: Destroy 200 sectors
   icon: {fileID: 21300000, guid: 622b704a18156bb4a87b0315563b3d54, type: 3}
   prizeCount: 20
-  targetValue: 500
+  targetValue: 200
