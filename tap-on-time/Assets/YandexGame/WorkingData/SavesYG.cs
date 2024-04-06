@@ -38,6 +38,9 @@ namespace YG
 
         private Action<SectorType> _onSectorDestroyed;
 
+        private Action _onTaskCompleted;
+        private Action _onTaskPrizeClaimed;
+        
         private bool _gamePaused;
         
         public SkinType SkinType
@@ -154,6 +157,18 @@ namespace YG
         {
             get => lastTasksUpdateTime;
             set => lastTasksUpdateTime = value;
+        }
+
+        public Action OnTaskCompleted
+        {
+            get => _onTaskCompleted;
+            set => _onTaskCompleted = value;
+        }
+
+        public Action OnTaskPrizeClaimed
+        {
+            get => _onTaskPrizeClaimed;
+            set => _onTaskPrizeClaimed = value;
         }
 
         public List<DailyTask> Tasks => _tasks;
