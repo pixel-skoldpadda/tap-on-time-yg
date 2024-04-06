@@ -1,6 +1,7 @@
 ﻿using System;
 using Items.Task;
 using UnityEngine;
+using YG;
 
 namespace DailyTasks
 {
@@ -29,7 +30,7 @@ namespace DailyTasks
 
             if (_currentCount >= _taskItem.TargetValue)
             {
-                _completed = true;
+                Completed = true;
                 RemoveProgressListener();
             }
         }
@@ -40,7 +41,7 @@ namespace DailyTasks
             
             if (_currentCount >= _taskItem.TargetValue)
             {
-                _completed = true;
+                Completed = true;
                 RemoveProgressListener();
             }
         }
@@ -50,7 +51,14 @@ namespace DailyTasks
         public bool Completed
         {
             get => _completed;
-            set => _completed = value;
+            set
+            {
+                _completed = value;
+                if (_completed)
+                {
+                    YandexGame.savesData.OnTaskCompleted?.Invoke();
+                }
+            }
         }
 
         public int CurrentCount
@@ -68,7 +76,14 @@ namespace DailyTasks
         public bool PrizeClaimed
         {
             get => _prizeClaimed;
-            set => _prizeClaimed = value;
+            set
+            {
+                _prizeClaimed = value;
+                if (_prizeClaimed)
+                {
+                    YandexGame.savesData.OnTaskPrizeClaimed?.Invoke();
+                }
+            }
         }
     }
 }
