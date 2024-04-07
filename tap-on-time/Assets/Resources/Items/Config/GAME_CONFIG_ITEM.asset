@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leaderboardId: totalScoreLeaderboard
   updateDailyTasksTime: 86400
+  hardLevelsFrequency: 5
   showFullScreenAd: ShowFullScreenAd

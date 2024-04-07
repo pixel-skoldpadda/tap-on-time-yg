@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d798988dcde2405a956905d11fcb8be7, type: 3}
   m_Name: 39_level_item
   m_EditorClassIdentifier: 
+  levelType: 1
   backgroundColor: {r: 0.7490196, g: 0.8627451, b: 0.8980392, a: 1}
   fieldColor: {r: 0.24313726, g: 0.32941177, b: 0.6745098, a: 1}
   sectorsAmount: 14
