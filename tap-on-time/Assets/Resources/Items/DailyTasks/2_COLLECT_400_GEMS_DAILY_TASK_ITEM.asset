@@ -17,7 +17,7 @@ MonoBehaviour:
   description:
     translations:
     - language: 0
-      value: "\u0421\u043E\u0431\u0435\u0440\u0438 400 \u0440\u0443\u0431\u0438\u043D\u043E\u0432"
+      value: "\u0421\u043E\u0431\u0440\u0430\u0442\u044C 400 \u0440\u0443\u0431\u0438\u043D\u043E\u0432"
     - language: 1
       value: Collect 400 gems
   icon: {fileID: 21300000, guid: d382015fc5432bc4e9df1810a1cbfb0a, type: 3}
