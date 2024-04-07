@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 10_level_item
   m_EditorClassIdentifier: 
   levelType: 0
-  backgroundColor: {r: 0.36004803, g: 0.8207547, b: 0.5295881, a: 0}
-  fieldColor: {r: 0.49127805, g: 0.9056604, b: 0.6844012, a: 0}
-  sectorsAmount: 8
+  backgroundColor: {r: 0.36004803, g: 0.8207547, b: 0.5295881, a: 1}
+  fieldColor: {r: 0.49127805, g: 0.9056604, b: 0.6844012, a: 1}
+  sectorsAmount: 2
   startSpeed: 400
   moveSectorsProbability: 5
   changeDirectionProbability: 5

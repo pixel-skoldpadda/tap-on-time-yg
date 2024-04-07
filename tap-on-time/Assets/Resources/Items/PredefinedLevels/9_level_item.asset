@@ -15,7 +15,7 @@ MonoBehaviour:
   levelType: 0
   backgroundColor: {r: 0.735849, g: 0.38527945, b: 0.64439595, a: 1}
   fieldColor: {r: 0.6487071, g: 0.24608402, b: 0.6603774, a: 1}
-  sectorsAmount: 8
+  sectorsAmount: 2
   startSpeed: 360
   moveSectorsProbability: 5
   changeDirectionProbability: 5
