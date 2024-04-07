@@ -35,6 +35,8 @@ namespace Generator
         private readonly SpriteRenderer _gameField;
         private readonly IGameFactory _factory;
         private readonly Camera _camera;
+
+        private readonly Random _random;
         
         public LevelGenerator(List<Gem> gems, IItemsService items, PlayerComponent player, SpriteRenderer gameField, IGameFactory factory)
         {
@@ -44,7 +46,8 @@ namespace Generator
             _camera = Camera.main;
             _player = player;
             _gems = gems;
-
+            _random = new Random();
+            
             Init();
         }
 
@@ -122,8 +125,7 @@ namespace Generator
                 _hardLevelsPool.AddRange(_items.HardGeneratedLevelsItems);
             }
 
-            Random random = new Random();
-            int levelIndex = random.Next(0, GetCurrentPool().Count);
+            int levelIndex = _random.Next(0, GetCurrentPool().Count);
             state.CurrentLevel = new Level(GetLevelFromPool(levelIndex), _items);
             state.LevelIndex = levelIndex;
         }
@@ -227,7 +229,8 @@ namespace Generator
             int count = currentPool.Count;
             if (index > count - 1)
             {
-                index = new Random().Next(0, count);
+                // Версионность на тот случай, если у игрока в стейте индекс уровня выходящий за пределы массива
+                index = _random.Next(0, count);
             }
             
             LevelItem level = currentPool[index];
