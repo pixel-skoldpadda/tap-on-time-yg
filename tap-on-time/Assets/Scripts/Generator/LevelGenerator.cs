@@ -224,6 +224,12 @@ namespace Generator
         private LevelItem GetLevelFromPool(int index)
         {
             List<LevelItem> currentPool = GetCurrentPool();
+            int count = currentPool.Count;
+            if (index > count - 1)
+            {
+                index = new Random().Next(0, count);
+            }
+            
             LevelItem level = currentPool[index];
             currentPool.RemoveAt(index);
             
