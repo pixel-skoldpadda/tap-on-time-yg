@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Items;
+using Items.Level;
 using Items.Sector;
 using Items.Task;
 using Ui.Windows;
@@ -18,6 +19,9 @@ namespace Infrastructure.Services.Items
         
         private List<LevelItem> _generatedGeneratedLevelItems;
         private List<LevelItem> _predefinedLevelItems;
+
+        private readonly List<LevelItem> _easyGeneratedLevelsItems = new();
+        private readonly List<LevelItem> _hardGeneratedLevelsItems = new();
 
         private PlayerItem _playerItem;
         private GemsItem _gemsItem;
@@ -86,7 +90,18 @@ namespace Infrastructure.Services.Items
 
         private void LoadGeneratedLevelItems()
         {
-            _generatedGeneratedLevelItems = Resources.LoadAll<LevelItem>(ItemsPath.GeneratedLevelItemsPath).ToList();
+            LevelItem[] levelItems = Resources.LoadAll<LevelItem>(ItemsPath.GeneratedLevelItemsPath);
+            foreach (LevelItem levelItem in levelItems)
+            {
+                if (LevelType.Easy.Equals(levelItem.LevelType))
+                {
+                    _easyGeneratedLevelsItems.Add(levelItem);
+                }
+                else
+                {
+                    _hardGeneratedLevelsItems.Add(levelItem);
+                }
+            }
         }
 
         private void LoadWindowItems()
@@ -127,7 +142,9 @@ namespace Infrastructure.Services.Items
             }
             return null;
         }
-        
+
+        public List<LevelItem> EasyGeneratedLevelsItems => _easyGeneratedLevelsItems;
+        public List<LevelItem> HardGeneratedLevelsItems => _hardGeneratedLevelsItems;
         public List<LevelItem> GeneratedLevelItems => _generatedGeneratedLevelItems;
         public List<LevelItem> PredefinedLevelItems => _predefinedLevelItems;
 

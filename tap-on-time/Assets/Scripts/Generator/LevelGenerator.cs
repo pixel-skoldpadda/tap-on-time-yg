@@ -4,21 +4,22 @@ using Components.Player;
 using DG.Tweening;
 using Infrastructure.Services.Factory;
 using Infrastructure.Services.Items;
-using Items;
+using Items.Level;
 using ModestTree;
 using UnityEngine;
 using YG;
-using Zenject;
 using Random = System.Random;
 
 namespace Generator
 {
     public class LevelGenerator
     {
-        private readonly List<LevelItem> _levelsPool = new();
         private readonly List<Quarter> _quartersPool = new();
         private readonly List<Sector> _generatedSectors = new();
 
+        private readonly List<LevelItem> _easyLevelsPool = new();
+        private readonly List<LevelItem> _hardLevelsPool = new();
+        
         private readonly List<Quarter> quarters = new()
         {
             new Quarter(0, 90),
@@ -33,16 +34,13 @@ namespace Generator
 
         private readonly SpriteRenderer _gameField;
         private readonly IGameFactory _factory;
-        private readonly DiContainer _diContainer;
         private readonly Camera _camera;
         
-        public LevelGenerator(List<Gem> gems, IItemsService items, PlayerComponent player, SpriteRenderer gameField, IGameFactory factory,
-            DiContainer diContainer)
+        public LevelGenerator(List<Gem> gems, IItemsService items, PlayerComponent player, SpriteRenderer gameField, IGameFactory factory)
         {
             _items = items;
             _gameField = gameField;
             _factory = factory;
-            _diContainer = diContainer;
             _camera = Camera.main;
             _player = player;
             _gems = gems;
@@ -57,7 +55,8 @@ namespace Generator
             int levelIndex = state.LevelIndex;
             if (IsAllLevelsCompleted())
             {
-                _levelsPool.AddRange(_items.GeneratedLevelItems);
+                _easyLevelsPool.AddRange(_items.EasyGeneratedLevelsItems);
+                _hardLevelsPool.AddRange(_items.HardGeneratedLevelsItems);
                 state.CurrentLevel = new Level(GetLevelFromPool(levelIndex), _items);
             }
             else
@@ -113,13 +112,18 @@ namespace Generator
 
         private void InitGeneratedLevel(SavesYG state)
         {
-            if (_levelsPool.IsEmpty())
+            if (_easyLevelsPool.IsEmpty())
             {
-                _levelsPool.AddRange(_items.GeneratedLevelItems);
+                _easyLevelsPool.AddRange(_items.EasyGeneratedLevelsItems);
+            }
+
+            if (_hardLevelsPool.IsEmpty())
+            {
+                _hardLevelsPool.AddRange(_items.HardGeneratedLevelsItems);
             }
 
             Random random = new Random();
-            int levelIndex = random.Next(0, _levelsPool.Count);
+            int levelIndex = random.Next(0, GetCurrentPool().Count);
             state.CurrentLevel = new Level(GetLevelFromPool(levelIndex), _items);
             state.LevelIndex = levelIndex;
         }
@@ -219,14 +223,24 @@ namespace Generator
 
         private LevelItem GetLevelFromPool(int index)
         {
-            LevelItem level = _levelsPool[index];
-            _levelsPool.RemoveAt(index);
+            List<LevelItem> currentPool = GetCurrentPool();
+            LevelItem level = currentPool[index];
+            currentPool.RemoveAt(index);
+            
             return level;
         }
 
         private bool IsAllLevelsCompleted()
         {
             return YandexGame.savesData.Level > _items.PredefinedLevelItems.Count - 1;
+        }
+
+        private List<LevelItem> GetCurrentPool()
+        {
+            int currentLevel = YandexGame.savesData.Level;
+            int frequency = _items.GameConfig.HardLevelsFrequency;
+
+           return currentLevel % frequency == 0 ? _hardLevelsPool : _easyLevelsPool;
         }
     }
 }
