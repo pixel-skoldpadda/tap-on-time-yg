@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2589728064030557315}
   - component: {fileID: 8196157848690382126}
   - component: {fileID: 4688521209504956239}
-  - component: {fileID: 8865209574562604616}
+  - component: {fileID: 7148203394026542965}
   m_Layer: 5
   m_Name: Continue
   m_TagString: Untagged
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8865209574562604616
+--- !u!114 &7148203394026542965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 0}
+  textMPComponent: {fileID: 4688521209504956239}
   uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
@@ -1138,7 +1138,7 @@ GameObject:
   - component: {fileID: 3626192701837363859}
   - component: {fileID: 6696872425474729345}
   - component: {fileID: 7956124888050073570}
-  - component: {fileID: 8141923725237941326}
+  - component: {fileID: 3722968792972029320}
   m_Layer: 5
   m_Name: NoThanks
   m_TagString: Untagged
@@ -1262,7 +1262,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8141923725237941326
+--- !u!114 &3722968792972029320
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1274,7 +1274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 0}
+  textMPComponent: {fileID: 7956124888050073570}
   uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
@@ -1707,7 +1707,7 @@ GameObject:
   - component: {fileID: 7508067042494607452}
   - component: {fileID: 7508067042494607522}
   - component: {fileID: 7508067042494607453}
-  - component: {fileID: 321021298991140726}
+  - component: {fileID: 4523974794416095739}
   m_Layer: 5
   m_Name: TapToPLay
   m_TagString: Untagged
@@ -1833,7 +1833,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &321021298991140726
+--- !u!114 &4523974794416095739
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1845,7 +1845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 0}
+  textMPComponent: {fileID: 7508067042494607453}
   uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
@@ -2078,7 +2078,7 @@ GameObject:
   - component: {fileID: 4320257353637124261}
   - component: {fileID: 7762381572774702278}
   - component: {fileID: 9094208151256853298}
-  - component: {fileID: 5165687435730979622}
+  - component: {fileID: 5751148927563149489}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2202,7 +2202,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5165687435730979622
+--- !u!114 &5751148927563149489
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2214,7 +2214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34f36451b093ee4c83ad4aa5459d2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMPComponent: {fileID: 0}
+  textMPComponent: {fileID: 9094208151256853298}
   uniqueFontTMP: {fileID: 0}
   textLComponent: {fileID: 0}
   infoYG: {fileID: 11400000, guid: 162644796a8b0d044bce3d6fda0641e3, type: 2}
